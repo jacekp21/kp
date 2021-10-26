@@ -14,5 +14,38 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+Route::get('/po', function () {
+    return view('po/purchaseorder');
+});
+
+Route::get('/po/new', function () {
+    return view('po/new');
+});
+
+Route::get('ap', function () {
+    return view('ap');
+});
+
+Route::get('/payment', function () {
+    return view('payment');
+});
+
+Route::get('/report', function () {
+    return view('report');
+});
+
+Route::get('/setting', function () {
+    return view('setting');
 });
