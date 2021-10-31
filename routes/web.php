@@ -19,11 +19,15 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard/dashboard');
 });
 
-Route::get('/admin', function () {
-    return view('admin');
+Route::get('/admin/new', function () {
+    return view('admin/new');
+});
+
+Route::get('/admin/admin', function () {
+    return view('admin/admin');
 });
 
 Route::get('/po', function () {
@@ -34,7 +38,7 @@ Route::get('/po/new', function () {
     return view('po/new');
 });
 
-Route::get('ap', function () {
+Route::get('/ap', function () {
     return view('ap');
 });
 
@@ -48,4 +52,8 @@ Route::get('/report', function () {
 
 Route::get('/setting', function () {
     return view('setting');
+});
+
+Route::get('/login', function () {
+    return view('login');
 });
