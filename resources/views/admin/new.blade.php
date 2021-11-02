@@ -13,40 +13,48 @@
             <div class="col-md-6">
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="http://localhost:8000/">Home</a></li>
-    <li class="breadcrumb-item"><a href="http://localhost:8000/admin">Admin</a></li>
-    <li class="breadcrumb-item active" aria-current="page"><a href="http://localhost:8000/admin/new">New</a></li>
+    <li class="breadcrumb-item">Home</a></li>
+    <li class="breadcrumb-item">Admin</a></li>
+    <li class="breadcrumb-item active" aria-current="page">New</a></li>
   </ol>
 </nav>
             <form>
                 <h1>New Account</h1>
                 <div class="mb-3">
-                    <br><label for="username" class="form-label">Username</label></br>
+                    <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" placeholder="Username">
                 </div>
                 <div class="mb-3">
-                    <br><label for="password" class="form-label">Password</label></br>
+                    <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Password">
                 </div>
                 <div class="mb-3">
                     <label for="exampleDataList" class="form-label">Position</label>
                     <input class="form-control" list="positionOptions" id="position" placeholder="Type to search...">
                     <datalist id="positionOptions">
-                        <option value="San Francisco">
-                        <option value="New York">
-                        <option value="Seattle">
-                        <option value="Los Angeles">
-                        <option value="Chicago">
+                        <option value="Admin">
+                        <option value="Manager">
+                        <option value="Accounting">
+                        <option value="Purchasing">
                     </datalist>
                 </div>
                 <div class="mb-3">
-                    <br><label for="telp" class="form-label">No. Telp</label></br>
+                    <label for="telp" class="form-label">No. Telp</label>
                     <input type="text" class="form-control" id="telp" placeholder="No.Telp">
                 </div>
-                <br><button type="submit" class="btn btn-primary">Save</button></br>
-                <br><button type="reset" class="btn btn-primary">Reset</button></br>
+                <div class="mb-3">
+                    <label for="exampleDataList" class="form-label">Role</label>
+                    <input class="form-control" list="roleOptions" id="Role" placeholder="Type to search...">
+                    <datalist id="roleOptions">
+                        <option value="Admin">
+                        <option value="Manager">
+                        <option value="Staff">
+                    </datalist>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="reset" class="btn btn-primary">Reset</button>
             </form>
-                
+            <a href="http://localhost:8000/">Home</a>
         </div>
     </div>
 </body>

@@ -39,11 +39,19 @@ Route::get('/po/new', function () {
 });
 
 Route::get('/ap', function () {
-    return view('ap');
+    return view('ap/ap');
+});
+
+Route::get('/ap/new', function () {
+    return view('ap/new');
 });
 
 Route::get('/payment', function () {
-    return view('payment');
+    return view('payment/payment');
+});
+
+Route::get('/payment/new', function () {
+    return view('payment/new');
 });
 
 Route::get('/report', function () {

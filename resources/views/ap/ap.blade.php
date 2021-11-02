@@ -6,24 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-    <title>Main</title>
+    <title>Account Payable</title>
 </head>
-<body class="sb-nav-fixed">
-    
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col">Header <h1>Main Page!!</h1></div> 
-            <a href="http://localhost:8000/dashboard" rel="noopener noreferrer" class="text-white">Dashboard</a><br>
-                <a href="http://localhost:8000/admin" rel="noopener noreferrer">Admin</a><br>
-                <a href="http://localhost:8000/po" rel="noopener noreferrer">Purchase Order</a><br>
-                <a href="http://localhost:8000/ap" rel="noopener noreferrer">Account Payable</a><br>
-                <a href="http://localhost:8000/payment" rel="noopener noreferrer">Payment</a><br>
-                <a href="http://localhost:8000/report" rel="noopener noreferrer">Report</a><br>
-                <a href="http://localhost:8000/setting" rel="noopener noreferrer">Setting</a><br>
-        </div>
-    </div>
-    
-    
+<body>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Account Payable</li>
+  </ol>
+</nav>
 </body>
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

@@ -8,7 +8,7 @@
     <title>Login Page</title>
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container mt-5>
         <div class="row">
             <div class="col-md-6">
             <h1>Login Here</h1>

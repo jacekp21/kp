@@ -10,12 +10,12 @@
 <body>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="http://localhost:8000/">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page"><a href="http://localhost:8000/admin/admin">Admin</li>
+    <li class="breadcrumb-item">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Admin</li>
   </ol>
 </nav>
-    <a href="http://localhost:8000/admin/new">Add New</a>    
-    <h1>Welcome to Users Page!!</h1>
+<a href="http://localhost:8000/admin/new">Add New</a>
+    <h1>Data Users</h1>
 
 </body>
 </html>
