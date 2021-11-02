@@ -38,7 +38,7 @@ Route::get('/po/new', function () {
     return view('po/new');
 });
 
-Route::get('/ap', function () {
+Route::get('/ap/ap', function () {
     return view('ap/ap');
 });
 
