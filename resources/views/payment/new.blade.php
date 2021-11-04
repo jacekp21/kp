@@ -67,7 +67,7 @@
                     </datalist>
         <div class="mb-3">
                     <label for="dopy" class="form-label">Date Of Payment</label>
-                    <input type="text" class="form-control" id="dopy" placeholder="">
+                    <input type="date" class="form-control" id="dopy" placeholder="">
         <div class="mb-3">
                     <label for="amount" class="form-label">Amount</label>
                     <input type="text" class="form-control" id="amount" placeholder="">
