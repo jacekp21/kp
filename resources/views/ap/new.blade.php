@@ -34,11 +34,8 @@
                     <label for="alamat" class="form-label">Address</label>
                     <input type="text" class="form-control" id="alamat" placeholder="">
                 <div class="mb-3">
-                    <label for="dop" class="form-label">Data Of Purchase</label>
-                    <input type="text" class="form-control" id="dop" placeholder="">
-                <div class="mb-3">
                     <label for="doi" class="form-label">Data Of Invoice</label>
-                    <input type="text" class="form-control" id="dop" placeholder="">
+                    <input type="date" class="form-control" id="dop" placeholder="">
                 <div class="mb-3">
                     <label for="noinv" class="form-label">No. Invoice</label>
                     <input type="text" class="form-control" id="noinv" placeholder="">
@@ -86,8 +83,8 @@
                     <label for="unit" class="form-label">Unit</label>
                     <input type="text" class="form-control" id="unit" placeholder="">
                 <div class="mb-3">
-                    <label for="unitp" class="form-label">Unit Price</label>
-                    <input type="text" class="form-control" id="unitp" placeholder="">  
+                    <label for="unitprice" class="form-label">Unit Price</label>
+                    <input type="text" class="form-control" id="unitprice" placeholder=""> 
                 <div class="mb-3">
                     <label for="disc" class="form-label">Discount</label>
                     <input type="text" class="form-control" id="disc" placeholder="">   
