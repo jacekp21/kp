@@ -16,7 +16,7 @@
 </nav>
 
     <h1>Data Users</h1>
-    <a href="http://localhost:8000/admin/new" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">New </a> <!--Minta bantu buatin button dengan link-->
+    <a href="http://localhost:8000/admin/new" class="btn btn-primary mt-3" role="button">New</a>
     <div>
                     <table class="table table-striped align-middle">
                         <thead>
@@ -26,7 +26,7 @@
                             <th scope="col">Position</th>
                             <th scope="col">No. Telp</th>
                             <th scope="col">Role</th>
-                            <th scope="col">Picture</th>
+                            <th scope="col">Picture</th> 
                             <th scope="col">Action</th>
                             </tr>
                         </thead>

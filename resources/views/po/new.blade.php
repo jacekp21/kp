@@ -37,7 +37,7 @@
                         <option value="PT ABC">
                         <option value="KURNIAWAN">
                     </datalist>
-        <h2>kurang coding alamat</h2>
+        <h2>kurang coding alamat - bersifat auto</h2>
         <div class="mb-3">
                     <label for="exampleDataList" class="form-label">Ware House</label>
                     <input class="form-control" list="gudangOptions" id="terms" placeholder="">
