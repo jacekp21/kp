@@ -21,11 +21,10 @@
                 <br><label for="password" class="form-label">Password</label></br>
                 <input type="password" class="form-control" id="password" placeholder="Password">
             </div>
-                <br><button type="submit" class="btn btn-primary">Login</button></br>
+            <a href="http://localhost:8000/dashboard" class="btn btn-primary mt-3" role="button">Login</a>
             </form>
                 
         </div>
     </div>
-    <p><a href="index.php">Home</a>
 </body>
 </html>
