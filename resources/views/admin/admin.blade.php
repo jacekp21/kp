@@ -10,13 +10,15 @@
 <body>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</a></li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Admin</li>
   </ol>
 </nav>
 
     <h1>Data Users</h1>
     <a href="http://localhost:8000/admin/new" class="btn btn-primary mt-3" role="button">New</a>
+    <label for="gsearch">Search</label>
+    <input type="search" id="gsearch" name="gsearch">
     <div>
                     <table class="table table-striped align-middle">
                         <thead>
@@ -37,8 +39,11 @@
                             <td>Administrator</td>
                             <td>082299008899</td>
                             <td>Admin</td>
-                            <td>-</td>
-                            <td>Update/Void</td>
+                            <td>-</td> <!-- <img src="langit.png"> -->
+                            <td>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-danger">Void</button>
+                            </td>
                             </tr>
                             <tr>
                             <td>2</td>
@@ -47,11 +52,14 @@
                             <td>081299003333</td>
                             <td>Staff</td>
                             <td>-</td>
-                            <td>Update/Void</td>
+                            <td>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="sumbit" class="btn btn-danger">Void</button>
+                            </td>
                             </tr>
                         </tbody>
                         </table>   
                 </div>
-                <a href="http://localhost:8000/">Home</a>
+                <!-- Showing 1 to 1 of 1 enteries cara buatnya gimna ya ??? dan show entires -->
 </body>
 </html>

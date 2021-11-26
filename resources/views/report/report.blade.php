@@ -10,11 +10,11 @@
 <body>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</a></li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/">Home</a></li>
     <li class="breadcrumb-item">Report</a></li>
   </ol>
 </nav>
-<a href="http://localhost:8000/">Home</a>
+
 <div class="top-10 mt-5 end-0"><h1>PT BANGUN PRIMA ABADI REPORT</h1></div>
 <div class="container mt-5">
         <div class="row">

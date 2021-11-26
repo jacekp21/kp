@@ -12,14 +12,16 @@
 </body>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Setting</li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="http://localhost:8000/setting/setting">Setting</a></li>
     <li class="breadcrumb-item active" aria-current="page">Warehouse</a></li>
   </ol>
 </nav>
 
     <h1>Data Warehouse</h1>
-    <a href="http://localhost:8000/ap/new" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">New </a>
+    <a href="http://localhost:8000/setting/wh/new" class="btn btn-primary mt-3" role="button">New</a>
+    <label for="gsearch">Search</label>
+    <input type="search" id="gsearch" name="gsearch">
     <div>
                     <table class="table table-striped align-middle">
                         <thead>
@@ -39,7 +41,10 @@
                             <td>Senggarang</td>
                             <td>Puji Hartono</td>
                             <td>085264113372</td>
-                            <td>Update/Void</td>
+                            <td>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-danger">Void</button>
+                            </td>
                             </tr>
                             <tr>
                             <td>2</td>
@@ -47,11 +52,12 @@
                             <td>Tanjungpinang</td>
                             <td>Michael</td>
                             <td>08968899123</td>
-                            <td>Update/Void</td>
+                            <td>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-danger">Void</button>
+                            </td>
                             </tr>
                         </tbody>
                         </table>   
                 </div>
-                <a href="http://localhost:8000/setting/setting">Setting</a>
-                <a href="http://localhost:8000/setting/wh/new">Add New</a>
 </html>

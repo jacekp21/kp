@@ -14,8 +14,8 @@
                 <div class="col-md-6">
     <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Home</a></li>
-        <li class="breadcrumb-item">Admin</a></li>
+        <li class="breadcrumb-item"><a href="http://localhost:8000/">Home</a></li>
+        <li class="breadcrumb-item"><a href="http://localhost:8000/admin/admin">Admin</a></li>
         <li class="breadcrumb-item active" aria-current="page">New</a></li>
     </ol>
     </nav>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password">
+                    <input type="password" class="form-control" id="password" placeholder="Password"> <!-- Belum membuat Icon show and hide di password -->
                 </div>
                 <div class="mb-3">
                     <label for="exampleDataList" class="form-label">Position</label>
@@ -45,17 +45,13 @@
                 </div>
                 <div class="mb-3">
                     <label for="exampleDataList" class="form-label">Role</label>
-                    <input class="form-control" list="roleOptions" id="Role" placeholder="Type to search...">
+                    <input class="form-control" list="roleOptions" id="Role" placeholder="">
                     <datalist id="roleOptions">
                         <option value="Admin">
                         <option value="Manager">
                         <option value="Staff">
                     </datalist>
                     </div>
-                <div>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="reset" class="btn btn-primary">Reset</button>
-                </div>
                 <div class="mb-3">
                     <label for="Image" class="form-label"></label>
                     <input class="form-control" type="file" id="formFile" onchange="preview()">
@@ -73,7 +69,10 @@
                         frame.src = "";
                     }
                 </script>
-            <a href="http://localhost:8000/">Home</a>
+                <div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="reset" class="btn btn-primary">Reset</button>
+                </div>
         </div>
     </div>
 </body>

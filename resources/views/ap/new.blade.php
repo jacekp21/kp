@@ -13,12 +13,12 @@
             <div class="col-md-6">
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</a></li>
-    <li class="breadcrumb-item">Account Payable</a></li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/">Home</a></li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/ap/ap">Account Payable</a></li>
     <li class="breadcrumb-item active" aria-current="page">New</a></li>
   </ol>
 </nav>
-    <a href="http://localhost:8000/">Home</a>
+
 
     <form>
     <div class="position-absolute top-0 end-0"><h1>ACCOUNT PAYABLE FORM</h1></div>
