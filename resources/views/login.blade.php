@@ -13,34 +13,32 @@
             padding: 0;
             box-sizing: border-box;
             font-family:sans-serif;
-            background: linear-gradient(to right, #D500F9, #FFD54F);
             max-width: 500px;
             min-height: 500px;
             margin: 80px auto;
             padding: 40px 30px 30px 30px;
             border-radius: 15px;
             box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
-            background-image : url ('bg.jpg');
+            background: linear-gradient(to right, #D500F9, #FFD54F);
+            /* background-image: url('{{ asset('assets/bg.jpg') }}'); */
+            /* background-image: url('bg.jpg'); */
+        }
+        html{
+            background-image: url('{{ asset('assets/bg.jpg') }}');
         }
     </style>
 </head>
 <body>
-    <div class="container mt-5>
+    <div class="container mt-5">
         <div class="row">
-            <div class="col-md-6">
             <h1>Login Here</h1>
             <form>
-            <div class="mb-3">
-                <br><label for="username" class="form-label">Username</label></br>
+                <span for="username" class="form-label">Username</span>
                 <input type="text" class="form-control" id="username" placeholder="Username">
-            </div>
-            <div class="mb-3">
-                <br><label for="password" class="form-label">Password</label></br>
+                <span for="password" class="form-label">Password</span>
                 <input type="password" class="form-control" id="password" placeholder="Password">
-            </div>
-            <a href="http://localhost:8000/" class="btn btn-primary mt-3" role="button">Login</a>
+                <a href="http://localhost:8000/" class="btn btn-primary mt-3" role="button">Login</a>
             </form>
-                
         </div>
     </div>
 </body>
