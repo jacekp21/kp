@@ -81,3 +81,6 @@ Route::get('setting/wh', function () {
     return view('setting/wh/wh');
 });
 
+Route::get('sidebar/bar', function () {
+    return view('sidebar/bar');
+});
