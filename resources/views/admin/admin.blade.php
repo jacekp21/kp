@@ -10,12 +10,13 @@
 <body>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</a></li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Admin</li>
   </ol>
 </nav>
 
     <h1>Data Users</h1>
+<<<<<<< HEAD
       <a href="http://localhost:8000/admin/new"><button class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">New </button></a>
     <div>
       <table class="table table-striped align-middle">
@@ -51,5 +52,52 @@
       </table>   
     </div>
     <a href="http://localhost:8000/">Home</a>
+=======
+    <a href="http://localhost:8000/admin/new" class="btn btn-primary mt-3" role="button">New</a>
+    <label for="gsearch">Search</label>
+    <input type="search" id="gsearch" name="gsearch">
+    <div>
+                    <table class="table table-striped align-middle">
+                        <thead>
+                            <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Position</th>
+                            <th scope="col">No. Telp</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Picture</th> 
+                            <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>1</td>
+                            <td>Yonna Christiana</td>
+                            <td>Administrator</td>
+                            <td>082299008899</td>
+                            <td>Admin</td>
+                            <td>-</td> <!-- <img src="langit.png"> -->
+                            <td>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-danger">Void</button>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>2</td>
+                            <td>Crystina</td>
+                            <td>Purchaser</td>
+                            <td>081299003333</td>
+                            <td>Staff</td>
+                            <td>-</td>
+                            <td>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="sumbit" class="btn btn-danger">Void</button>
+                            </td>
+                            </tr>
+                        </tbody>
+                        </table>   
+                </div>
+                <!-- Showing 1 to 1 of 1 enteries cara buatnya gimna ya ??? dan show entires -->
+>>>>>>> dev-jace
 </body>
 </html>

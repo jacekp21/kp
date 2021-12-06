@@ -12,13 +12,15 @@
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</a></li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/">Home</a></a></li>
     <li class="breadcrumb-item active" aria-current="page">Purchase Order</li>
   </ol>
 </nav>
 
     <h1>Data Purchase Order</h1>
-    <a href="http://localhost:8000/admin/new" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">New </a>
+    <a href="http://localhost:8000/po/new" class="btn btn-primary mt-3" role="button">New</a>
+    <label for="gsearch">Search</label>
+    <input type="search" id="gsearch" name="gsearch">
                     <div>
                     <table class="table table-striped align-middle">
                         <thead>
@@ -40,7 +42,10 @@
                             <td>OZ-COMPANY</td>
                             <td>IDR</td>
                             <td>Rp 10.000.000,-</td>
-                            <td>Update/Void</td>
+                            <td>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-danger">Void</button>
+                            </td>
                             </tr>
                             <tr>
                             <td>2</td>
@@ -49,11 +54,13 @@
                             <td>OZ-COMPANY</td>
                             <td>IDR</td>
                             <td>Rp 10.000.000,-</td>
-                            <td>Update/Void</td>
+                            <td>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-danger">Void</button>
+                            </td>
                         </tbody>
                         </table>   
                 </div>
-                <a href="http://localhost:8000/">Home</a>
     <!-- </form> -->
 </body>
 </html>

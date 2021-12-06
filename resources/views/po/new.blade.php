@@ -10,12 +10,11 @@
 <body>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</a></li>
-    <li class="breadcrumb-item">Purchase Order</a></li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/">Home</a></li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/po">Purchase Order</a></li>
     <li class="breadcrumb-item active" aria-current="page">New</a></li>
   </ol>
 </nav>
-<a href="http://localhost:8000/">Home</a>
     <h1>Purchase Order</h1>
 <div class="container mt-5">
         <div class="row">
@@ -37,7 +36,7 @@
                         <option value="PT ABC">
                         <option value="KURNIAWAN">
                     </datalist>
-        <h2>kurang coding alamat</h2>
+        <!-- kurang coding alamat - bersifat auto -->
         <div class="mb-3">
                     <label for="exampleDataList" class="form-label">Ware House</label>
                     <input class="form-control" list="gudangOptions" id="terms" placeholder="">
@@ -65,11 +64,12 @@
                     <input type="text" class="form-control" id="unit" placeholder="">
         <div class="mb-3">
                     <label for="unitprice" class="form-label">Unit Price</label>
-                    <input type="text" class="form-control" id="unitprice" placeholder="">
+                    <input type="text" class="form-control" id="unitprice" placeholder="IDR ...">
         </div>
                     <div>
                         <button type="submit" class="btn btn-primary">Add</button> 
                     </div>
+            <strong><i>Please Supply The Following Items </i></strong>
         <div>
              <table class="table table-striped align-middle">
                         <thead>

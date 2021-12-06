@@ -11,13 +11,15 @@
 </body>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</a></li>
+  <li class="breadcrumb-item"><a href="http://localhost:8000/">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Payment</li>
   </ol>
 </nav>
 
     <h1>Data Payment</h1>
-    <a href="http://localhost:8000/payment/new" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">New </a>
+    <a href="http://localhost:8000/payment/new" class="btn btn-primary mt-3" role="button">New</a>
+    <label for="gsearch">Search</label>
+    <input type="search" id="gsearch" name="gsearch">
     <div>
                     <table class="table table-striped align-middle">
                         <thead>
@@ -43,7 +45,7 @@
                             <td>IDR</td>
                             <td>Rp 100.000.000,-</td>
                             <td>31 January 2021</td>
-                            <td>Void</td>
+                            <td><button type="submit" class="btn btn-danger">Void</button></td>
                             </tr>
                             <tr>
                             <td>2</td>
@@ -54,10 +56,9 @@
                             <td>IDR</td>
                             <td>Rp 100.320,-</td>
                             <td>04 November 2021</td>
-                            <td>Void</td>
+                            <td><button type="submit" class="btn btn-danger">Void</button></td>
                             </tr>
                         </tbody>
                         </table>   
                 </div>
-                <a href="http://localhost:8000/">Home</a>
 </html>
