@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col">
                 Navbar <br>
-                <a href="http://localhost:8000/login" rel="noopener noreferrer">Login</a><br>
+                <a href="http://localhost:8000/login/login" rel="noopener noreferrer">Login</a><br>
                 <a href="http://localhost:8000/dashboard" rel="noopener noreferrer">Dashboard</a><br>
                 <a href="http://localhost:8000/admin/admin" rel="noopener noreferrer">Admin</a><br>
                 <a href="http://localhost:8000/po" rel="noopener noreferrer">Purchase Order</a><br>
@@ -25,6 +25,7 @@
                 <a href="http://localhost:8000/payment" rel="noopener noreferrer">Payment</a><br>
                 <a href="http://localhost:8000/report/report" rel="noopener noreferrer">Report</a><br>
                 <a href="http://localhost:8000/setting/setting" rel="noopener noreferrer">Setting</a><br>
+                <a href="http://localhost:8000/sidebar/bar" rel="noopener noreferrer">Sidebar</a><br>
             </div>
         </div>
     </div>
