@@ -10,7 +10,7 @@
 <body>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="http://localhost:8000/">Home</a></li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/dashboard">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Admin</li>
   </ol>
 </nav>
@@ -23,12 +23,12 @@
                     <table class="table table-striped align-middle">
                         <thead>
                             <tr>
-                            <th scope="col">No.</th>
+                            <th scope="col">Id</th>
                             <th scope="col">Username</th>
                             <th scope="col">Position</th>
                             <th scope="col">No. Telp</th>
                             <th scope="col">Role</th>
-                            <th scope="col">Picture</th> 
+                            <th scope="col">Status</th> 
                             <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -43,7 +43,7 @@
                             <td>
                             <button type="submit" class="btn btn-primary">Update</button>
                             <button type="submit" class="btn btn-danger">Void</button>
-                            </td>
+                            </td> 
                             </tr>
                             <tr>
                             <td>2</td>
@@ -51,7 +51,7 @@
                             <td>Purchaser</td>
                             <td>081299003333</td>
                             <td>Staff</td>
-                            <td>-</td>
+                            <td>-</td> <!-- tombol switch -->
                             <td>
                             <button type="submit" class="btn btn-primary">Update</button>
                             <button type="sumbit" class="btn btn-danger">Void</button>

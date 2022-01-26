@@ -12,7 +12,7 @@
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="http://localhost:8000/">Home</a></a></li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/dashboard">Home</a></a></li>
     <li class="breadcrumb-item active" aria-current="page">Purchase Order</li>
   </ol>
 </nav>

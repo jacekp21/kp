@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('login/login');
 });
 
 Route::get('/login', function () {
-    return view('login');
+    return view('login/login');
 });
 
 Route::get('/dashboard', function () {
@@ -84,3 +84,4 @@ Route::get('setting/wh', function () {
 Route::get('sidebar/bar', function () {
     return view('sidebar/bar');
 });
+
