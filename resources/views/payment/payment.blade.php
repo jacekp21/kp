@@ -11,7 +11,7 @@
 </body>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-  <li class="breadcrumb-item"><a href="http://localhost:8000/">Home</a></li>
+  <li class="breadcrumb-item"><a href="http://localhost:8000/dashboard">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Payment</li>
   </ol>
 </nav>
