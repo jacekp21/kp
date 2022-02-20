@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// Route::get('/', function () {
+//     return view('layouts/master');
+// });
+
 Route::get('/', function () {
-    return view('layouts/master');
+    return view('login/login');
 });
 
 Route::get('/login', function () {
