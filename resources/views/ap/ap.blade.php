@@ -12,20 +12,22 @@
 </body>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</a></li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/dashboard">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Account Payable</li>
   </ol>
 </nav>
 
     <h1>Data Account Payable</h1>
-    <a href="http://localhost:8000/ap/new" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">New </a>
+    <a href="http://localhost:8000/ap/new" class="btn btn-primary mt-3" role="button">New</a>
+    <label for="gsearch">Search</label>
+    <input type="search" id="gsearch" name="gsearch">
     <div>
                     <table class="table table-striped align-middle">
                         <thead>
                             <tr>
                             <th scope="col">No.</th>
                             <th scope="col">Vendor Name</th>
-                            <th scope="col">Date Of Purchase</th>
+                            <th scope="col">Date Of Invoice</th>
                             <th scope="col">Invoice Number</th>
                             <th scope="col">Po Number</th>
                             <th scope="col">Total</th>
@@ -40,7 +42,7 @@
                             <td>001/INV-MOZ/AR/XI/2021</td>
                             <td>022/PO-BPA/XI/2021</td>
                             <td>Rp 100.000.000,-</td>
-                            <td>Void</td>
+                            <td><button type="submit" class="btn btn-danger">Void</button></td>
                             </tr>
                             <tr>
                             <td>2</td>
@@ -49,10 +51,10 @@
                             <td>002/INV-MOZ/AR/XI/2021</td>
                             <td>022/PO-BPA/XI/2021</td>
                             <td>Rp 50.000.000,-</td>
-                            <td>Void</td>
+                            <td><button type="submit" class="btn btn-danger">Void</button></td>
                             </tr>
                         </tbody>
                         </table>   
                 </div>
-                <a href="http://localhost:8000/">Home</a>
+                
 </html>

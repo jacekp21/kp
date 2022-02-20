@@ -8,7 +8,7 @@
     <title>Setting</title>
 </head>
 <body>
-    <a href="http://localhost:8000/">Home</a>
+    <a href="http://localhost:8000/dashboard">Home</a>
     <a href="http://localhost:8000/setting/vendor">Vendor</a>
     <a href="http://localhost:8000/setting/wh">Warehouse</a>
     <h1>Setting</h1>

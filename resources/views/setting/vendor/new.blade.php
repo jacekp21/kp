@@ -10,13 +10,13 @@
 <body>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</a></li>
-    <li class="breadcrumb-item">Setting</a></li>
-    <li class="breadcrumb-item">Vendor</a></li>
+  <li class="breadcrumb-item"><a href="http://localhost:8000/dashboard">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="http://localhost:8000/setting/setting">Setting</a></li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/setting/vendor">Vendor</a></li>
     <li class="breadcrumb-item active" aria-current="page">New</a></li>
   </ol>
 </nav>
-        <a href="http://localhost:8000/">Home</a>
+
         <div class="container mt-5">
         <div class="row">
             <div class="col-md-5">

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>New Account</title>
 
     <style>
@@ -65,16 +66,16 @@
         </style>
 </head>
 <body>
-<div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6">
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</a></li>
-    <li class="breadcrumb-item">Admin</a></li>
-    <li class="breadcrumb-item active" aria-current="page">New</a></li>
-  </ol>
-</nav>
+    <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-6">
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="http://localhost:8000/dashboard">Home</a></li>
+        <li class="breadcrumb-item"><a href="http://localhost:8000/admin/admin">Admin</a></li>
+        <li class="breadcrumb-item active" aria-current="page">New</a></li>
+    </ol>
+    </nav>
             <form>
                 <h1>New Account</h1>
                 <div class="mb-3">
@@ -83,7 +84,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password">
+                    <input type="password" class="form-control" id="password" placeholder="Password"> <!-- Belum membuat Icon show and hide di password -->
                 </div>
                 <div class="mb-3">
                     <label for="exampleDataList" class="form-label">Position</label>
@@ -101,13 +102,30 @@
                 </div>
                 <div class="mb-3">
                     <label for="exampleDataList" class="form-label">Role</label>
-                    <input class="form-control" list="roleOptions" id="Role" placeholder="Type to search...">
+                    <input class="form-control" list="roleOptions" id="Role" placeholder="">
                     <datalist id="roleOptions">
                         <option value="Admin">
                         <option value="Manager">
                         <option value="Staff">
                     </datalist>
                     </div>
+                <div class="mb-3">
+                    <label for="Image" class="form-label"></label>
+                    <input class="form-control" type="file" id="formFile" onchange="preview()">
+                    <button onclick="clearImage()" class="btn btn-primary mt-3">Clear Image</button>
+                </div>
+                <img id="frame" src="" class="img-fluid" />
+                 </div>
+
+                <script>
+                    function preview() {
+                        frame.src = URL.createObjectURL(event.target.files[0]);
+                    }
+                    function clearImage() {
+                        document.getElementById('formFile').value = null;
+                        frame.src = "";
+                    }
+                </script>
                 <div>
                     <button type="submit" class="btn btn-primary">Save</button>
                     <button type="reset" class="btn btn-primary">Reset</button>
@@ -127,34 +145,5 @@
         </div>
     </div>
 </body>
-       
-        <script>
-            $(".imgAdd").click(function(){
-            $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');});
-            $(document).on("click", "i.del" , function() {
-            // 	to remove card
-            $(this).parent().remove();
-            // to clear image
-            // $(this).parent().find('.imagePreview').css("background-image","url('')");
-            });
-            $(function() {
-            $(document).on("change",".uploadFile", function()
-                {
-                    var uploadFile = $(this);
-                var files = !!this.files ? this.files : [];
-                if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
-        
-                if (/^image/.test( files[0].type)){ // only image file
-                    var reader = new FileReader(); // instance of the FileReader
-                    reader.readAsDataURL(files[0]); // read the local file
-        
-                    reader.onloadend = function(){ // set image data as background of div
-                        //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-                uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
-                    }
-                }
-            
-                });
-            });
-        </script>
+
 </html>

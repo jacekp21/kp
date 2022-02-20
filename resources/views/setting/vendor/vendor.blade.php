@@ -12,14 +12,17 @@
 </body>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Setting</li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/dashboard">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="http://localhost:8000/setting/setting">Setting</a></li>
     <li class="breadcrumb-item active" aria-current="page">Vendor</a></li>
+    
   </ol>
 </nav>
 
     <h1>Data Vendor</h1>
-    <a href="http://localhost:8000/ap/new" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">New </a>
+    <a href="http://localhost:8000/setting/vendor/new" class="btn btn-primary mt-3" role="button">New</a>
+    <label for="gsearch">Search</label>
+    <input type="search" id="gsearch" name="gsearch">
     <div>
                     <table class="table table-striped align-middle">
                         <thead>
@@ -39,7 +42,11 @@
                             <td>Jl. Gajah Mada No. 34A Indonesia/td>
                             <td>081991008888</td>
                             <td>ptmoz.2122@gmail.com</td>
-                            <td>Void</td>
+                            <td>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-danger">Void</button>
+                            </td>
+                            
                             </tr>
                             <tr>
                             <td>2</td>
@@ -47,11 +54,13 @@
                             <td>Jl. Gambir Tanjungpinang</td>
                             <td>0771-231899</td>
                             <td>cc.tanjungpinang2@gmail.com</td>
-                            <td>Void</td>
+                            <td>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-danger">Void</button>
+                            </td>
                             </tr>
                         </tbody>
                         </table>   
                 </div>
-                <a href="http://localhost:8000/setting/setting">Setting</a>
-                <a href="http://localhost:8000/setting/vendor/new">Add New</a>
+
 </html>

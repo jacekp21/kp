@@ -13,12 +13,11 @@
             <div class="col-md-6">
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</a></li>
-    <li class="breadcrumb-item">Payment</a></li>
+  <li class="breadcrumb-item"><a href="http://localhost:8000/dashboard">Home</a></li>
+    <li class="breadcrumb-item"><a href="http://localhost:8000/payment">Payment</a></li>
     <li class="breadcrumb-item active" aria-current="page">New</a></li>
   </ol>
 </nav>
-    <a href="http://localhost:8000/">Home</a>
     <h1>New Payment</h1>
 
     <form action="http://localhost:8000/po/data" method="post">
