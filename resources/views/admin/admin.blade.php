@@ -11,6 +11,7 @@
     <script src="https://kit.fontawesome.com/cc8db81d9c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="fontawesome-free-6.0.0-beta3-web/css/all.min.css"/>
 
+    <!-- START : Custom Style -->
     <style>
         .nav-link:hover {
             background-color: grey;
@@ -28,6 +29,7 @@
             font-size: 90px;
         }
     </style>
+    <!-- END : Custom Style -->
     <title>Admin Page</title>
   </head>
         <body>
@@ -58,18 +60,6 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="http://localhost:8000/report/report"><i class="fas fa-file-invoice mr-2"></i> Report</a><hr class="bg-secondary">
                     </li>
-                    <!-- <li class="nav-item ">
-                        <a class="nav-link text-white" href="http://localhost:8000/setting/setting">
-                            <i class="fas fa-cog mr-2"></i> Setting
-                        </a>
-                        <div class="dropdown-container">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                        </div>
-                        <hr class="bg-secondary">
-                    </li> -->
-
                     <li class="nav-item has-submenu">
                         <a class="nav-link text-white" href="http://localhost:8000/setting/setting"> 
                             <i class="fas fa-cog mr-2"></i> Setting
@@ -133,7 +123,7 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
-  document.querySelectorAll('.row .nav-link').forEach(function(element){
+  document.querySelectorAll('.has-submenu .nav-link').forEach(function(element){
     
     element.addEventListener('click', function (e) {
 
@@ -159,4 +149,19 @@ document.addEventListener("DOMContentLoaded", function(){
     }); // addEventListener
   }) // forEach
 }); 
+
+// var dropdown = document.getElementsByClassName("has-submenu");
+// var i;
+
+// for (i = 0; i < dropdown.length; i++) {
+//     dropdown[i].addEventListener("click", function() {
+//         this.classList.toggle("active");
+//         var dropdownContent = this.nextElementSibling;
+//         if (dropdownContent.style.display === "block") {
+//             dropdownContent.style.display = "none";
+//         } else {
+//             dropdownContent.style.display = "block";
+//         }
+//     });
+// }
 </script>
