@@ -38,17 +38,15 @@
         </div>
         </nav>
         <div class="row no-gutters mt-5">
-        @section('sidebar')
+            @include('layouts.sidebar')
      
-            <div class="col-md-10 p-5 mt-2">
+            <div class="col-md-10 p-5 mt-2" style="border: 1px;">
                 <h1><i class="fas fa-file-alt mr-2"></i> Purchase Order</h1><hr>
                 <a href="http://localhost:8000/po/new" class="btn btn-primary mt-2 mb-3" role="button">
                     <i class="fas fa-plus-square"></i> Add New
                 </a>
-            </div>
-            
-            <div>
-                <table class="table table-striped align-middle table-bordered">
+
+                <table style="width:80%" class="table table-striped align-middle table-bordered">
                     <thead>
                         <tr>
                         <th scope="col">No.</th>
@@ -171,7 +169,7 @@
                         </td>
 
                     </tbody>
-                </table>   
+                </table>  
             </div>
         </div>
     </body>

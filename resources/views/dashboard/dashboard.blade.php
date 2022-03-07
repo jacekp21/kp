@@ -39,31 +39,7 @@
         </nav>
         <div class="row no-gutters mt-5">
             @include('layouts.sidebar')
-            <!-- <div class="col-md-2 bg-dark mt-2 pr-3 pt-4">
-                <ul class="nav flex-column ml-3 mb-5">
-                    <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="http://localhost:8000/dashboard"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a><hr class="bg-secondary">
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href={{ url("admin/admin") }}><i class="fas fa-user-cog mr-2"></i> Admin</a><hr class="bg-secondary">
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href={{ url("po") }}><i class="fas fa-file-alt mr-2"></i> Purchase Order</a><hr class="bg-secondary">
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href={{ url("ap/ap") }}><i class="fas fa-file-alt mr-2"></i> Account Payable</a><hr class="bg-secondary">
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href={{ url("payment") }}><i class="fas fa-cash-register mr-2"></i> Payment</a><hr class="bg-secondary">
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href={{ url("report/report") }}><i class="fas fa-file-invoice mr-2"></i> Report</a><hr class="bg-secondary">
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link text-white" href={{ url("setting/setting") }}><i class="fas fa-cog mr-2"></i> Setting</a><hr class="bg-secondary">
-                    </li>
-                </ul>
-            </div> -->
+            
             <div class="col-md-10 p-5 mt-2">
                 <h1><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</h1><hr>
                 
@@ -104,6 +80,7 @@
             </div>
         </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        
   </body>
 </html>

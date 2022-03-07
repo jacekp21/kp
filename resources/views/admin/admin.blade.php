@@ -40,8 +40,7 @@
             </div>
         </nav>
         <div class="row no-gutters mt-5">
-            @section('sidebar')
-                @@parent
+            @include('layouts.sidebar')
             <div class="col-md-10 p-5 mt-2">
                 <h1><i class="fas fa-user-cog mr-2"></i> Admin</h1><hr>
                 <a href="http://localhost:8000/admin/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
@@ -86,52 +85,5 @@
                         </tbody>
                         </table>   
                 </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
-
-<script>
-document.addEventListener("DOMContentLoaded", function(){
-  document.querySelectorAll('.has-submenu .nav-link').forEach(function(element){
-    
-    element.addEventListener('click', function (e) {
-
-      let nextEl = element.nextElementSibling;
-      let parentEl  = element.parentElement;	
-
-        if(nextEl) {
-            e.preventDefault();	
-            let mycollapse = new bootstrap.Collapse(nextEl);
-            
-            if(nextEl.classList.contains('show')){
-              mycollapse.hide();
-            } else {
-                mycollapse.show();
-                // find other submenus with class=show
-                var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
-                // if it exists, then close all of them
-                if(opened_submenu){
-                  new bootstrap.Collapse(opened_submenu);
-                }
-            }
-        }
-    }); // addEventListener
-  }) // forEach
-}); 
-
-// var dropdown = document.getElementsByClassName("has-submenu");
-// var i;
-
-// for (i = 0; i < dropdown.length; i++) {
-//     dropdown[i].addEventListener("click", function() {
-//         this.classList.toggle("active");
-//         var dropdownContent = this.nextElementSibling;
-//         if (dropdownContent.style.display === "block") {
-//             dropdownContent.style.display = "none";
-//         } else {
-//             dropdownContent.style.display = "block";
-//         }
-//     });
-// }
-</script>

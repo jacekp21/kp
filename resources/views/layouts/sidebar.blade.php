@@ -18,8 +18,17 @@
         <li class="nav-item">
             <a class="nav-link text-white" href={{ url("report/report") }}><i class="fas fa-file-invoice mr-2"></i> Report</a><hr class="bg-secondary">
         </li>
-        <li class="nav-item ">
-            <a class="nav-link text-white" href={{ url("setting/setting") }}><i class="fas fa-cog mr-2"></i> Setting</a><hr class="bg-secondary">
+        <li class="nav-item has-submenu">
+            <a class="nav-link text-white" href={{ url("setting/setting") }}> 
+                <i class="fas fa-cog mr-2"></i> Setting
+            </a>
+            <ul class="submenu collapse">
+                <li><a class="nav-link text-white" href="#">Vendor </a></li>
+                <li><a class="nav-link text-white" href="#">Warehouse </a></li>
+            </ul>
         </li>
     </ul>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src={{ asset('/js/scripts.js') }}></script>
