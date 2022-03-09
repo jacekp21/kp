@@ -17,44 +17,44 @@
   </ol>
 </nav>
 
-    <h1>Data Account Payable</h1>
-    <a href="http://localhost:8000/ap/new" class="btn btn-primary mt-3" role="button">New</a>
-    <label for="gsearch">Search</label>
-    <input type="search" id="gsearch" name="gsearch">
-    <div>
-                    <table class="table table-striped align-middle">
-                        <thead>
-                            <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Vendor Name</th>
-                            <th scope="col">Date Of Invoice</th>
-                            <th scope="col">Invoice Number</th>
-                            <th scope="col">Po Number</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <td>1</td>
-                            <td>Hartono - PT MOZ</td>
-                            <td>22 November 2021</td>
-                            <td>001/INV-MOZ/AR/XI/2021</td>
-                            <td>022/PO-BPA/XI/2021</td>
-                            <td>Rp 100.000.000,-</td>
-                            <td><button type="submit" class="btn btn-danger">Void</button></td>
-                            </tr>
-                            <tr>
-                            <td>2</td>
-                            <td>Hartono - PT MOZ</td>
-                            <td>22 November 2021</td>
-                            <td>002/INV-MOZ/AR/XI/2021</td>
-                            <td>022/PO-BPA/XI/2021</td>
-                            <td>Rp 50.000.000,-</td>
-                            <td><button type="submit" class="btn btn-danger">Void</button></td>
-                            </tr>
-                        </tbody>
-                        </table>   
-                </div>
+  <h1>Data Account Payable</h1>
+  <a href="http://localhost:8000/ap/new" class="btn btn-primary mt-3" role="button">New</a>
+  <label for="gsearch">Search</label>
+  <input type="search" id="gsearch" name="gsearch">
+  <div>
+      <table class="table table-striped align-middle">
+          <thead>
+              <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Vendor Name</th>
+              <th scope="col">Date Of Invoice</th>
+              <th scope="col">Invoice Number</th>
+              <th scope="col">Po Number</th>
+              <th scope="col">Total</th>
+              <th scope="col">Action</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+              <td>1</td>
+              <td>Hartono - PT MOZ</td>
+              <td>22 November 2021</td>
+              <td>001/INV-MOZ/AR/XI/2021</td>
+              <td>022/PO-BPA/XI/2021</td>
+              <td>Rp 100.000.000,-</td>
+              <td><button type="submit" class="btn btn-danger">Void</button></td>
+              </tr>
+              <tr>
+              <td>2</td>
+              <td>Hartono - PT MOZ</td>
+              <td>22 November 2021</td>
+              <td>002/INV-MOZ/AR/XI/2021</td>
+              <td>022/PO-BPA/XI/2021</td>
+              <td>Rp 50.000.000,-</td>
+              <td><button type="submit" class="btn btn-danger">Void</button></td>
+              </tr>
+          </tbody>
+      </table>   
+  </div>
                 
 </html>
