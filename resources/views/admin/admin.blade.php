@@ -85,5 +85,6 @@
                         </tbody>
                         </table>   
                 </div>
+                <!-- Showing 1 to 1 of 1 enteries cara buatnya gimna ya ??? dan show entires -->
 </body>
 </html>
