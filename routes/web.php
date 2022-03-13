@@ -19,12 +19,13 @@ use Illuminate\Support\Facades\Auth;
 // });
 
 Route::get('/', function () {
-    return view('login/login');
+//    return view('login/login');
+    return "test";
 });
 
-Route::get('/login', function () {
-    return view('login/login');
-});
+//Route::get('/login', function () {
+//    return view('login/login');
+//});
 
 Route::get('/dashboard', function () {
     return view('dashboard/dashboard');

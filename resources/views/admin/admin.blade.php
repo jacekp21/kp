@@ -40,38 +40,7 @@
             </div>
         </nav>
         <div class="row no-gutters mt-5">
-            <div class="col-md-2 bg-dark mt-2 pr-3 pt-4">
-                <ul class="nav flex-column ml-3 mb-5">
-                    <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="http://localhost:8000/dashboard"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a><hr class="bg-secondary">
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="http://localhost:8000/admin/admin"><i class="fas fa-user-cog mr-2"></i> Admin</a><hr class="bg-secondary">
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="http://localhost:8000/po"><i class="fas fa-file-alt mr-2"></i> Purchase Order</a><hr class="bg-secondary">
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="http://localhost:8000/ap/ap"><i class="fas fa-file-alt mr-2"></i> Account Payable</a><hr class="bg-secondary">
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="http://localhost:8000/payment"><i class="fas fa-cash-register mr-2"></i> Payment</a><hr class="bg-secondary">
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="http://localhost:8000/report/report"><i class="fas fa-file-invoice mr-2"></i> Report</a><hr class="bg-secondary">
-                    </li>
-                    <li class="nav-item has-submenu">
-                        <a class="nav-link text-white" href="http://localhost:8000/setting/setting"> 
-                            <i class="fas fa-cog mr-2"></i> Setting
-                        </a>
-                        <ul class="submenu collapse">
-                            <li><a class="nav-link text-white" href="http://localhost:8000/setting/vendor">Vendor </a></li>
-                            <li><a class="nav-link text-white" href="http://localhost:8000/setting/wh">Warehouse </a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-
+            @include('layouts.sidebar')
             <div class="col-md-10 p-5 mt-2">
                 <h1><i class="fas fa-user-cog mr-2"></i> Admin</h1><hr>
                 <a href="http://localhost:8000/admin/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
@@ -116,52 +85,6 @@
                         </tbody>
                         </table>   
                 </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+                <!-- Showing 1 to 1 of 1 enteries cara buatnya gimna ya ??? dan show entires -->
 </body>
 </html>
-
-<script>
-document.addEventListener("DOMContentLoaded", function(){
-  document.querySelectorAll('.has-submenu .nav-link').forEach(function(element){
-    
-    element.addEventListener('click', function (e) {
-
-      let nextEl = element.nextElementSibling;
-      let parentEl  = element.parentElement;	
-
-        if(nextEl) {
-            e.preventDefault();	
-            let mycollapse = new bootstrap.Collapse(nextEl);
-            
-            if(nextEl.classList.contains('show')){
-              mycollapse.hide();
-            } else {
-                mycollapse.show();
-                // find other submenus with class=show
-                var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
-                // if it exists, then close all of them
-                if(opened_submenu){
-                  new bootstrap.Collapse(opened_submenu);
-                }
-            }
-        }
-    }); // addEventListener
-  }) // forEach
-}); 
-
-// var dropdown = document.getElementsByClassName("has-submenu");
-// var i;
-
-// for (i = 0; i < dropdown.length; i++) {
-//     dropdown[i].addEventListener("click", function() {
-//         this.classList.toggle("active");
-//         var dropdownContent = this.nextElementSibling;
-//         if (dropdownContent.style.display === "block") {
-//             dropdownContent.style.display = "none";
-//         } else {
-//             dropdownContent.style.display = "block";
-//         }
-//     });
-// }
-</script>
