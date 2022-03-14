@@ -19,13 +19,12 @@ use Illuminate\Support\Facades\Auth;
 // });
 
 Route::get('/', function () {
-//    return view('login/login');
-    return "test";
+    return view('login/login');
 });
 
-//Route::get('/login', function () {
-//    return view('login/login');
-//});
+Route::get('/login', function () {
+    return view('login/login');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard/dashboard');
@@ -87,8 +86,8 @@ Route::get('setting/wh', function () {
     return view('setting/wh/wh');
 });
 
-Route::get('/', [LoginController::class, 'login'])->name('login');
-Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
+//Route::get('/', [LoginController::class, 'login'])->name('login');
+//Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 
 Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
