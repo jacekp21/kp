@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class kerjapraktek extends Model
 {
-    use HasFactory;
+    use App\Models\Flight;
+ 
+    $kerjapraktek = kerjapraktek::find(1);
+    $kerjapraktek->delete();
 }

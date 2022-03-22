@@ -46,7 +46,7 @@
                 <a href="http://localhost:8000/payment/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
 
                 <div>
-                    <table style="width:80%" class="table table-striped align-middle">
+                    <table style="width:100%" class="table table-striped align-middle">
                         <thead>
                             <tr>
                             <th scope="col">No.</th>
