@@ -11,6 +11,7 @@
     <script src="https://kit.fontawesome.com/cc8db81d9c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="fontawesome-free-6.0.0-beta3-web/css/all.min.css"/>
 
+    <!-- START : Custom Style -->
     <style>
         .nav-link:hover {
             background-color: grey;
@@ -28,43 +29,18 @@
             font-size: 90px;
         }
     </style>
-    <title>Warehouse page</title>
+    <!-- END : Custom Style -->
+    <title>Warehouse Page</title>
   </head>
         <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand text-white"><i class="fas fa-user"></i> WELCOME ADMIN | PT BANGUN PRIMA ABADI</a>
-            <a href="http://localhost:8000/login/" class="btn btn-primary mt-3" role="button"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
-        </div>
+            <div class="container-fluid">
+                <a class="navbar-brand text-white"><i class="fas fa-user"></i> WELCOME ADMIN | PT BANGUN PRIMA ABADI</a>
+                <a href="http://localhost:8000/login/" class="btn btn-primary mt-3" role="button"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
+            </div>
         </nav>
         <div class="row no-gutters mt-5">
-            <div class="col-md-2 bg-dark mt-2 pr-3 pt-4">
-            <ul class="nav flex-column ml-3 mb-5">
-            <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" href="http://localhost:8000/dashboard"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a><hr class="bg-secondary">
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="http://localhost:8000/admin/admin"><i class="fas fa-user-cog mr-2"></i> Admin</a><hr class="bg-secondary">
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="http://localhost:8000/po"><i class="fas fa-file-alt mr-2"></i> Purchase Order</a><hr class="bg-secondary">
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="http://localhost:8000/ap/ap"><i class="fas fa-file-alt mr-2"></i> Account Payable</a><hr class="bg-secondary">
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="http://localhost:8000/payment"><i class="fas fa-cash-register mr-2"></i> Payment</a><hr class="bg-secondary">
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="http://localhost:8000/report/report"><i class="fas fa-file-invoice mr-2"></i> Report</a><hr class="bg-secondary">
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link text-white" href="http://localhost:8000/setting/setting"><i class="fas fa-cog mr-2"></i> Setting</a><hr class="bg-secondary">
-            </li>
-            </ul>
-            </div>
-
-                     
+            @include('layouts.sidebar')
                 <div class="col-md-10 p-5 mt-2">
                 <h1><i class="fas fa-warehouse"></i> Warehouse</h1><hr>
                 <a href="http://localhost:8000/admin/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
