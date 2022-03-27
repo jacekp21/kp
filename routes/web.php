@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\PoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,13 +40,18 @@ Route::get('/admin/admin', function () {
     return view('admin/admin');
 });
 
-Route::get('/po', function () {
-    return view('po/purchaseorder');
-});
+// PO Route
+// Route::get('/po', function () {
+//     return view('po/purchaseorder');
+// });
+
+Route::get('/po', [PoController::class, 'index']);
+Route::get('/po/show/{id}', [PoController::class, 'show']);
 
 Route::get('/po/new', function () {
     return view('po/new');
 });
+
 
 Route::get('/ap/ap', function () {
     return view('ap/ap');

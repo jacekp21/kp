@@ -41,7 +41,11 @@
             @include('layouts.sidebar')
      
             <div class="col-md-10 p-5 mt-2" style="border: 1px;">
-                <h1><i class="fas fa-file-alt mr-2"></i> Purchase Order</h1><hr>
+                <h1>
+                    <i class="fas fa-file-alt mr-2"></i> Purchase Order 
+                    <?php echo $name; // Contoh pemanggilan variabel dari controller ?>
+                </h1>
+                <hr>
                 <a href="http://localhost:8000/po/new" class="btn btn-primary mt-2 mb-3" role="button">
                     <i class="fas fa-plus-square"></i> Add New
                 </a>
