@@ -16,7 +16,7 @@
         }
         body {
             height: 100vh;
-            background: #66696B;
+            background: #2979ff;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -30,7 +30,7 @@
             padding: 20px 25px;
             width: 450px;
             height: 450px;
-            background-color: rgba(0,0,0,.5);
+            background-image: ; /*coding untuk background image*/
             box-shadow: 0 0 10px rgba(255,255,255,.3);
         }
 

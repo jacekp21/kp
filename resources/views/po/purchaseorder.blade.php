@@ -50,7 +50,7 @@
                     <i class="fas fa-plus-square"></i> Add New
                 </a>
 
-                <table style="width:80%" class="table table-striped align-middle table-bordered">
+                <table style="width:100%" class="table table-striped align-middle table-bordered">
                     <thead>
                         <tr>
                         <th scope="col">No.</th>

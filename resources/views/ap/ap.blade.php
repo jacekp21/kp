@@ -46,7 +46,7 @@
                 </a>
 
                 <!-- <div> -->
-                <table style="width:80%" class="table table-striped align-middle">
+                <table style="width:100%" class="table table-striped align-middle">
                     <thead>
                         <tr>
                         <th scope="col">No.</th>
