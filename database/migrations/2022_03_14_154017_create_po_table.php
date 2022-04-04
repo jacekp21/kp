@@ -15,20 +15,20 @@ class CreatePoTable extends Migration
     {
         Schema::create('po', function (Blueprint $table) {
             $table->id();
-            $table->date('Po Date');
-            $table->string('Po Number');
-            $table->string('Vendor');
-            $table->string('Warehouse');
-            $table->float('Currency');
-            $table->string('Description Of Goods');
-            $table->string('Qty');
-            $table->string('Unit');
-            $table->float('Unit Price');
-            $table->text('Remark');
-            $table->float('Sub Total');
-            $table->float('Discount');
-            $table->float('Tax');
-            $table->float('Total');
+            $table->date('po_date');
+            $table->string('po_no');
+            $table->string('vendor');
+            $table->string('warehouse');
+            $table->float('currency');
+            $table->string('description');
+            $table->string('qty');
+            $table->string('unit');
+            $table->float('unit_price');
+            $table->text('remark');
+            $table->float('sub_total');
+            $table->float('discount');
+            $table->float('tax');
+            $table->float('total');
             $table->timestamps();
         });
     }

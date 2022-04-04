@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vendor;
 use Illuminate\Http\Request;
-use App\Models\Po;
-use App\Models\Po_detail;
-use App\Models\User;
 
-class PoController extends Controller
+class VendorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,24 +14,18 @@ class PoController extends Controller
      */
     public function index()
     {
-        // contoh pemanggilan data dari model po
-        // $po = 
+        // Get vendor data
+        $vendors = Vendor::all();
 
-        // Jika kita ingin return ke view PO
-        // return view('po.purchaseorder', ['name' => 'test']);
+        // return view('setting.vendor.index');
 
-        // foreach (Users::all() as $Users) {
-        //     echo $Users->username;
+        // if (view()->exists('setting.vendor.index')) {
+        //     // return "ada vendor";
+        //     return view('setting.vendor.index');
         // }
 
-        // $users = user::all();
-        $po = Po::all();
-        // $po = po::all();
-
-        // dd($po);
-
-        return view('po.index')->with('po', $po);
-        
+        return view('setting.vendor.index')->with('vendors', $vendors);
+        // return view('setting/vendor/vendor');
     }
 
     /**
@@ -44,6 +36,8 @@ class PoController extends Controller
     public function create()
     {
         //
+        // return "vendor create";
+        return view('setting.vendor.create');
     }
 
     /**
@@ -54,34 +48,36 @@ class PoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validasi data
+        // $request->validate([
+        //     'name' => 'required',
+        //     'address' => 'required',
+        //     'telpon' => 'required',
+        //     'email' => 'required',
+        // ]);
+
+        // return "store";
+        return response()->json($request);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Vendor $vendor)
     {
-        // salah satu cara passing id melalui URL
-        // return "PO Controller Show dengan id : " . $id;
-
-        // return view('po.show', [
-        //     'po' => po::findOrFail($id)
-        // ]);
-        
-        // Jika kita ingin 
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Vendor $vendor)
     {
         //
     }
@@ -90,10 +86,10 @@ class PoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Vendor $vendor)
     {
         //
     }
@@ -101,10 +97,10 @@ class PoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Vendor $vendor)
     {
         //
     }

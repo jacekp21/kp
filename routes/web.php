@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\PoController;
+use App\Http\Controllers\VendorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,9 +82,11 @@ Route::get('setting/vendor/new', function () {
     return view('setting/vendor/new');
 });
 
-Route::get('setting/vendor', function () {
-    return view('setting/vendor/vendor');
-});
+// Route::get('setting/vendor', function () {
+//     return view('setting/vendor/vendor');
+// });
+
+Route::resource('setting/vendor', VendorController::class);
 
 Route::get('setting/wh/new', function () {
     return view('setting/wh/new');
@@ -96,5 +99,5 @@ Route::get('setting/wh', function () {
 //Route::get('/', [LoginController::class, 'login'])->name('login');
 //Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 
-Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
-Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
+// Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+// Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');

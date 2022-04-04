@@ -23,7 +23,7 @@
                 <i class="fas fa-cog mr-2"></i> Setting
             </a>
             <ul class="submenu collapse">
-                <li><a class="nav-link text-white" href="http://localhost:8000/setting/vendor">Vendor </a></li>
+                <li><a class="nav-link text-white" href={{ url('setting/vendor') }}>Vendor </a></li>
                 <li><a class="nav-link text-white" href="http://localhost:8000/setting/wh">Warehouse </a></li>
             </ul>
         </li>

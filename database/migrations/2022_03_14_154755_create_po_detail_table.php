@@ -15,12 +15,12 @@ class CreatePoDetailTable extends Migration
     {
         Schema::create('po_detail', function (Blueprint $table) {
             $table->id();
-            $table->date('Po Date');
-            $table->string('Description Of Goods');
-            $table->string('Qty');
-            $table->string('Unit');
-            $table->float('Unit Price');
-            $table->float('Amount');
+            $table->date('po_date');
+            $table->string('description');
+            $table->string('qty');
+            $table->string('unit');
+            $table->float('unit_price');
+            $table->float('amount');
             $table->timestamps();
         });
     }

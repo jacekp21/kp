@@ -15,14 +15,14 @@ class CreatePaymentDetailTable extends Migration
     {
         Schema::create('payment_detail', function (Blueprint $table) {
             $table->id();
-            $table->string('No Po');
-            $table->string('Item');
-            $table->string('Qty');
-            $table->string('Unit');
-            $table->float('Unit Price');
-            $table->float('Discount');
+            $table->string('po_no');
+            $table->string('item');
+            $table->string('qty');
+            $table->string('unit');
+            $table->float('unit_price');
+            $table->float('discount');
             $table->float('tax');
-            $table->string('No Cheque');
+            $table->string('cheque_no');
             $table->timestamps();
         });
     }

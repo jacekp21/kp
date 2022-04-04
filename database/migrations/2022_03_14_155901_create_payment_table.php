@@ -15,14 +15,14 @@ class CreatePaymentTable extends Migration
     {
         Schema::create('payment', function (Blueprint $table) {
             $table->id();
-            $table->string('Vendor');
-            $table->string('Via');
-            $table->string('Bank');
-            $table->string('Account Name');
-            $table->string('Account Number');
-            $table->date('Date Of Payment');
-            $table->float('Amount');
-            $table->string('Terbilang');
+            $table->string('vendor');
+            $table->string('via');
+            $table->string('bank');
+            $table->string('account_name');
+            $table->string('account_number');
+            $table->date('date_of_payment');
+            $table->float('amount');
+            $table->string('terbilang');
             $table->timestamps();
         });
     }
