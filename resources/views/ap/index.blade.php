@@ -45,7 +45,6 @@
                     <i class="fas fa-plus-square"></i> Add New
                 </a>
 
-                <!-- <div> -->
                 <table style="width:100%" class="table table-striped align-middle">
                     <thead>
                         <tr>
@@ -60,33 +59,30 @@
                     </thead>
                     <tbody>
                         <tr>
-                        <td>1</td>
-                        <td>Hartono - PT MOZ</td>
-                        <td>22 November 2021</td>
-                        <td>001/INV-MOZ/AR/XI/2021</td>
-                        <td>022/PO-BPA/XI/2021</td>
-                        <td>Rp 100.000.000,-</td>
-                        <td>
-                        <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
-                        </td>
+                            <td>1</td>
+                            <td>Hartono - PT MOZ</td>
+                            <td>22 November 2021</td>
+                            <td>001/INV-MOZ/AR/XI/2021</td>
+                            <td>022/PO-BPA/XI/2021</td>
+                            <td>Rp 100.000.000,-</td>
+                            <td>
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
+                            </td>
                         </tr>
                         <tr>
-                        <td>2</td>
-                        <td>Hartono - PT MOZ</td>
-                        <td>22 November 2021</td>
-                        <td>002/INV-MOZ/AR/XI/2021</td>
-                        <td>022/PO-BPA/XI/2021</td>
-                        <td>Rp 50.000.000,-</td>
-                        <td>
-                        <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
-                        </td>
+                            <td>2</td>
+                            <td>Hartono - PT MOZ</td>
+                            <td>22 November 2021</td>
+                            <td>002/INV-MOZ/AR/XI/2021</td>
+                            <td>022/PO-BPA/XI/2021</td>
+                            <td>Rp 50.000.000,-</td>
+                            <td>
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>   
-            <!-- </div> -->
             </div>
-
-            
         </div>
     </body>            
 </html>

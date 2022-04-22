@@ -27,7 +27,9 @@ class LoginController extends Controller
             'password'  => 'required'
         ]);
 
-        dd('berhasil login');
+        // dd('berhasil login');
+
+        return view('dashboard.index');
     }
 
     /**

@@ -46,21 +46,16 @@ Route::post('/logout', [LoginController::class, 'logout']);
 // ));
 
 Route::get('/dashboard', function () {
-    return view('dashboard/dashboard');
+    return view('dashboard/index');
+});
+
+Route::get('/admin', function () {
+    return view('admin/index');
 });
 
 Route::get('/admin/new', function () {
     return view('admin/new');
 });
-
-Route::get('/admin/admin', function () {
-    return view('admin/admin');
-});
-
-// PO Route
-// Route::get('/po', function () {
-//     return view('po/purchaseorder');
-// });
 
 Route::get('/po', [PoController::class, 'index']);
 Route::get('/po/show/{id}', [PoController::class, 'show']);
@@ -69,9 +64,8 @@ Route::get('/po/new', function () {
     return view('po/new');
 });
 
-
-Route::get('/ap/ap', function () {
-    return view('ap/ap');
+Route::get('/ap', function () {
+    return view('ap/index');
 });
 
 Route::get('/ap/new', function () {
@@ -79,38 +73,35 @@ Route::get('/ap/new', function () {
 });
 
 Route::get('/payment', function () {
-    return view('payment/payment');
+    return view('payment/index');
 });
 
 Route::get('/payment/new', function () {
     return view('payment/new');
 });
 
-Route::get('/report/report', function () {
-    return view('report/report');
+Route::get('/report', function () {
+    return view('report/index');
 });
 
-Route::get('/setting/setting', function () {
-    return view('setting/setting');
+Route::get('/setting', function () {
+    return view('setting/index');
 });
+
+Route::resource('setting/vendor', VendorController::class);
 
 Route::get('setting/vendor/new', function () {
     return view('setting/vendor/new');
 });
 
-// Route::get('setting/vendor', function () {
-//     return view('setting/vendor/vendor');
-// });
-
-Route::resource('setting/vendor', VendorController::class);
+Route::get('setting/wh', function () {
+    return view('setting/wh/index');
+});
 
 Route::get('setting/wh/new', function () {
     return view('setting/wh/new');
 });
 
-Route::get('setting/wh', function () {
-    return view('setting/wh/wh');
-});
 
 //Route::get('/', [LoginController::class, 'login'])->name('login');
 //Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
