@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PoController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,37 +20,23 @@ use App\Http\Controllers\LoginController;
 |
 */
 
+// Login Page
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-// Route::post('/home', [UsersController::class, 'login'])->name('authLogin');
-// Route::get('/', [LoginController::class, 'login'])->name('login');
-// Auth::routes();
-
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
-// Route::get('login', [HomeController::class, 'index'])->name('home')->middleware('auth');
-
-// Route::get('/', [HomeController::class, 'index']);
-// Route::get('login', [HomeController::class, 'index']);
-
-// Route::get('/', array(
-//     'uses' => 'HomeController@showLogin'
-// ));
 
 Route::get('/dashboard', function () {
     return view('dashboard/index');
 });
 
-Route::get('/admin', function () {
-    return view('admin/index');
-});
+// User Url
+Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/new', [UserController::class, 'create']);
+Route::post('/user/store', [UserController::class, 'store']); // Store User Information
+Route::post('/user/update', [UserController::class, 'update']); // Store User Information
 
-Route::get('/admin/new', function () {
-    return view('admin/new');
-});
 
 Route::get('/po', [PoController::class, 'index']);
 Route::get('/po/show/{id}', [PoController::class, 'show']);

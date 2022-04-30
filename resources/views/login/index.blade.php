@@ -23,7 +23,7 @@
                     <h3 class="mb-5">Log in</h3>
 
                     <form action="/login" method="POST">
-                    @csrf
+                        @csrf
                         <!-- Username Input -->
                         <div class="form-outline @if($errors->has('username') || $errors->has('message')) mb-1 @else mb-4 @endif">
                             <label class="form-label" for="username">Username</label>
@@ -42,13 +42,6 @@
                                 {{ $errors->first('message') }}
                             </div>
                         @enderror
-                        
-                        {{-- <div style="color:black" class="mb-3 invalid-feedback">
-                            ada
-                        </div> --}}
-                        {{-- <div class="">
-                            input error
-                        </div> --}}
 
                         <!-- Password Input -->
                         <div class="form-outline mb-4">

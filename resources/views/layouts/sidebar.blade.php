@@ -4,7 +4,7 @@
             <a class="nav-link active text-white" aria-current="page" href={{ url("dashboard") }}><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a><hr class="bg-secondary">
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href={{ url("admin") }}><i class="fas fa-user-cog mr-2"></i> Admin</a><hr class="bg-secondary">
+            <a class="nav-link text-white" href={{ url("user") }}><i class="fas fa-user-cog mr-2"></i> User</a><hr class="bg-secondary">
         </li>
         <li class="nav-item">
             <a class="nav-link text-white" href={{ url("po") }}><i class="fas fa-file-alt mr-2"></i> Purchase Order</a><hr class="bg-secondary">

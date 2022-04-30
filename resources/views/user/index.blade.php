@@ -92,7 +92,7 @@
             /* END : Toggle on off */
         </style>
         <!-- END : Custom Style -->
-        <title>Admin Page</title>
+        <title>User Page</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
@@ -104,60 +104,59 @@
         <div class="row no-gutters mt-5">
             @include('layouts.sidebar')
             <div class="col-md-10 p-5 mt-2">
-                <h1><i class="fas fa-user-cog mr-2"></i> Admin</h1><hr>
-                <a href="http://localhost:8000/admin/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
+                <h1><i class="fas fa-user-cog mr-2"></i> User</h1><hr>
+                @if (session('success'))
+                    <div class="alert-success">
+                        <p>{{ session('success') }}</p>
+                    </div>
+                @endif
+                
+                @if ($errors->any())
+                    <div class="alert-danger">
+                        <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <a href="http://localhost:8000/user/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
                 <div>
                     <table class="table table-striped align-middle table-bordered">
                         <thead>
                             <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Position</th>
-                            <th scope="col">No. Telp</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Status</th> 
-                            <th scope="col">Action</th>
+                                <th scope="col">No</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Position</th>
+                                <th scope="col">No. Telp</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Status</th> 
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($users as $key => $user)
                             <tr>
-                            <td>1</td>
-                            <td>Yonna Christiana</td>
-                            <td>Administrator</td>
-                            <td>082299008899</td>
-                            <td>Admin</td>
-                            <td>
-                                <label class="switch">
-                                    <input type="checkbox" checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </td> <!-- <img src="langit.png"> -->
-                            <td>
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
-                            <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
-                            </td> 
+                                <td>{{ $key+1 }}</td>
+                                <td>{{ $user->username }}</td>
+                                <td>{{ ucfirst($user->position) }}</td>
+                                <td>{{ $user->no_telp }}</td>
+                                <td>{{ ucfirst($user->role) }}</td>
+                                <td>
+                                    <label class="switch">
+                                        <input type="checkbox" disabled {{ $user->status ? 'checked' : '' }}>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                                <td>
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
+                                </td> 
                             </tr>
-                            <tr>
-                            <td>2</td>
-                            <td>Crystina</td>
-                            <td>Purchaser</td>
-                            <td>081299003333</td>
-                            <td>Staff</td>
-                            <td>
-                                <label class="switch">
-                                    <input type="checkbox" checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </td> <!-- tombol switch -->
-                            <td>
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
-                            <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
-                            </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>   
                 </div>
-                <!-- Showing 1 to 1 of 1 enteries cara buatnya gimna ya ??? dan show entires -->
             </div>
         </div>
     </body>
