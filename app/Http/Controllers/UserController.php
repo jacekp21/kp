@@ -65,8 +65,6 @@ class UserController extends Controller
                 return redirect('/user')->with('error','Data User Gagal di Input');
             }
         }
-
-        // return response()->json($request);
     }
 
     /**
@@ -90,7 +88,11 @@ class UserController extends Controller
     public function edit($id)
     {
         // Return to view for edit
-        return view('user', compact('user'));
+        $user = User::find($id);
+        // dd($user);
+        return view('user.new', ['user' => $user]);
+        // return response()->json($user);
+        // dd($id);
     }
 
     /**
@@ -100,11 +102,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        // Update user
-        dd($request, $id);
-    }
+    // public function update(Request $request, $id)
+    // {
+    //     // Update user
+    //     dd($request, $id);
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -112,7 +114,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function disable($id)
     {
         //
     }

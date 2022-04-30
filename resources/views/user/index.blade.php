@@ -120,7 +120,7 @@
                         </ul>
                     </div>
                 @endif
-                <a href="http://localhost:8000/user/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
+                <a href="/user/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
                 <div>
                     <table class="table table-striped align-middle table-bordered">
                         <thead>
@@ -149,8 +149,12 @@
                                     </label>
                                 </td>
                                 <td>
-                                <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
-                                <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
+                                    <a href="/user/edit/{{ $user->id }}">
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
+                                    </a>
+                                    <a href="/user/disable/{{ $user->id }}" >
+                                        <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
+                                    </a>
                                 </td> 
                             </tr>
                             @endforeach

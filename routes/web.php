@@ -35,7 +35,8 @@ Route::get('/dashboard', function () {
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/new', [UserController::class, 'create']);
 Route::post('/user/store', [UserController::class, 'store']); // Store User Information
-Route::post('/user/update', [UserController::class, 'update']); // Store User Information
+Route::get('/user/edit/{id}', [UserController::class, 'edit']); // Store User Information
+Route::get('/user/disable', [UserController::class, 'disable']); // Store User Information
 
 
 Route::get('/po', [PoController::class, 'index']);
