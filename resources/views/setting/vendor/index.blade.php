@@ -44,7 +44,7 @@
                     
         <div class="col-md-10 p-5 mt-2">
             <h1><i class="fas fa-building"></i> Vendor</h1><hr>
-            <a href="{{ route('vendor.create') }}" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
+            <a href="{{ route('vendor.new') }}" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
 
             <table class="table table-striped align-middle">
                 <thead>

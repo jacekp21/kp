@@ -21,9 +21,9 @@
       <div class="col-md-10 p-5 mt-2">
           <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="http://localhost:8000/dashboard">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page"><a href="http://localhost:8000/setting/setting">Setting</a></li>
-                  <li class="breadcrumb-item"><a href="http://localhost:8000/setting/vendor">Vendor</a></li>
+                  <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"><a href="/setting/setting">Setting</a></li>
+                  <li class="breadcrumb-item"><a href="/setting/vendor">Vendor</a></li>
                   <li class="breadcrumb-item active" aria-current="page">New</a></li>
               </ol>
           </nav>
