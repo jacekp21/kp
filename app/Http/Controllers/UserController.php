@@ -89,10 +89,8 @@ class UserController extends Controller
     {
         // Return to view for edit
         $user = User::find($id);
-        // dd($user);
+
         return view('user.new', ['user' => $user]);
-        // return response()->json($user);
-        // dd($id);
     }
 
     /**
