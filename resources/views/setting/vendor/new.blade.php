@@ -29,22 +29,23 @@
           </nav>
           
           <div class="container mt-5">
-            <form method="POST" action="{{ route('vendor.store') }}">
+            <form action="/setting/vendor/store" method="POST" >
+                @csrf
                 <div class="row">
                     <h1>Data Vendor</h1>
                     <hr>
                     <div class="col-md-5">
                         <div class="mb-3">
-                            <label for="namavendor" class="form-label">Vendor Name</label>
-                            <input type="text" class="form-control" id="namavendor" name="name" placeholder="">
+                            <label for="vendor" class="form-label">Vendor Name</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="">
                         </div>
                         <div class="mb-3">
                             <label for="alamat" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="">
+                            <input type="text" name="address" class="form-control" id="address" placeholder="">
                         </div>
                         <div class="mb-3">
-                            <label for="telp" class="form-label">No. Telp</label>
-                            <input type="text" class="form-control" id="telp" name="telpon" placeholder="">
+                            <label for="telpon" class="form-label">No. Telp</label>
+                            <input type="text" name="telpon" class="form-control" id="telpon" placeholder="">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
@@ -59,12 +60,12 @@
                             <label for="cabang" class="form-label">Cabang</label>
                             <input type="text" class="form-control" id="cabang" name="cabang" placeholder="">
                         <div class="mb-3">
-                            <label for="namarek" class="form-label">Nama Rekening</label>
-                            <input type="text" class="form-control" id="namarek" name="nama_rek" placeholder="">
+                            <label for="nama_rekening" class="form-label">Nama Rekening</label>
+                            <input type="text" class="form-control" id="nama_rekening" name="nama_rekening" placeholder="">
                         </div>
                         <div class="mb-3">
-                            <label for="norek" class="form-label">No. Rekening</label>
-                            <input type="text" class="form-control" id="norek" name="no_rek" placeholder="">
+                            <label for="no_rek" class="form-label">No. Rekening</label>
+                            <input type="text" class="form-control" id="no_rek" name="no_rek" placeholder="">
                         </div>
                     </div>
                 </div>

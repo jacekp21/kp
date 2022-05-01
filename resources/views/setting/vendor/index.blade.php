@@ -44,7 +44,7 @@
                     
         <div class="col-md-10 p-5 mt-2">
             <h1><i class="fas fa-building"></i> Vendor</h1><hr>
-            <a href="{{ route('vendor.new') }}" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
+            <a href="vendor/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
 
             <table class="table table-striped align-middle">
                 <thead>
@@ -59,27 +59,26 @@
                 </thead>
                 <tbody>
                     <tr>
-                    <td>1</td>
-                    <td>Hartono - PT MOZ</td>
-                    <td>Jl. Gajah Mada No. 34A Indonesia/td>
-                    <td>081991008888</td>
-                    <td>ptmoz.2122@gmail.com</td>
-                    <td>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
-                    <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
-                    </td>
-                    
+                        <td>1</td>
+                        <td>Hartono - PT MOZ</td>
+                        <td>Jl. Gajah Mada No. 34A Indonesia/td>
+                        <td>081991008888</td>
+                        <td>ptmoz.2122@gmail.com</td>
+                        <td>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
+                        </td>
                     </tr>
                     <tr>
-                    <td>2</td>
-                    <td>Toko Cipta Computer</td>
-                    <td>Jl. Gambir Tanjungpinang</td>
-                    <td>0771-231899</td>
-                    <td>cc.tanjungpinang2@gmail.com</td>
-                    <td>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
-                    <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
-                    </td>
+                        <td>2</td>
+                        <td>Toko Cipta Computer</td>
+                        <td>Jl. Gambir Tanjungpinang</td>
+                        <td>0771-231899</td>
+                        <td>cc.tanjungpinang2@gmail.com</td>
+                        <td>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>   

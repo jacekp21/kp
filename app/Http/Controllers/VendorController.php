@@ -35,9 +35,8 @@ class VendorController extends Controller
      */
     public function create()
     {
-        //
-        // return "vendor create";
-        return view('setting.vendor.create');
+        // Redirect to Vendor New Page
+        return view('setting.vendor.new');
     }
 
     /**
@@ -49,14 +48,51 @@ class VendorController extends Controller
     public function store(Request $request)
     {
         // Validasi data
-        // $request->validate([
-        //     'name' => 'required',
-        //     'address' => 'required',
-        //     'telpon' => 'required',
-        //     'email' => 'required',
+        // $validated = $request->validate([
+        //     'name'          => 'required',
+        //     'address'       => 'required',
+        //     'telpon'        => 'required',
+        //     'email'         => 'required',
+        //     'bank'          => 'required',
+        //     'cabang'        => 'required',
+        //     'nama_rekening' => 'required',
+        //     'no_rek'        => 'required',
         // ]);
 
-        // return "store";
+        // $validatedData = $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required|unique:employees|max:255',
+        //     'age' => 'required',
+        //     'contact_no' => 'required|unique:employees|max:255',
+        //   ]);
+
+        // Store user information
+        $post = $request;
+        $id = $request->user_id;
+
+        return response()->json($post);
+
+        if ($id) {
+            // Edit
+            $post = User::find($id)->update($post);
+
+            if ($post) {
+                return back()->with('success','Data User Berhasil diperbaharui');
+            } else {
+                return redirect('/user')->with('error','Data User Gagal diperbaharui');
+            }
+
+        } else {
+            // New
+            $user_id = User::create($post->all());
+
+            if ($user_id) {
+                return redirect('/user')->with('success','Data User Berhasil di Input');
+            } else {
+                return redirect('/user')->with('error','Data User Gagal di Input');
+            }
+        }
+
         return response()->json($request);
     }
 
