@@ -47,12 +47,17 @@
                     <div class="pt-3 mb-1">
                         <label for="username" class="form-label">Username</label>
                         <input type="hidden" name="user_id" value="{{ $user->user_id ?? '' }}">
-                        <input type="text" class="form-control" name="username" id="username" 
-                        value="{{ $user->username ?? '' }}" placeholder="Username">
+                        <input type="text" name="username" id="username" value="{{ old('username') $user->username ?? '' }}" class="form-control @error is-invalid @enderror" placeholder="Username">
+                        @error('username')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-1">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" value="{{ $user->password ?? '' }}" name="password" id="password" placeholder="Password"> <!-- Belum membuat Icon show and hide di password -->
+                        @error('password')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-inline mb-1">
                         <label for="position">Position</label>
@@ -63,6 +68,9 @@
                             <option value="Accounting" {{ ucfirst($user->position ?? '') == 'Accounting' ? 'Selected' : '' }}>Accounting</option>
                             <option value="Purchasing" {{ ucfirst($user->position ?? '') == 'Purchasing' ? 'Selected' : '' }}>Purchasing</option>
                         </select>
+                        @error('position')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-1">
                         <label for="telp" class="form-label">No. Telp</label>
@@ -76,6 +84,9 @@
                             <option value="manager" {{ $user->role ?? '' == 'manager' ? 'Selected' : '' }}>Manager</option>
                             <option value="staff" {{ $user->role ?? '' == 'staff' ? 'Selected' : '' }}>Staff</option>
                         </select>
+                        @error('role')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
                     </div>
                     {{-- <div class="mb-1">
                         <label for="Image" class="form-label"></label>
