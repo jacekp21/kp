@@ -42,6 +42,15 @@ class UserController extends Controller
     {
         // Store user information
         $request->request->add(['status' => 1]);
+
+        $request->validate([
+            'name'          => 'required',
+            'password'      => 'required',
+            'position'      => 'required',
+            'no_telp'       => 'required',
+            'role'          => 'required'
+        ]);
+
         $post = $request;
         $id = $request->user_id;
 

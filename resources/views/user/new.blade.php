@@ -58,23 +58,23 @@
                         <label for="position">Position</label>
                         <select class="form-control js-select2-position" name="position" id="position" placeholder="Type to search...">
                             <option {{ !isset($user->position) ? 'Selected' : '' }}>Choose position..</option>
-                            <option value="Admin" {{ ucfirst($user->position) == 'Admin' ? 'Selected' : '' }}>Admin</option>
-                            <option value="Manager" {{ ucfirst($user->position) == 'Manager' ? 'Selected' : '' }}>Manager</option>
-                            <option value="Accounting" {{ ucfirst($user->position) == 'Accounting' ? 'Selected' : '' }}>Accounting</option>
-                            <option value="Purchasing" {{ ucfirst($user->position) == 'Purchasing' ? 'Selected' : '' }}>Purchasing</option>
+                            <option value="Admin" {{ ucfirst($user->position ?? '') == 'Admin' ? 'Selected' : '' }}>Admin</option>
+                            <option value="Manager" {{ ucfirst($user->position ?? '') == 'Manager' ? 'Selected' : '' }}>Manager</option>
+                            <option value="Accounting" {{ ucfirst($user->position ?? '') == 'Accounting' ? 'Selected' : '' }}>Accounting</option>
+                            <option value="Purchasing" {{ ucfirst($user->position ?? '') == 'Purchasing' ? 'Selected' : '' }}>Purchasing</option>
                         </select>
                     </div>
                     <div class="mb-1">
                         <label for="telp" class="form-label">No. Telp</label>
-                        <input type="text" value="{{ $user->no_telp }}" name="no_telp" class="form-control" id="telp" placeholder="No.Telp">
+                        <input type="text" value="{{ $user->no_telp ?? '' }}" name="no_telp" class="form-control" id="telp" placeholder="No.Telp">
                     </div>
                     <div class="mb-1">
                         <label for="role" class="form-label">Role</label>
                         <select class="form-control js-select2-position" name="role" id="role" placeholder="Type to search...">
                             <option {{ !isset($user->role) ? 'Selected' : '' }}>Choose position..</option>
-                            <option value="admin" {{ $user->role == 'admin' ? 'Selected' : '' }}>Admin</option>
-                            <option value="manager" {{ $user->role == 'manager' ? 'Selected' : '' }}>Manager</option>
-                            <option value="staff" {{ $user->role == 'staff' ? 'Selected' : '' }}>Staff</option>
+                            <option value="admin" {{ $user->role ?? '' == 'admin' ? 'Selected' : '' }}>Admin</option>
+                            <option value="manager" {{ $user->role ?? '' == 'manager' ? 'Selected' : '' }}>Manager</option>
+                            <option value="staff" {{ $user->role ?? '' == 'staff' ? 'Selected' : '' }}>Staff</option>
                         </select>
                     </div>
                     {{-- <div class="mb-1">
