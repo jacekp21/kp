@@ -24,7 +24,7 @@ use App\Http\Controllers\UserController;
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
 
 Route::get('/dashboard', function () {
