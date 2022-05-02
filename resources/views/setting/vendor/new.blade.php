@@ -37,6 +37,7 @@
                     <div class="col-md-5">
                         <div class="mb-3">
                             <label for="vendor" class="form-label">Vendor Name</label>
+                            <input type="hidden" name="id" value="{{ $vendor->id ?? '' }}">
                             <input type="text" name="name" class="form-control" id="name" placeholder="">
                         </div>
                         <div class="mb-3">

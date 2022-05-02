@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Validator;
+
 class VendorController extends Controller
 {
     /**
@@ -66,34 +68,66 @@ class VendorController extends Controller
         //     'contact_no' => 'required|unique:employees|max:255',
         //   ]);
 
-        // Store user information
-        $post = $request;
-        $id = $request->user_id;
+        // $validator = Validator::make($request->all(), [
+        //     'name'          => 'required',
+        //     'address'       => 'required',
+        //     'telpon'        => 'required',
+        //     'email'         => 'required|email:dns',
+        //     'bank'          => 'required',
+        //     'cabang'        => 'required',
+        //     'nama_rekening' => 'required',
+        //     'no_rek'        => 'required',
+        // ]);
 
-        return response()->json($post);
+        // if ($validator->fails()) {
+        //     return redirect('/setting/vendor/new')
+        //                 ->withErrors($validator)
+        //                 ->withInput();
+        // }
+ 
+        // Retrieve the validated input...
+        // $validated = $validator->validated();
+
+        $request->validate([
+            'name'          => 'required',
+            'address'       => 'required',
+            'telpon'        => 'required',
+            'email'         => 'required|email:dns',
+            'bank'          => 'required',
+            'cabang'        => 'required',
+            'nama_rekening' => 'required',
+            'no_rek'        => 'required',
+        ]);
+
+        // Store Vendor information
+        $post = $request;
+        $id = $request->id;
+        $user = auth()->user();
+
+        // return response()->json($post);
 
         if ($id) {
             // Edit
-            $post = User::find($id)->update($post);
+            $post = Vendor::find($id)->update($post);
 
             if ($post) {
-                return back()->with('success','Data User Berhasil diperbaharui');
+                return back()->with('success','Data Vendor Berhasil diperbaharui');
             } else {
-                return redirect('/user')->with('error','Data User Gagal diperbaharui');
+                return redirect('/setting/vendor')->with('error','Data Vendor Gagal diperbaharui');
             }
 
         } else {
             // New
-            $user_id = User::create($post->all());
+            $post['created_by'] = $user->id;
+            // return response()->json($post);
+            $id = Vendor::create($post->all());
 
-            if ($user_id) {
-                return redirect('/user')->with('success','Data User Berhasil di Input');
+            if ($id) {
+                return redirect('/setting/vendor')->with('success','Data Vendor Berhasil di Input');
             } else {
-                return redirect('/user')->with('error','Data User Gagal di Input');
+                return redirect('/setting/vendor')->with('error','Data Vendor Gagal di Input');
             }
         }
-
-        return response()->json($request);
     }
 
     /**
