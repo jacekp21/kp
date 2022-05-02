@@ -42,8 +42,6 @@ class HomeController extends Controller
             'password' => 'required|alphaNum|min:8'
         );
 
-        dd('test');
-
         // return response()->json($request);
 
         // password has to be greater than 3 characters and can only be alphanumeric and);
