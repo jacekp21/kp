@@ -49,46 +49,8 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi data
-        // $validated = $request->validate([
-        //     'name'          => 'required',
-        //     'address'       => 'required',
-        //     'telpon'        => 'required',
-        //     'email'         => 'required',
-        //     'bank'          => 'required',
-        //     'cabang'        => 'required',
-        //     'nama_rekening' => 'required',
-        //     'no_rek'        => 'required',
-        // ]);
-
-        // $validatedData = $request->validate([
-        //     'name' => 'required',
-        //     'email' => 'required|unique:employees|max:255',
-        //     'age' => 'required',
-        //     'contact_no' => 'required|unique:employees|max:255',
-        //   ]);
-
-        // $validator = Validator::make($request->all(), [
-        //     'name'          => 'required',
-        //     'address'       => 'required',
-        //     'telpon'        => 'required',
-        //     'email'         => 'required|email:dns',
-        //     'bank'          => 'required',
-        //     'cabang'        => 'required',
-        //     'nama_rekening' => 'required',
-        //     'no_rek'        => 'required',
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return redirect('/setting/vendor/new')
-        //                 ->withErrors($validator)
-        //                 ->withInput();
-        // }
- 
-        // Retrieve the validated input...
-        // $validated = $validator->validated();
-
-        $request->validate([
+        // Validasi Data
+        $validatedInput = $request->validate([
             'name'          => 'required',
             'address'       => 'required',
             'telpon'        => 'required',
@@ -104,8 +66,6 @@ class VendorController extends Controller
         $id = $request->id;
         $user = auth()->user();
 
-        // return response()->json($post);
-
         if ($id) {
             // Edit
             $post = Vendor::find($id)->update($post);
@@ -119,7 +79,6 @@ class VendorController extends Controller
         } else {
             // New
             $post['created_by'] = $user->id;
-            // return response()->json($post);
             $id = Vendor::create($post->all());
 
             if ($id) {

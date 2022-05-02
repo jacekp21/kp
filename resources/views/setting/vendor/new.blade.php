@@ -38,35 +38,59 @@
                         <div class="mb-3">
                             <label for="vendor" class="form-label">Vendor Name</label>
                             <input type="hidden" name="id" value="{{ $vendor->id ?? '' }}">
-                            <input type="text" name="name" class="form-control" id="name" placeholder="">
+                            <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="">
+                            @error('name')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="alamat" class="form-label">Address</label>
-                            <input type="text" name="address" class="form-control" id="address" placeholder="">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" name="address" id="address" value="{{ old('address') }}" class="form-control @error('address') is-invalid @enderror" placeholder="">
+                            @error('address')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="telpon" class="form-label">No. Telp</label>
-                            <input type="text" name="telpon" class="form-control" id="telpon" placeholder="">
+                            <input type="text" name="telpon" id="telpon" value="{{ old('telpon') }}" class="form-control @error('telpon') is-invalid @enderror" placeholder="">
+                            @error('telpon')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="">
+                            <input type="text" id="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="">
+                            @error('email')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
                         </div>
                         <h2>Data Bank</h2>
                         <hr>
                         <div class="mb-3">
                             <label for="bank" class="form-label">Bank</label>
-                            <input type="text" class="form-control" id="bank" name="bank" placeholder="">
+                            <input type="text" id="bank" name="bank" value="{{ old('bank') }}" class="form-control @error('bank') is-invalid @enderror" placeholder="">
+                            @error('bank')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
                         <div class="mb-3">
                             <label for="cabang" class="form-label">Cabang</label>
-                            <input type="text" class="form-control" id="cabang" name="cabang" placeholder="">
+                            <input type="text" id="cabang" name="cabang" value="{{ old('cabang') }}" class="form-control @error('cabang') is-invalid @enderror" placeholder="">
+                            @error('cabang')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
                         <div class="mb-3">
                             <label for="nama_rekening" class="form-label">Nama Rekening</label>
-                            <input type="text" class="form-control" id="nama_rekening" name="nama_rekening" placeholder="">
+                            <input type="text" id="nama_rekening" name="nama_rekening" value="{{ old('nama_rekening') }}" class="form-control @error('nama_rekening') is-invalid @enderror" placeholder="">
+                            @error('nama_rekening')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="no_rek" class="form-label">No. Rekening</label>
-                            <input type="text" class="form-control" id="no_rek" name="no_rek" placeholder="">
+                            <input type="text" id="no_rek" name="no_rek" value="{{ old('no_rek') }}" class="form-control @error('no_rek') is-invalid @enderror" placeholder="">
+                            @error('no_rek')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
