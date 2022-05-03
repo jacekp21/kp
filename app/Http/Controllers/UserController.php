@@ -15,8 +15,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        // View user page
-        $users = User::where('username', '!=', 'Admin')->get();
+        // Get User List
+        $users = User::where('username', '!=', 'Admin')
+                        ->where('status', 1)
+                        ->get();
 
         return view('user.index', ['users' => $users]);
     }
@@ -28,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        // Create user page
+        // Create New User
         return view('user.new');
     }
 
@@ -43,12 +45,21 @@ class UserController extends Controller
         // Store user information
         $request->request->add(['status' => 1]);
 
+        // User Input Validation
         $validatedInput = $request->validate([
-            'name'          => 'required',
+            'username'      => 'required',
             'password'      => 'required',
-            'position'      => 'required',
+            'position'      => 'required|in:Admin,Manager,Accounting,Purchasing',
             'no_telp'       => 'required',
-            'role'          => 'required'
+            'role'          => 'required|in:admin,manager,staff'
+        ],
+        // User Input Validation Error Message
+        [
+            'username.required' => 'Username is required',
+            'password.required' => 'Password is required',
+            'position.in' => 'Position selection is invalid',
+            'no_telp.required' => 'Phone Number is required',
+            'role.in' => 'Role selection is invalid',
         ]);
 
         $post = $request;
@@ -96,24 +107,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        // Return to view for edit
+        // Get user id and store it on user variable
         $user = User::find($id);
-
+        // Return to view for edit
         return view('user.new', ['user' => $user]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function update(Request $request, $id)
-    // {
-    //     // Update user
-    //     dd($request, $id);
-    // }
 
     /**
      * Remove the specified resource from storage.
@@ -123,6 +121,14 @@ class UserController extends Controller
      */
     public function disable($id)
     {
-        //
+        // Disable User
+        $disabled = User::find($id)->update(['status' => 0]);
+
+        if ($disabled) {
+            return back()->with('success','Data User Berhasil dinonaktifkan');
+        } else {
+            return back()->with('error','Data User Gagal dinonaktifkan');
+        }
+
     }
 }
