@@ -114,6 +114,12 @@ class VendorController extends Controller
     public function delete($id)
     {
         // Delete Vendor
-        dd($id);
+        $deleted = Vendor::destroy($id);
+
+        if ($deleted) {
+            return back()->with('success','Data Vendor Berhasil dihapus');
+        } else {
+            return back()->with('error','Data Vendor Gagal dihapus');
+        }
     }
 }

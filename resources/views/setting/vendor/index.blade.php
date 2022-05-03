@@ -33,7 +33,7 @@
     <title>Vendor</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand text-white"><i class="fas fa-user"></i> WELCOME ADMIN | PT BANGUN PRIMA ABADI</a>
             <a href="http://localhost:8000/login/" class="btn btn-primary mt-3" role="button"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
@@ -44,6 +44,21 @@
                     
         <div class="col-md-10 p-5 mt-2">
             <h1><i class="fas fa-building"></i> Vendor</h1><hr>
+            @if (session('success'))
+                <div class="alert-success">
+                    <p>{{ session('success') }}</p>
+                </div>
+            @endif
+            
+            @if ($errors->any())
+                <div class="alert-danger">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                </div>
+            @endif
             <a href="vendor/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
 
             <table class="table table-striped align-middle">
