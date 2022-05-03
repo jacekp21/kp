@@ -47,15 +47,14 @@
                     <div class="pt-3 mb-1">
                         <label for="username" class="form-label">Username</label>
                         <input type="hidden" name="user_id" value="{{ $user->id ?? '' }}">
-                        <input type="text" name="username" id="username" value="{{ old('username') }}{{ $user->username ?? '' }}" class="form-control @error('username') is-invalid @enderror" placeholder="Username">
+                        <input type="text" name="username" id="username" value="{{ old('username', $user->username) }}" class="form-control @error('username') is-invalid @enderror" placeholder="Username">
                         @error('username')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-1">
                         <label for="password" class="form-label">Password</label>
-                        <label for="">{{ old('password') }} {{ $user->password ?? '' }}</label>
-                        <input type="password" name="password" id="password" value="{{ old('password') }}{{ $user->password ?? '' }}" class="form-control @error('password') is-invalid @enderror" placeholder="Password"> <!-- Belum membuat Icon show and hide di password -->
+                        <input type="password" name="password" id="password" value="{{ old('password', $user->password) }}" class="form-control @error('password') is-invalid @enderror" placeholder="Password"> <!-- Belum membuat Icon show and hide di password -->
                         @error('password')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -65,10 +64,10 @@
                         <label for="">{{ old('position') }}</label>
                         <select name="position" id="position" class="form-control @error('position') is-invalid @enderror" placeholder="Type to search...">
                             <option {{ !isset($user->position) ? 'Selected' : '' }}>Choose position..</option>
-                            <option value="Admin" {{ old('position') == 'Admin' ? 'Selected' : '' }} {{ ucfirst($user->position ?? '') == 'Admin' ? 'Selected' : '' }}>Admin</option>
-                            <option value="Manager" {{ old('position') == 'Manager' ? 'Selected' : '' }} {{ ucfirst($user->position ?? '') == 'Manager' ? 'Selected' : '' }}>Manager</option>
-                            <option value="Accounting" {{ old('position') == 'Accounting' ? 'Selected' : '' }} {{ ucfirst($user->position ?? '') == 'Accounting' ? 'Selected' : '' }}>Accounting</option>
-                            <option value="Purchasing" {{ old('position') == 'Purchasing' ? 'Selected' : '' }} {{ ucfirst($user->position ?? '') == 'Purchasing' ? 'Selected' : '' }}>Purchasing</option>
+                            <option value="Admin" {{ old('position', ucfirst($user->position)) == 'Admin' ? 'Selected' : '' }}>Admin</option>
+                            <option value="Manager" {{ old('position', ucfirst($user->position)) == 'Manager' ? 'Selected' : '' }}>Manager</option>
+                            <option value="Accounting" {{ old('position', ucfirst($user->position)) == 'Accounting' ? 'Selected' : '' }}>Accounting</option>
+                            <option value="Purchasing" {{ old('position', ucfirst($user->position)) == 'Purchasing' ? 'Selected' : '' }}>Purchasing</option>
                         </select>
                         @error('position')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -76,7 +75,7 @@
                     </div>
                     <div class="mb-1">
                         <label for="telp" class="form-label">No. Telp</label>
-                        <input type="text" value="{{ old('no_telp') }}{{ $user->no_telp ?? '' }}" name="no_telp" id="telp" class="form-control @error('no_telp') is-invalid @enderror" placeholder="No. Telp">
+                        <input type="text" value="{{ old('no_telp', $user->no_telp) }}" name="no_telp" id="telp" class="form-control @error('no_telp') is-invalid @enderror" placeholder="No. Telp">
                         @error('no_telp')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -85,9 +84,9 @@
                         <label for="role" class="form-label">Role</label>
                         <select name="role" id="role" class="form-control js-select2-position @error('role') is-invalid @enderror" placeholder="Type to search...">
                             <option {{ !isset($user->role) ? 'Selected' : '' }}>Choose position..</option>
-                            <option value="admin" {{ old('role') == 'admin' ? 'Selected' : '' }} {{ ($user->role ?? '') == 'admin' ? 'Selected' : '' }}>Admin</option>
-                            <option value="manager" {{ old('role') == 'manager' ? 'Selected' : '' }} {{ ($user->role ?? '') == 'manager' ? 'Selected' : '' }}>Manager</option>
-                            <option value="staff" {{ old('role') == 'staff' ? 'Selected' : '' }} {{ ($user->role ?? '') == 'staff' ? 'Selected' : '' }}>Staff</option>
+                            <option value="admin" {{ old('role', $user->role ?? '') == 'admin' ? 'Selected' : '' }}>Admin</option>
+                            <option value="manager" {{ old('role', $user->role ?? '') == 'manager' ? 'Selected' : '' }}>Manager</option>
+                            <option value="staff" {{ old('role', $user->role ?? '') == 'staff' ? 'Selected' : '' }}>Staff</option>
                         </select>
                         @error('role')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
