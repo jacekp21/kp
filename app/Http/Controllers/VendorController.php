@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Validator;
-
 class VendorController extends Controller
 {
     /**
@@ -19,15 +17,7 @@ class VendorController extends Controller
         // Get vendor data
         $vendors = Vendor::all();
 
-        // return view('setting.vendor.index');
-
-        // if (view()->exists('setting.vendor.index')) {
-        //     // return "ada vendor";
-        //     return view('setting.vendor.index');
-        // }
-
         return view('setting.vendor.index')->with('vendors', $vendors);
-        // return view('setting/vendor/vendor');
     }
 
     /**
@@ -53,7 +43,7 @@ class VendorController extends Controller
         $validatedInput = $request->validate([
             'name'          => 'required',
             'address'       => 'required',
-            'telpon'        => 'required',
+            'telpon'        => 'required|max:15',
             'email'         => 'required|email:dns',
             'bank'          => 'required',
             'cabang'        => 'required',
@@ -67,7 +57,7 @@ class VendorController extends Controller
         $user = auth()->user();
 
         if ($id) {
-            // Edit
+            // Update Vendor
             $post = Vendor::find($id)->update($post);
 
             if ($post) {
@@ -77,7 +67,7 @@ class VendorController extends Controller
             }
 
         } else {
-            // New
+            // Create Vendor
             $post['created_by'] = $user->id;
             $id = Vendor::create($post->all());
 
@@ -103,34 +93,27 @@ class VendorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vendor $vendor)
+    public function edit($id)
     {
-        //
-    }
+        // Find vendor
+        $vendor = Vendor::find($id);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Vendor  $vendor
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Vendor $vendor)
-    {
-        //
+        // Return to view for edit
+        return view('setting.vendor.new', ['vendor' => $vendor]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vendor $vendor)
+    public function delete($id)
     {
-        //
+        // Delete Vendor
+        dd($id);
     }
 }

@@ -43,7 +43,7 @@ Route::get('/setting/vendor', [VendorController::class, 'index']);
 Route::get('/setting/vendor/new', [VendorController::class, 'create']);
 Route::post('/setting/vendor/store', [VendorController::class, 'store']); // Store Vendor Information
 Route::get('/setting/vendor/edit/{id}', [VendorController::class, 'edit']);
-Route::get('/setting/vendor/disable', [VendorController::class, 'store']);
+Route::get('/setting/vendor/delete/{id}', [VendorController::class, 'delete']);
 // Route::resource('setting/vendor/new', [VendorController::class, 'create']);
 // Route::get('setting/vendor/new', function () {
 //     return view('setting/vendor/new');

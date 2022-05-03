@@ -58,28 +58,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Hartono - PT MOZ</td>
-                        <td>Jl. Gajah Mada No. 34A Indonesia/td>
-                        <td>081991008888</td>
-                        <td>ptmoz.2122@gmail.com</td>
-                        <td>
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
-                            <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Toko Cipta Computer</td>
-                        <td>Jl. Gambir Tanjungpinang</td>
-                        <td>0771-231899</td>
-                        <td>cc.tanjungpinang2@gmail.com</td>
-                        <td>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
-                        <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
-                        </td>
-                    </tr>
+                    @foreach ($vendors as $key => $vendor)
+                        <tr>
+                            <td>{{ $key+1 }}</td>
+                            <td>{{ ucfirst($vendor->name) }}</td>
+                            <td>{{ ucfirst($vendor->address) }}</td>
+                            <td>{{ $vendor->telpon }}</td>
+                            <td>{{ $vendor->email }}</td>
+                            <td>
+                                <a href="/setting/vendor/edit/{{ $vendor->id }}" class="btn btn-primary"><i class="fas fa-edit"></i> Update</a>
+                                <a href="/setting/vendor/delete/{{ $vendor->id }}" class="btn btn-danger"><i class="fas fa-ban"></i> Delete</button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>   
         </div>
