@@ -70,9 +70,9 @@ class UserController extends Controller
             $post = User::find($id)->update($post->all());
 
             if ($post) {
-                return redirect('/user')->with('success','Data User Berhasil diperbaharui');
+                return redirect('/user')->with('success','Data User berhasil diperbaharui');
             } else {
-                return redirect('/user')->with('error','Data User Gagal diperbaharui');
+                return redirect('/user')->with('error','Data User gagal diperbaharui');
             }
 
         } else {
@@ -80,9 +80,9 @@ class UserController extends Controller
             $user_id = User::create($post->all());
 
             if ($user_id) {
-                return redirect('/user')->with('success','Data User Berhasil di Input');
+                return redirect('/user')->with('success','Data User berhasil diinput');
             } else {
-                return redirect('/user')->with('error','Data User Gagal di Input');
+                return redirect('/user')->with('error','Data User gagal diinput');
             }
         }
     }
@@ -125,9 +125,9 @@ class UserController extends Controller
         $disabled = User::find($id)->update(['status' => 0]);
 
         if ($disabled) {
-            return back()->with('success','Data User Berhasil dinonaktifkan');
+            return back()->with('success','Data User berhasil dinonaktifkan');
         } else {
-            return back()->with('error','Data User Gagal dinonaktifkan');
+            return back()->with('error','Data User gagal dinonaktifkan');
         }
 
     }
