@@ -52,16 +52,19 @@ class VendorController extends Controller
         ]);
 
         // Store Vendor information
-        $post = $request;
+        $post = $request->input();
+        // return response()->json($post);
         $id = $request->id;
         $user = auth()->user();
 
+        // return response()->json($user);
         if ($id) {
             // Update Vendor
-            $post = Vendor::find($id)->update($post);
+            $post['updated_by'] = $user->id;
+            $updated = Vendor::find($id)->update($post);
 
-            if ($post) {
-                return back()->with('success','Data Vendor Berhasil diperbaharui');
+            if ($updated) {
+                return redirect('/setting/vendor')->with('success','Data Vendor Berhasil diperbaharui');
             } else {
                 return redirect('/setting/vendor')->with('error','Data Vendor Gagal diperbaharui');
             }
@@ -69,9 +72,9 @@ class VendorController extends Controller
         } else {
             // Create Vendor
             $post['created_by'] = $user->id;
-            $id = Vendor::create($post->all());
+            $created = Vendor::create($post);
 
-            if ($id) {
+            if ($created) {
                 return redirect('/setting/vendor')->with('success','Data Vendor Berhasil di Input');
             } else {
                 return redirect('/setting/vendor')->with('error','Data Vendor Gagal di Input');
