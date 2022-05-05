@@ -17,15 +17,7 @@ class VendorController extends Controller
         // Get vendor data
         $vendors = Vendor::all();
 
-        // return view('setting.vendor.index');
-
-        // if (view()->exists('setting.vendor.index')) {
-        //     // return "ada vendor";
-        //     return view('setting.vendor.index');
-        // }
-
         return view('setting.vendor.index')->with('vendors', $vendors);
-        // return view('setting/vendor/vendor');
     }
 
     /**
@@ -35,9 +27,8 @@ class VendorController extends Controller
      */
     public function create()
     {
-        //
-        // return "vendor create";
-        return view('setting.vendor.create');
+        // Redirect to Vendor New Page
+        return view('setting.vendor.new');
     }
 
     /**
@@ -48,16 +39,47 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi data
-        // $request->validate([
-        //     'name' => 'required',
-        //     'address' => 'required',
-        //     'telpon' => 'required',
-        //     'email' => 'required',
-        // ]);
+        // Validasi Data
+        $validatedInput = $request->validate([
+            'name'          => 'required',
+            'address'       => 'required',
+            'telpon'        => 'required|max:15',
+            'email'         => 'required|email:dns',
+            'bank'          => 'required',
+            'cabang'        => 'required',
+            'nama_rekening' => 'required',
+            'no_rek'        => 'required',
+        ]);
 
-        // return "store";
-        return response()->json($request);
+        // Store Vendor information
+        $post = $request->input();
+        // return response()->json($post);
+        $id = $request->id;
+        $user = auth()->user();
+
+        // return response()->json($user);
+        if ($id) {
+            // Update Vendor
+            $post['updated_by'] = $user->id;
+            $updated = Vendor::find($id)->update($post);
+
+            if ($updated) {
+                return redirect('/setting/vendor')->with('success','Data Vendor Berhasil diperbaharui');
+            } else {
+                return redirect('/setting/vendor')->with('error','Data Vendor Gagal diperbaharui');
+            }
+
+        } else {
+            // Create Vendor
+            $post['created_by'] = $user->id;
+            $created = Vendor::create($post);
+
+            if ($created) {
+                return redirect('/setting/vendor')->with('success','Data Vendor Berhasil di Input');
+            } else {
+                return redirect('/setting/vendor')->with('error','Data Vendor Gagal di Input');
+            }
+        }
     }
 
     /**
@@ -74,34 +96,33 @@ class VendorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vendor $vendor)
+    public function edit($id)
     {
-        //
-    }
+        // Find vendor
+        $vendor = Vendor::find($id);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Vendor  $vendor
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Vendor $vendor)
-    {
-        //
+        // Return to view for edit
+        return view('setting.vendor.new', ['vendor' => $vendor]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vendor $vendor)
+    public function delete($id)
     {
-        //
+        // Delete Vendor
+        $deleted = Vendor::destroy($id);
+
+        if ($deleted) {
+            return back()->with('success','Data Vendor Berhasil dihapus');
+        } else {
+            return back()->with('error','Data Vendor Gagal dihapus');
+        }
     }
 }

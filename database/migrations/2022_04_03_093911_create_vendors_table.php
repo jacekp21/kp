@@ -19,8 +19,12 @@ class CreateVendorsTable extends Migration
             $table->text('address');
             $table->char('telpon', 15);
             $table->string('email');
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('bank');
+            $table->string('cabang');
+            $table->string('nama_rekening');
+            $table->string('no_rek');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }
