@@ -15,7 +15,9 @@ class WarehouseController extends Controller
     public function index()
     {
         // List of Warehouse
-        return "warehouse index";
+        $whs = Warehouse::all();
+
+        return view('setting.wh.index')->with('whs', $whs);
     }
 
     /**
@@ -25,8 +27,8 @@ class WarehouseController extends Controller
      */
     public function create()
     {
-        // Redirect to Warehouse creation page
-        return "redirect to new page";
+        // Redirect to Warehouse new page
+        return view('setting.wh.new');
     }
 
     /**
@@ -38,7 +40,45 @@ class WarehouseController extends Controller
     public function store(Request $request)
     {
         // Store Warehouse Information
-        return "warehouse store";
+        // Validasi Data
+        $validatedInput = $request->validate([
+            'name'              => 'required',
+            'address'           => 'required',
+            'head_of_warehouse' => 'required',
+            'telpon'            => 'required|max:15',
+        ],
+        // Warehouse Input Validation Custom Error Message
+        [
+            'name.required' => 'Warehouse name is required',
+            'address.required' => 'Warehouse address is required',
+            'head_of_warehouse.required' => 'Head of warehouse is required',
+            'telpon.required' => 'Phone Number is required'
+        ]);
+
+        // Store Warehouse information
+        $post = $request->input();
+        $id = $request->id;
+
+        if ($id) {
+            // Update Warehouse
+            $updated = Warehouse::find($id)->update($post);
+
+            if ($updated) {
+                return redirect('/setting/wh')->with('success','Data Warehouse Berhasil diperbaharui');
+            } else {
+                return redirect('/setting/wh')->with('error','Data Warehouse Gagal diperbaharui');
+            }
+
+        } else {
+            // Create Warehouse
+            $created = Warehouse::create($post);
+
+            if ($created) {
+                return redirect('/setting/wh')->with('success','Data Warehouse Berhasil di Input');
+            } else {
+                return redirect('/setting/wh')->with('error','Data Warehouse Gagal di Input');
+            }
+        }
     }
 
     /**
@@ -60,8 +100,11 @@ class WarehouseController extends Controller
      */
     public function edit($id) 
     {
-        // Redirecting to warehouse edit page
-        return "redirect to edit warehouse";
+        // Find warehouse by id
+        $wh = Warehouse::find($id);
+
+        // Return to view for edit
+        return view('setting.wh.new', ['wh' => $wh]);
     }
 
     /**

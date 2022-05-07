@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PoController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 
@@ -93,13 +94,13 @@ Route::get('/setting', function () {
     return view('setting/index');
 });
 
-Route::get('setting/wh', function () {
-    return view('setting/wh/index');
-});
+// Route::get('setting/wh', function () {
+//     return view('setting/wh/index');
+// });
 
-Route::get('setting/wh/new', function () {
-    return view('setting/wh/new');
-});
+// Route::get('setting/wh/new', function () {
+//     return view('setting/wh/new');
+// });
 
 
 //Route::get('/', [LoginController::class, 'login'])->name('login');
