@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
-                <button type="reset" class="btn btn-primary">Reset</button>
+                <a href="{{url()->previous()}}" class="btn btn-primary">Cancel</a>
             </form>
           </div>
       </div>

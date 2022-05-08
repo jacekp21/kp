@@ -65,8 +65,8 @@
                                 <td>{{ $wh->head_of_warehouse }}</td>
                                 <td>{{ $wh->telpon }}</td>
                                 <td>
-                                <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
-                                <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Delete</button>
+                                    <a href="/setting/wh/edit/{{ $wh->id }}" class="btn btn-primary"><i class="fas fa-edit"></i> Update</a>
+                                    <a href="/setting/wh/delete/{{ $wh->id }}" class="btn btn-danger"><i class="fas fa-ban"></i> Delete</a>
                                 </td>
                             </tr>
                             @endforeach

@@ -116,5 +116,12 @@ class WarehouseController extends Controller
     public function delete($id)
     {
         // Delete Warehouse
+        $deleted = Warehouse::destroy($id);
+
+        if ($deleted) {
+            return back()->with('success','Data Warehouse Berhasil dihapus');
+        } else {
+            return back()->with('error','Data Warehouse Gagal dihapus');
+        }
     }
 }
