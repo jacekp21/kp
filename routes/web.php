@@ -24,19 +24,35 @@ use App\Http\Controllers\UserController;
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
 
 Route::get('/dashboard', function () {
     return view('dashboard/index');
 });
 
-// User Url
-Route::get('/user', [UserController::class, 'index']);
-Route::get('/user/new', [UserController::class, 'create']);
-Route::post('/user/store', [UserController::class, 'store']); // Store User Information
-Route::get('/user/edit/{id}', [UserController::class, 'edit']); // Store User Information
-Route::get('/user/disable', [UserController::class, 'disable']); // Store User Information
+Route::middleware(['auth'])->group(function () {
+    
+    // User Url
+    Route::get('/user', [UserController::class, 'index']);
+    Route::get('/user/new', [UserController::class, 'create']);
+    Route::post('/user/store', [UserController::class, 'store']); // Store User Information
+    Route::get('/user/edit/{id}', [UserController::class, 'edit']); // Edit User Information
+    Route::get('/user/disable', [UserController::class, 'disable']); // Disable User Information
+
+    // Vendor
+    Route::get('/setting/vendor', [VendorController::class, 'index']);
+    Route::get('/setting/vendor/new', [VendorController::class, 'create']);
+    Route::post('/setting/vendor/store', [VendorController::class, 'store']); // Store Vendor Information
+    Route::get('/setting/vendor/edit/{id}', [VendorController::class, 'edit']);
+    Route::get('/setting/vendor/delete/{id}', [VendorController::class, 'delete']);
+
+});
+
+// Route::resource('setting/vendor/new', [VendorController::class, 'create']);
+// Route::get('setting/vendor/new', function () {
+//     return view('setting/vendor/new');
+// });
 
 
 Route::get('/po', [PoController::class, 'index']);
@@ -68,12 +84,6 @@ Route::get('/report', function () {
 
 Route::get('/setting', function () {
     return view('setting/index');
-});
-
-Route::resource('setting/vendor', VendorController::class);
-
-Route::get('setting/vendor/new', function () {
-    return view('setting/vendor/new');
 });
 
 Route::get('setting/wh', function () {

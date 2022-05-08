@@ -33,7 +33,7 @@
     <title>Vendor</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand text-white"><i class="fas fa-user"></i> WELCOME ADMIN | PT BANGUN PRIMA ABADI</a>
             <a href="http://localhost:8000/login/" class="btn btn-primary mt-3" role="button"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
@@ -44,7 +44,22 @@
                     
         <div class="col-md-10 p-5 mt-2">
             <h1><i class="fas fa-building"></i> Vendor</h1><hr>
-            <a href="{{ route('vendor.create') }}" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
+            @if (session('success'))
+                <div class="alert-success">
+                    <p>{{ session('success') }}</p>
+                </div>
+            @endif
+            
+            @if ($errors->any())
+                <div class="alert-danger">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                </div>
+            @endif
+            <a href="vendor/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
 
             <table class="table table-striped align-middle">
                 <thead>
@@ -58,29 +73,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <td>1</td>
-                    <td>Hartono - PT MOZ</td>
-                    <td>Jl. Gajah Mada No. 34A Indonesia/td>
-                    <td>081991008888</td>
-                    <td>ptmoz.2122@gmail.com</td>
-                    <td>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
-                    <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
-                    </td>
-                    
-                    </tr>
-                    <tr>
-                    <td>2</td>
-                    <td>Toko Cipta Computer</td>
-                    <td>Jl. Gambir Tanjungpinang</td>
-                    <td>0771-231899</td>
-                    <td>cc.tanjungpinang2@gmail.com</td>
-                    <td>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
-                    <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
-                    </td>
-                    </tr>
+                    @foreach ($vendors as $key => $vendor)
+                        <tr>
+                            <td>{{ $key+1 }}</td>
+                            <td>{{ ucfirst($vendor->name) }}</td>
+                            <td>{{ ucfirst($vendor->address) }}</td>
+                            <td>{{ $vendor->telpon }}</td>
+                            <td>{{ $vendor->email }}</td>
+                            <td>
+                                <a href="/setting/vendor/edit/{{ $vendor->id }}" class="btn btn-primary"><i class="fas fa-edit"></i> Update</a>
+                                <a href="/setting/vendor/delete/{{ $vendor->id }}" class="btn btn-danger"><i class="fas fa-ban"></i> Delete</button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>   
         </div>

@@ -15,8 +15,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        // View user page
-        $users = User::where('username', '!=', 'Admin')->get();
+        // Get User List
+        $users = User::where('username', '!=', 'Admin')
+                        ->where('status', 1)
+                        ->get();
 
         return view('user.index', ['users' => $users]);
     }
@@ -28,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        // Create user page
+        // Create New User
         return view('user.new');
     }
 
@@ -42,17 +44,35 @@ class UserController extends Controller
     {
         // Store user information
         $request->request->add(['status' => 1]);
+
+        // User Input Validation
+        $validatedInput = $request->validate([
+            'username'      => 'required',
+            'password'      => 'required',
+            'position'      => 'required|in:Admin,Manager,Accounting,Purchasing',
+            'no_telp'       => 'required',
+            'role'          => 'required|in:admin,manager,staff'
+        ],
+        // User Input Validation Error Message
+        [
+            'username.required' => 'Username is required',
+            'password.required' => 'Password is required',
+            'position.in' => 'Position selection is invalid',
+            'no_telp.required' => 'Phone Number is required',
+            'role.in' => 'Role selection is invalid',
+        ]);
+
         $post = $request;
         $id = $request->user_id;
 
         if ($id) {
             // Edit
-            $post = User::find($id)->update($post);
+            $post = User::find($id)->update($post->all());
 
             if ($post) {
-                return back()->with('success','Data User Berhasil diperbaharui');
+                return redirect('/user')->with('success','Data User berhasil diperbaharui');
             } else {
-                return redirect('/user')->with('error','Data User Gagal diperbaharui');
+                return redirect('/user')->with('error','Data User gagal diperbaharui');
             }
 
         } else {
@@ -60,9 +80,9 @@ class UserController extends Controller
             $user_id = User::create($post->all());
 
             if ($user_id) {
-                return redirect('/user')->with('success','Data User Berhasil di Input');
+                return redirect('/user')->with('success','Data User berhasil diinput');
             } else {
-                return redirect('/user')->with('error','Data User Gagal di Input');
+                return redirect('/user')->with('error','Data User gagal diinput');
             }
         }
     }
@@ -87,26 +107,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        // Return to view for edit
+        // Get user id and store it on user variable
         $user = User::find($id);
-        // dd($user);
+        // Return to view for edit
         return view('user.new', ['user' => $user]);
-        // return response()->json($user);
-        // dd($id);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function update(Request $request, $id)
-    // {
-    //     // Update user
-    //     dd($request, $id);
-    // }
 
     /**
      * Remove the specified resource from storage.
@@ -116,6 +121,14 @@ class UserController extends Controller
      */
     public function disable($id)
     {
-        //
+        // Disable User
+        $disabled = User::find($id)->update(['status' => 0]);
+
+        if ($disabled) {
+            return back()->with('success','Data User berhasil dinonaktifkan');
+        } else {
+            return back()->with('error','Data User gagal dinonaktifkan');
+        }
+
     }
 }

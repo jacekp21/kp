@@ -149,11 +149,11 @@
                                     </label>
                                 </td>
                                 <td>
-                                    <a href="/user/edit/{{ $user->id }}">
-                                        <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
+                                    <a href="/user/edit/{{ $user->id }}" class="btn btn-primary">
+                                        <i class="fas fa-edit"></i> Update
                                     </a>
-                                    <a href="/user/disable/{{ $user->id }}" >
-                                        <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
+                                    <a href="/user/disable/{{ $user->id }}" class="btn btn-danger">
+                                        <i class="fas fa-ban"></i> Void
                                     </a>
                                 </td> 
                             </tr>
