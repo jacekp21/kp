@@ -48,20 +48,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/setting/vendor/edit/{id}', [VendorController::class, 'edit']);
     Route::get('/setting/vendor/delete/{id}', [VendorController::class, 'delete']);
 
+    Route::get('/po', [PoController::class, 'index']);    
+    Route::get('/po/new', [PoController::class, 'create']);
+    Route::post('/po/store', [PoController::class, 'store']); // Store Purchase Order Information
+    Route::get('/po/edit/{id}', [PoController::class, 'edit']);
+    Route::get('/po/void/{id}', [PoController::class, 'void']);
+    Route::get('/po/show/{id}', [PoController::class, 'show']);
 });
 
 // Route::resource('setting/vendor/new', [VendorController::class, 'create']);
 // Route::get('setting/vendor/new', function () {
 //     return view('setting/vendor/new');
 // });
-
-
-Route::get('/po', [PoController::class, 'index']);
-Route::get('/po/show/{id}', [PoController::class, 'show']);
-
-Route::get('/po/new', function () {
-    return view('po/new');
-});
 
 Route::get('/ap', function () {
     return view('ap/index');

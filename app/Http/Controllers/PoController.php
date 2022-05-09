@@ -16,21 +16,8 @@ class PoController extends Controller
      */
     public function index()
     {
-        // contoh pemanggilan data dari model po
-        // $po = 
-
-        // Jika kita ingin return ke view PO
-        // return view('po.purchaseorder', ['name' => 'test']);
-
-        // foreach (Users::all() as $Users) {
-        //     echo $Users->username;
-        // }
-
-        // $users = user::all();
+        // Get all PO
         $po = Po::all();
-        // $po = po::all();
-
-        // dd($po);
 
         return view('po.index')->with('po', $po);
         
@@ -43,7 +30,8 @@ class PoController extends Controller
      */
     public function create()
     {
-        //
+        // Redirect to New PO Page
+        return view('po.new');
     }
 
     /**
@@ -54,7 +42,17 @@ class PoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Storing Purchase Order
+        $post = $request->input();
+        $id = $post->id;
+        if ($id) {
+            // Update PO
+            return "Update PO";
+        } else {
+            // New PO
+            return "New PO";
+        }
+
     }
 
     /**
@@ -83,28 +81,16 @@ class PoController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Redirect to PO Edit page
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
+     * Void the specified PO from database.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function void($id)
     {
         //
     }

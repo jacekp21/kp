@@ -48,15 +48,18 @@
                 <h1><i class="fas fa-file-invoice-dollar m-2"></i>New Po</h1><hr>
                 <div class="container mt-5">
                     <div class="row">
-                        <form action="http://localhost:8000/po/data" method="post">
-                            <div class="col-md-3 mb-3">
-                                <label for="date" class="form-label">Po Date</label>
-                                <input type="date" class="form-control" id="date" placeholder="">
+                        <form action="/po/data" method="post">
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="date" class="form-label">Po Date</label>
+                                    <input type="date" class="form-control" id="date" placeholder="">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="exampleDataList" class="form-label">Po Number</label>
+                                    <input class="form-control" list="ponumOptions" id="ponum" placeholder="">
+                                </div>
                             </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="exampleDataList" class="form-label">Po Number</label>
-                                <input class="form-control" list="ponumOptions" id="ponum" placeholder="">
-                            </div>
+                            
                             <div class="col-md-3 mb-3">
                                 <label for="exampleDataList" class="form-label">Vendor</label>
                                 <input class="form-control" list="vendorOptions" id="vendor" placeholder="">
