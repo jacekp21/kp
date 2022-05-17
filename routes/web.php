@@ -54,7 +54,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/setting/wh/store', [WarehouseController::class, 'store']); // Store Warehouse Information
     Route::get('/setting/wh/edit/{id}', [WarehouseController::class, 'edit']);
     Route::get('/setting/wh/delete/{id}', [WarehouseController::class, 'delete']);
-
 });
 
 // Route::resource('setting/vendor/new', [VendorController::class, 'create']);
