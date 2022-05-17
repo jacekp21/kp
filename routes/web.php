@@ -48,6 +48,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/setting/vendor/edit/{id}', [VendorController::class, 'edit']);
     Route::get('/setting/vendor/delete/{id}', [VendorController::class, 'delete']);
 
+    // Warehouse
+    Route::get('/setting/wh', [WarehouseController::class, 'index']);
+    Route::get('/setting/wh/new', [WarehouseController::class, 'create']);
+    Route::post('/setting/wh/store', [WarehouseController::class, 'store']); // Store Warehouse Information
+    Route::get('/setting/wh/edit/{id}', [WarehouseController::class, 'edit']);
+    Route::get('/setting/wh/delete/{id}', [WarehouseController::class, 'delete']);
+
+    // Purchase Order
     Route::get('/po', [PoController::class, 'index']);    
     Route::get('/po/new', [PoController::class, 'create']);
     Route::post('/po/store', [PoController::class, 'store']); // Store Purchase Order Information
