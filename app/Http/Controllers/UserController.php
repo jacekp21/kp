@@ -62,12 +62,16 @@ class UserController extends Controller
             'role.in' => 'Role selection is invalid',
         ]);
 
-        $post = $request;
+        // Hashing password
+        $request->merge(['password' => bcrypt($request->input('password'))]);
+
+        $post = $request->input();
         $id = $request->user_id;
 
         if ($id) {
             // Edit
-            $post = User::find($id)->update($post->all());
+
+            $post = User::find($id)->update($post);
 
             if ($post) {
                 return redirect('/user')->with('success','Data User berhasil diperbaharui');
