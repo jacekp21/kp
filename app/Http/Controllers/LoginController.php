@@ -100,6 +100,9 @@ class LoginController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Logout
+        Auth::logout();
+        
+        return redirect('/login');
     }
 }
