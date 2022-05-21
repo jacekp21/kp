@@ -18,10 +18,25 @@ class CreateUsersTable extends Migration
             $table->string('username');
             $table->string('password');
             $table->string('position');
-            $table->string('no_telp'); // Klo bisa nama field di database sambung dan menggunakan huruf kecil aja ya!
+            $table->string('no_telp');
             $table->string('role');
+            $table->boolean('status');
             $table->timestamps();
         });
+
+        // Insert some stuff
+        DB::table('user')->insert(
+            array(
+                'username'      => 'admin',
+                'password'      => Hash::make('123'),
+                'position'      => 'admin',
+                'no_telp'       => '12345',
+                'role'          => 'admin',
+                'status'        => 1,
+                'created_at'    => date('Y-m-d H:i:s'),
+                'updated_at'    => date('Y-m-d H:i:s'),
+            )
+        );
     }
 
     /**

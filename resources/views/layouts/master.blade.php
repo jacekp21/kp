@@ -45,6 +45,7 @@
     </script>
 
     <link href="{{ asset('css/coreui-chartjs.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body class="c-app">
     <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
@@ -67,26 +68,7 @@
 
 <script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
 <script src="{{ asset('js/coreui-utils.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @yield('javascript')
     
 </html>
-
-
-<!-- <div class="container">
-    <div class="row">
-        <div class="col">Header <h1>Main Page!!</h1></div> 
-    </div>
-    <div class="row">
-        <div class="col">
-            Navbar <br>
-            <a href="http://localhost:8000/login" rel="noopener noreferrer">Login</a><br>
-            <a href="http://localhost:8000/dashboard" rel="noopener noreferrer">Dashboard</a><br>
-            <a href="http://localhost:8000/admin/admin" rel="noopener noreferrer">Admin</a><br>
-            <a href="http://localhost:8000/po" rel="noopener noreferrer">Purchase Order</a><br>
-            <a href="http://localhost:8000/ap/ap" rel="noopener noreferrer">Account Payable</a><br>
-            <a href="http://localhost:8000/payment" rel="noopener noreferrer">Payment</a><br>
-            <a href="http://localhost:8000/report/report" rel="noopener noreferrer">Report</a><br>
-            <a href="http://localhost:8000/setting/setting" rel="noopener noreferrer">Setting</a><br>
-        </div>
-    </div>
-</div> -->

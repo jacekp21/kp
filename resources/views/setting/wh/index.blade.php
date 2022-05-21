@@ -38,7 +38,7 @@
             @include('layouts.sidebar')
             <div class="col-md-10 p-5 mt-2">
                 <h1><i class="fas fa-warehouse"></i> Warehouse</h1><hr>
-                <a href="http://localhost:8000/setting/wh/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
+                <a href="/setting/wh/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
                 <div>
                     <table class="table table-striped align-middle">
                         <thead>
@@ -52,28 +52,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($whs as $key => $wh)
                             <tr>
-                                <td>1</td>
-                                <td>AMP</td>
-                                <td>Senggarang</td>
-                                <td>Puji Hartono</td>
-                                <td>085264113372</td>
+                                <td>{{ $key+1 }}</td>
+                                <td>{{ $wh->name }}</td>
+                                <td>{{ $wh->address }}</td>
+                                <td>{{ $wh->head_of_warehouse }}</td>
+                                <td>{{ $wh->telpon }}</td>
                                 <td>
-                                <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
-                                <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
+                                    <a href="/setting/wh/edit/{{ $wh->id }}" class="btn btn-primary"><i class="fas fa-edit"></i> Update</a>
+                                    <a href="/setting/wh/delete/{{ $wh->id }}" class="btn btn-danger"><i class="fas fa-ban"></i> Delete</a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Office</td>
-                                <td>Tanjungpinang</td>
-                                <td>Michael</td>
-                                <td>08968899123</td>
-                                <td>
-                                <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
-                                <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>   
                 </div>

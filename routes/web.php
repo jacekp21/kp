@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PoController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,37 +21,46 @@ use App\Http\Controllers\LoginController;
 |
 */
 
+// Login Page
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
-// Route::post('/home', [UsersController::class, 'login'])->name('authLogin');
-// Route::get('/', [LoginController::class, 'login'])->name('login');
-// Auth::routes();
-
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
-// Route::get('login', [HomeController::class, 'index'])->name('home')->middleware('auth');
-
-// Route::get('/', [HomeController::class, 'index']);
-// Route::get('login', [HomeController::class, 'index']);
-
-// Route::get('/', array(
-//     'uses' => 'HomeController@showLogin'
-// ));
 
 Route::get('/dashboard', function () {
     return view('dashboard/index');
 });
 
-Route::get('/admin', function () {
-    return view('admin/index');
+Route::middleware(['auth'])->group(function () {
+    
+    // User Url
+    Route::get('/user', [UserController::class, 'index']);
+    Route::get('/user/new', [UserController::class, 'create']);
+    Route::post('/user/store', [UserController::class, 'store']); // Store User Information
+    Route::get('/user/edit/{id}', [UserController::class, 'edit']); // Edit User Information
+    Route::get('/user/disable', [UserController::class, 'disable']); // Disable User Information
+
+    // Vendor
+    Route::get('/setting/vendor', [VendorController::class, 'index']);
+    Route::get('/setting/vendor/new', [VendorController::class, 'create']);
+    Route::post('/setting/vendor/store', [VendorController::class, 'store']); // Store Vendor Information
+    Route::get('/setting/vendor/edit/{id}', [VendorController::class, 'edit']);
+    Route::get('/setting/vendor/delete/{id}', [VendorController::class, 'delete']);
+
+    // Warehouse
+    Route::get('/setting/wh', [WarehouseController::class, 'index']);
+    Route::get('/setting/wh/new', [WarehouseController::class, 'create']);
+    Route::post('/setting/wh/store', [WarehouseController::class, 'store']); // Store Warehouse Information
+    Route::get('/setting/wh/edit/{id}', [WarehouseController::class, 'edit']);
+    Route::get('/setting/wh/delete/{id}', [WarehouseController::class, 'delete']);
 });
 
-Route::get('/admin/new', function () {
-    return view('admin/new');
-});
+// Route::resource('setting/vendor/new', [VendorController::class, 'create']);
+// Route::get('setting/vendor/new', function () {
+//     return view('setting/vendor/new');
+// });
+
 
 Route::get('/po', [PoController::class, 'index']);
 Route::get('/po/show/{id}', [PoController::class, 'show']);
@@ -82,19 +93,13 @@ Route::get('/setting', function () {
     return view('setting/index');
 });
 
-Route::resource('setting/vendor', VendorController::class);
+// Route::get('setting/wh', function () {
+//     return view('setting/wh/index');
+// });
 
-Route::get('setting/vendor/new', function () {
-    return view('setting/vendor/new');
-});
-
-Route::get('setting/wh', function () {
-    return view('setting/wh/index');
-});
-
-Route::get('setting/wh/new', function () {
-    return view('setting/wh/new');
-});
+// Route::get('setting/wh/new', function () {
+//     return view('setting/wh/new');
+// });
 
 
 //Route::get('/', [LoginController::class, 'login'])->name('login');
