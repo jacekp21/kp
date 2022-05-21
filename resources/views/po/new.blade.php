@@ -52,11 +52,12 @@
                             <div class="row">
                                 <div class="col-md-3 mb-3">
                                     <label for="date" class="form-label">Po Date</label>
-                                    <input type="date" class="form-control" id="date" placeholder="">
+                                    <input type="text" class="form-control" id="id" placeholder="" hidden>
+                                    <input type="date" class="form-control" id="po_date" placeholder="">
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="exampleDataList" class="form-label">Po Number</label>
-                                    <input class="form-control" list="ponumOptions" id="ponum" placeholder="">
+                                    <input type="text" class="form-control" list="ponumOptions" id="po_no" placeholder="">
                                 </div>
                             </div>
                             

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Vendor;
+use App\Models\Warehouse;
 use App\Models\Po;
 use App\Models\Po_detail;
 use App\Models\User;
@@ -30,8 +32,14 @@ class PoController extends Controller
      */
     public function create()
     {
+        // Populate Vendor
+        $vendor = Vendor::all();
+        
+        // Populate Warehouse
+        $wh = Warehouse::all();
+
         // Redirect to New PO Page
-        return view('po.new');
+        return view('po.new', ['vendor' => $vendor], ['wh' => $wh]);
     }
 
     /**
