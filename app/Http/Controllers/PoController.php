@@ -33,13 +33,13 @@ class PoController extends Controller
     public function create()
     {
         // Populate Vendor
-        $vendor = Vendor::all();
+        $vendors = Vendor::all();
         
         // Populate Warehouse
-        $wh = Warehouse::all();
+        $whs = Warehouse::all();
 
         // Redirect to New PO Page
-        return view('po.new', ['vendor' => $vendor], ['wh' => $wh]);
+        return view('po.new', ['vendors' => $vendors], ['whs' => $whs]);
     }
 
     /**

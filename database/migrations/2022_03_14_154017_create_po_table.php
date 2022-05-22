@@ -19,7 +19,7 @@ class CreatePoTable extends Migration
             $table->string('po_no');
             $table->string('vendor');
             $table->string('warehouse');
-            $table->float('currency');
+            $table->char('currency', 3);
             $table->string('description');
             $table->string('qty');
             $table->string('unit');
