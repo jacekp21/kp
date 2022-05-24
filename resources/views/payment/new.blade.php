@@ -35,16 +35,16 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand text-white"><i class="fas fa-user"></i> WELCOME ADMIN | PT BANGUN PRIMA ABADI</a>
-                <a href="http://localhost:8000/login/" class="btn btn-primary mt-3" role="button"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
+                <a href="/login/" class="btn btn-primary mt-3" role="button"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
             </div>
         </nav>
         <div class="row no-gutters mt-5">
             @include('layouts.sidebar')
-            <div class="col-md-10 p-5 mt-2">
+            <div class="col-md-5 p-5 mt-2">
                 <h1><i class="fas fa-money-bill mr-2"></i> New Transaction</h1><hr>
-
                 <form action="http://localhost:8000/po/data" method="post">
-                    <div class="mb-3">
+                    <!-- @csrf-->
+                    <div class="mb-3 mb-1">
                         <label for="exampleDataList" class="form-label">Vendor</label>
                         <input class="form-control" list="vendorOptions" id="vendor" placeholder="">
                         <datalist id="vendorOptions">
