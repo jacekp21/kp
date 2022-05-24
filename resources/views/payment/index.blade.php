@@ -11,6 +11,7 @@
         <script src="https://kit.fontawesome.com/cc8db81d9c.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="fontawesome-free-6.0.0-beta3-web/css/all.min.css"/>
 
+        <!-- START : Custom Style -->
         <style>
             .nav-link:hover {
                 background-color: grey;
@@ -27,21 +28,84 @@
                 opacity: 0.4;
                 font-size: 90px;
             }
+
+            /* START : Toggle on off */
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 34px;
+            }
+
+            .switch input { 
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            input:checked + .slider {
+                background-color: #2196F3;
+            }
+
+            input:focus + .slider {
+                box-shadow: 0 0 1px #2196F3;
+            }
+
+            input:checked + .slider:before {
+                -webkit-transform: translateX(26px);
+                -ms-transform: translateX(26px);
+                transform: translateX(26px);
+            }
+
+            /* Rounded sliders */
+            .slider.round {
+                border-radius: 34px;
+            }
+
+            .slider.round:before {
+                border-radius: 50%;
+            }
+            /* END : Toggle on off */
         </style>
+        <!-- END : Custom Style -->
         <title>Payment page</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand text-white"><i class="fas fa-user"></i> WELCOME ADMIN | PT BANGUN PRIMA ABADI</a>
-                <a href="http://localhost:8000/login/" class="btn btn-primary mt-3" role="button"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
+                <a href="http://localhost:8000/login/" class="btn btn-primary mt-3" role="button"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
             </div>
         </nav>
         <div class="row no-gutters mt-5">
             @include('layouts.sidebar')
             <div class="col-md-10 p-5 mt-2">
                 <h1><i class="fas fa-cash-register mr-2"></i> Payment</h1><hr>
-                <a href="http://localhost:8000/payment/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
+                <a href="/payment/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i>Add New</a>
                 <div>
                     <table style="width:100%" class="table table-striped align-middle">
                         <thead>
