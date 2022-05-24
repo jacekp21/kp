@@ -72,11 +72,8 @@
                                           <option value='{{ $wh->id }}'>{{ $wh->name }}</option>
                                         @endforeach
                                     </select>
-                                </div>    
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-2 mb-2">
+                                </div>
+                                <div class="col-md-3 mb-3">
                                     <label for="currency" class="form-label">Currency</label>
                                     <select class="form-control" id='currency' name='currency' placeholder="Select Currency">
                                         <option value='-'>Select Currency</option>
@@ -85,10 +82,6 @@
                                         <option value='USD'>USD</option>
                                     </select>
                                 </div>
-                                {{-- <div class="col-md-3 mb-3 offset-1">
-                                    <label for="description" class="form-label">Description Of Goods</label>
-                                    <textarea rows="2" cols="4" name="description" class="form-control" id="description" placeholder=""></textarea>
-                                </div> --}}
                             </div>
 
                             {{-- <div class="row">
@@ -114,8 +107,9 @@
                                 <table class="table table-striped table-po-detail">
                                     <thead >
                                         <tr>
-                                            <th class="h5" width="10%">No.</th>
-                                            <th class="h5" width="45%">Description Of Goods</th>
+                                            <th class="h5" width="3%"></th>
+                                            <th class="h5" width="5%">No.</th>
+                                            <th class="h5" width="47%">Description Of Goods</th>
                                             <th class="h5" width="10%">Qty</th>
                                             <th class="h5" width="10%">Unit</th>
                                             <th class="h5" width="15%">Unit Price</th>
@@ -123,50 +117,63 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>SEPATU SAFETY</td>
-                                            <td>20</td>
-                                            <td>PSG</td>
-                                            <td>Rp 250.000,-</td>
-                                            <td align="right">Rp 5.000.000,-</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>CANGKUL</td>
-                                            <td>20</td>
-                                            <td>BUAH</td>
-                                            <td>Rp 20.000,-</td>
-                                            <td align="right">Rp 400.000,-</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>CANGKUL</td>
-                                            <td>20</td>
-                                            <td>BUAH</td>
-                                            <td>Rp 20.000,-</td>
-                                            <td align="right">Rp 400.000,-</td>
+                                        <tr class="po-detail-row">
+                                            <td>
+                                                <a class="line-delete" href="#"><span class="badge bg-primary rounded-pill">-</span></a>
+                                            </td>
+                                            <td>
+                                                <div class="form-group mb0">
+                                                    <label for="" id="po-detail-no">1</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group mb0">
+                                                    <input type="text" name="pod[new][description][]" class="form-control" placeholder="Description" required="1">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group mb0">
+                                                    <div class="input-group">
+                                                        <input type="text" name="item[new][qty][]" class="form-control text-right item-qty" placeholder="0" required="1">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="item[new][unit][]" class="form-control" placeholder="Unit">
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" name="item[new][unit_price][]" class="form-control text-right item-price" placeholder="0.00" onkeypress="return isDecimalNumber(event);" onpaste="return false;">
+                                                </div>
+                                            </td>
+                                            <td class="text-right" align="right">
+                                                {{-- <div class="input-group"> --}}
+                                                    {{-- <input type="text" name="item[new][unit_price][{{ID}}]" class="form-control text-right item-price" placeholder="* 0.00" value = "0" onkeypress="return isDecimalNumber(event);" onpaste="return false;"> --}}
+                                                    {{-- Rp. 100.000 --}}
+                                                {{-- </div> --}}
+                                                <label for="">Rp. 0,-</label>
+                                            </td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td class="h5" colspan="5" align="right">Sub Total</td>
+                                            <td class="h5" colspan="6" align="right">Sub Total</td>
                                             <td id="total" class="text-right h5" align="right">Rp 0.00</td>
                                         </tr>
                                         <tr>
-                                            <td class="h5" colspan="5" align="right">Discount</td>
+                                            <td class="h5" colspan="6" align="right">Discount</td>
                                             <td align="right">
                                                 <input type="text" name="discount" style="width: 130px;">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="h5" colspan="5" align="right">Tax</td>
+                                            <td class="h5" colspan="6" align="right">Tax</td>
                                             <td align="right">
                                                 <input type="text" name="tax" style="width: 130px;">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-right h5" colspan="5" align="right">Total</td>
+                                            <td class="text-right h5" colspan="6" align="right">Total</td>
                                             <td id="grand_total" class="h5" align="right">Rp 0.00</td>
                                         </tr>
                                     </tfoot>
@@ -211,46 +218,42 @@
 
         <div class="hidden">
             <template id="row-template">
-                <tbody class="po-detail">
-                    <tr class="po-detail-row-first">
+                    <tr class="po-detail-row">
                         <td>
-                            <div class="form-group mb0">
-                                {{-- <input type="text" name="pod[new][no][{{ID}}]" class="form-control" placeholder="Date *" required="1"> --}}
-                                <label for="">1</label>
-                            </div>
+                            <a class="line-delete" href="#"><span class="badge bg-primary rounded-pill">-</span></a>
+                        </td>
+                        <td>
+                            <input type="hidden" name="pod[id][{index}]">
+                            <span class="index-number"></span>
                         </td>
                         <td>
                             <div class="form-group mb0">
-                                {{-- <input type="text" name="pod[new][description][{{ID}}]" class="form-control" placeholder="Description *" required="1"> --}}
-                                <label for="">descripsi</label>
+                                <input type="text" name="pod[description][{index}]" class="form-control" placeholder="Description *" required="1">
                             </div>
                         </td>
                         <td>
                             <div class="form-group mb0">
                                 <div class="input-group">
-                                    {{-- <input type="text" name="item[new][qty][{{ID}}]" class="form-control text-right item-qty" placeholder="* 0" required="1"> --}}
-                                    <label for="">10</label>
+                                    <input type="text" name="pod[qty][{index}]" class="form-control text-right item-qty" placeholder="0" required="1">
                                 </div>
                             </div>
                         </td>
                         <td>
-                            {{-- <input type="text" name="item[new][unit][{{ID}}]" class="form-control" placeholder="Unit"> --}}
-                            pcs
+                            <input type="text" name="pod[unit][{index}]" class="form-control" placeholder="Unit">
                         </td>
                         <td>
-                            {{-- <div class="input-group"> --}}
-                                {{-- <input type="text" name="item[new][unit_price][{{ID}}]" class="form-control text-right item-price" placeholder="* 0.00" value = "0" onkeypress="return isDecimalNumber(event);" onpaste="return false;"> --}}
-                                Rp 10.000,-
-                            {{-- </div> --}}
+                            <div class="input-group">
+                                <input type="text" name="pod[unit_price][{index}]" class="form-control text-right item-price" placeholder="* 0.00" onkeypress="return isDecimalNumber(event);" onpaste="return false;">
+                            </div>
                         </td>
                         <td class="text-right" align="right">
                             {{-- <div class="input-group"> --}}
                                 {{-- <input type="text" name="item[new][unit_price][{{ID}}]" class="form-control text-right item-price" placeholder="* 0.00" value = "0" onkeypress="return isDecimalNumber(event);" onpaste="return false;"> --}}
-                                Rp. 100.000
+                                {{-- Rp. 100.000 --}}
                             {{-- </div> --}}
+                            <label for="" id="pod[total][{index}]">Rp. 0,-</label>
                         </td>
                     </tr>
-                </tbody>
             </template>
         </div>
 
@@ -263,22 +266,68 @@
 
 <script>
     $(document).ready(function() {
-        var itemRow = (function(){
+        const insertIDToIndex = (target) => {
+            let index = 0;
+            let total = 0;
+            $.each($(target), function(i, v) {
+                $.each($(this).find('input,textarea,select'), function() {
+                    let tempName = $(this).attr('name');
+                    let replaced = tempName.replace(/{index}/g, index);
+                    $(this).attr('name', replaced);
+                });
 
-            var itemIndex = 0;
-            var itemTemplate = $("#row-template").html();
+                total += Number($(this).find('[name*=amount]').val(), 2);
+                $(this).find('.index-number').text(index+1);
 
-            return function(){
-                return itemTemplate;
-            }
-        })();//self executing function.
+                index ++;
+            });
+
+            $('#amount').val(roundTo(total, 2));
+            $('#totalExpenses').html(`S${convertToCurrency(total.toString())}`);
+        }
+
+        function itemRow() {
+            let itemIndex = 0;
+            let $template = $($("#row-template").html()).clone();
+
+            $('.expense-delete', $template).on('click', function(e) {
+                e.preventDefault();
+
+                // remove entire <tr>
+                $(this).closest('tr').remove();
+
+                // recalculate the index
+                insertIDToIndex('.table-expense tr.row-expense');
+
+                const expenseDeletedID = $(this).closest('tr').find('#expense_id').val();
+                if (expenseDeletedID) {
+                    // update the selected_ids with removed expenseID
+                    selected_ids = selected_ids.filter(item => item !== expenseDeletedID)
+                }
+            });
+
+            $('.row-amount',$template).on('input', function() {
+                let total = 0;
+
+                $('.row-amount.form-control').each( function() {
+                    total += Number($(this).val(), 2);
+                });
+                $('#totalExpenses').html('S' + convertToCurrency(total));
+            });
+
+            // $('.js-select2-expense',$template).select2({
+            //     dropdownParent: $('.modal-content'),
+            // });
+
+            return $template;
+        };
 
         // clicked new item
         $("#btn-add-detail").click(function(e) {
             // result = $(".table-po-detail").append(itemRow);
             // refreshServiceOptions();
             // console.log("testing");
-            result = $(".table-po-detail").append(itemRow);
+            result = $(".table-po-detail tbody").append(itemRow);
             refreshServiceOptions();
         });
     });
