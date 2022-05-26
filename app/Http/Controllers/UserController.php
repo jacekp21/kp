@@ -81,7 +81,7 @@ class UserController extends Controller
 
         } else {
             // New
-            $user_id = User::create($post->all());
+            $user_id = User::create($post);
 
             if ($user_id) {
                 return redirect('/user')->with('success','Data User berhasil diinput');
