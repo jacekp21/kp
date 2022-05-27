@@ -7,11 +7,6 @@
 
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <!-- Font Awesome Link -->
-        {{-- <script src="https://kit.fontawesome.com/cc8db81d9c.js" crossorigin="anonymous"></script> --}}
-        {{-- <link rel="stylesheet" href="fontawesome-free-6.0.0-beta3-web/css/all.min.css"/> --}}
-        {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <style>
             .nav-link:hover {
@@ -84,21 +79,6 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="row">
-                                <div class="col-md-3 mb-3">
-                                    <label for="qty" class="form-label">Qty</label>
-                                    <input type="text" name="qty" class="form-control" id="qty" placeholder="">
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="unit" class="form-label">Unit</label>
-                                    <input type="text" name="unit" class="form-control" id="unit" placeholder="">
-                                </div>
-                            </div> --}}
-                            
-                            {{-- <div class="col-md-3 mb-3">
-                                <label for="unitprice" class="form-label">Unit Price</label>
-                                <input type="text" name="unit_price" class="form-control" id="unit_price" placeholder="Amount">
-                            </div> --}}
                             <div>
                                 <button type="button" id="btn-add-detail" class="btn btn-primary">Add</button>
                             </div>
@@ -107,17 +87,17 @@
                                 <table class="table table-striped table-po-detail">
                                     <thead >
                                         <tr>
-                                            <th class="h5" width="3%"></th>
-                                            <th class="h5" width="5%">No.</th>
-                                            <th class="h5" width="47%">Description Of Goods</th>
-                                            <th class="h5" width="10%">Qty</th>
-                                            <th class="h5" width="10%">Unit</th>
-                                            <th class="h5" width="15%">Unit Price</th>
-                                            <th class="h5" width="10%">Amount</th>
+                                            <th class="h6" width="3%"></th>
+                                            <th class="h6" width="5%">No.</th>
+                                            <th class="h6" width="47%">Description Of Goods</th>
+                                            <th class="h6" width="10%">Qty</th>
+                                            <th class="h6" width="10%">Unit</th>
+                                            <th class="h6" width="15%">Unit Price</th>
+                                            <th class="h6" width="10%">Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="po-detail-row">
+                                        {{-- <tr class="po-detail-row">
                                             <td>
                                                 <a class="line-delete" href="#"><span class="badge bg-primary rounded-pill">-</span></a>
                                             </td>
@@ -147,63 +127,34 @@
                                                 </div>
                                             </td>
                                             <td class="text-right" align="right">
-                                                {{-- <div class="input-group"> --}}
-                                                    {{-- <input type="text" name="item[new][unit_price][{{ID}}]" class="form-control text-right item-price" placeholder="* 0.00" value = "0" onkeypress="return isDecimalNumber(event);" onpaste="return false;"> --}}
-                                                    {{-- Rp. 100.000 --}}
-                                                {{-- </div> --}}
                                                 <label for="">Rp. 0,-</label>
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td class="h5" colspan="6" align="right">Sub Total</td>
-                                            <td id="total" class="text-right h5" align="right">Rp 0.00</td>
+                                            <td class="h6" colspan="6" align="right">Sub Total</td>
+                                            <td id="sub_total" class="text-right h6" align="right">Rp 0.00,-</td>
                                         </tr>
                                         <tr>
-                                            <td class="h5" colspan="6" align="right">Discount</td>
+                                            <td class="h6" colspan="6" align="right">Discount</td>
                                             <td align="right">
                                                 <input type="text" name="discount" style="width: 130px;">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="h5" colspan="6" align="right">Tax</td>
+                                            <td class="h6" colspan="6" align="right">Tax</td>
                                             <td align="right">
                                                 <input type="text" name="tax" style="width: 130px;">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-right h5" colspan="6" align="right">Total</td>
-                                            <td id="grand_total" class="h5" align="right">Rp 0.00</td>
+                                            <td class="text-right h6" colspan="6" align="right">Total</td>
+                                            <td id="total" class="h6" align="right">Rp. 0</td>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
-                            
-                            {{-- <div class="d-flex">
-                                <div class="col-md-4 align-items-start flex-column">
-                                    <label for="remark" class="form-label">Remark</label>
-                                    <textarea rows="2" cols="4" class="form-control" id="remark" placeholder=""></textarea>
-                                </div>
-                                <div class="col-md-3 align-items-end flex-column offset-md-5">
-                                    <div class="col">
-                                        <label for="sub_total" class="col-form-label">Sub Total</label>
-                                        <input type="text" class="form-control" id="subtotal" placeholder="">
-                                    </div>
-                                    <div class="col">
-                                        <label for="disc" class="form-label">Discount</label>
-                                        <input type="text" class="form-control" id="disc" placeholder="">
-                                    </div>
-                                    <div class="col">
-                                        <label for="tax" class="form-label">Tax</label>
-                                        <input type="text" class="form-control" id="tax" placeholder="">
-                                    </div>
-                                    <div class="col">
-                                        <label for="total" class="form-label">Total</label>
-                                        <input type="text" class="form-control" id="total" placeholder="">
-                                    </div>
-                                </div>
-                            </div> --}}
 
                             </div>
                                 <button type="submit" class="btn btn-primary">Save</button>
@@ -214,7 +165,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="hidden">
             <template id="row-template">
@@ -243,7 +193,7 @@
                         </td>
                         <td>
                             <div class="input-group">
-                                <input type="text" name="pod[unit_price][{index}]" class="form-control text-right item-price" placeholder="* 0.00" onkeypress="return isDecimalNumber(event);" onpaste="return false;">
+                                <input type="text" name="pod[unit_price][{index}]" class="form-control text-right item-price" placeholder="* 0.00" onkeypress="" onpaste="return false;">
                             </div>
                         </td>
                         <td class="text-right" align="right">
@@ -251,12 +201,11 @@
                                 {{-- <input type="text" name="item[new][unit_price][{{ID}}]" class="form-control text-right item-price" placeholder="* 0.00" value = "0" onkeypress="return isDecimalNumber(event);" onpaste="return false;"> --}}
                                 {{-- Rp. 100.000 --}}
                             {{-- </div> --}}
-                            <label for="" id="pod[total][{index}]">Rp. 0,-</label>
+                            <label for="" id="" class="row-amount">0</label>
                         </td>
                     </tr>
             </template>
         </div>
-
 
     </body>
     
@@ -266,9 +215,10 @@
 
 <script>
     $(document).ready(function() {
+
         const insertIDToIndex = (target) => {
             let index = 0;
-            let total = 0;
+            // let total = 0;
             $.each($(target), function(i, v) {
                 $.each($(this).find('input,textarea,select'), function() {
                     let tempName = $(this).attr('name');
@@ -276,44 +226,79 @@
                     $(this).attr('name', replaced);
                 });
 
-                total += Number($(this).find('[name*=amount]').val(), 2);
                 $(this).find('.index-number').text(index+1);
 
                 index ++;
             });
 
-            $('#amount').val(roundTo(total, 2));
-            $('#totalExpenses').html(`S${convertToCurrency(total.toString())}`);
+            // console.log($(this).find('.index-number'));
+            // $(this).find('.index-number').text(index);
+
+            // console.log($('#sub_total').html());
+            // console.log(total);
+
+            // $('#sub_total').html(total);
+            // $('#total').html(`S${convertToCurrency(total.toString())}`);
+            // console.log(formatter.format(total.toString()));
+            // $('#total').html();
+        }
+
+        function calculateAmt(target) {
+            let sub_total = 0;
+            let total = 0;
+            $.each($(target), function() {
+                let qty = parseInt($(this).find("[name*=qty]").val() || 0);
+                let unit_price = parseFloat($(this).find("[name*=unit_price]").val() || 0);
+                let amount = qty * unit_price;
+                $(this).find(".row-amount").text(amount);
+
+                sub_total += amount;
+            });
+
+            // console.log(sub_total);
+
+            $('#sub_total').html(formatter.format(sub_total));
         }
 
         function itemRow() {
             let itemIndex = 0;
             let $template = $($("#row-template").html()).clone();
 
-            $('.expense-delete', $template).on('click', function(e) {
-                e.preventDefault();
+            // $('.expense-delete', $template).on('click', function(e) {
+            //     e.preventDefault();
 
-                // remove entire <tr>
-                $(this).closest('tr').remove();
+            //     // remove entire <tr>
+            //     // $(this).closest('tr').remove();
 
-                // recalculate the index
-                insertIDToIndex('.table-expense tr.row-expense');
+            //     $newEntry.find('.row-amount').on('input change', function(e) {
+            //         calculateAmt('.table-po-detail tr.po-detail-row');
+            //     });
 
-                const expenseDeletedID = $(this).closest('tr').find('#expense_id').val();
-                if (expenseDeletedID) {
-                    // update the selected_ids with removed expenseID
-                    selected_ids = selected_ids.filter(item => item !== expenseDeletedID)
-                }
+            //     // recalculate the index
+            //     insertIDToIndex('.table-expense tr.row-expense');
+
+            //     // const expenseDeletedID = $(this).closest('tr').find('#expense_id').val();
+            //     // if (expenseDeletedID) {
+            //     //     // update the selected_ids with removed expenseID
+            //     //     selected_ids = selected_ids.filter(item => item !== expenseDeletedID)
+            //     // }
+            // });
+
+            // $('.row-amount',$template).on('input', function() {
+            //     let total = 0;
+
+            //     $('.row-amount.form-control').each( function() {
+            //         total += Number($(this).val(), 2);
+            //     });
+            //     $('#total').html('S' + convertToCurrency(total));
+            // });
+
+            $template.find('.item-qty, .item-price').on('input focusout', function(e) {
+                // calculateGST('#modal_issue_pv tr.bypass-expense-line');
+                calculateAmt('.table-po-detail tr.po-detail-row');
             });
 
-            $('.row-amount',$template).on('input', function() {
-                let total = 0;
-
-                $('.row-amount.form-control').each( function() {
-                    total += Number($(this).val(), 2);
-                });
-                $('#totalExpenses').html('S' + convertToCurrency(total));
-            });
+            
 
             // $('.js-select2-expense',$template).select2({
             //     dropdownParent: $('.modal-content'),
@@ -328,7 +313,19 @@
             // refreshServiceOptions();
             // console.log("testing");
             result = $(".table-po-detail tbody").append(itemRow);
-            refreshServiceOptions();
+            // refreshServiceOptions();
+            insertIDToIndex('.table-po-detail tr.po-detail-row');
         });
+
+        // $(document).on("focusout", ".item-price", function(e) {
+        //     price = parseFloat($(this).val());
+
+        //     // if(price != 0){
+        //     //     $(this).val(price);
+        //     // }else{
+        //     //     $(this).val(0);
+        //     // }
+        //     console.log(price)
+        // });
     });
 </script>
