@@ -258,6 +258,7 @@
             // console.log(sub_total);
 
             $('#sub_total').html(formatter.format(sub_total));
+            $('#sub_total').html(formatter.format(sub_total));
         }
 
         function itemRow() {
@@ -296,6 +297,15 @@
             $template.find('.item-qty, .item-price').on('input focusout', function(e) {
                 // calculateGST('#modal_issue_pv tr.bypass-expense-line');
                 calculateAmt('.table-po-detail tr.po-detail-row');
+            });
+
+            $template.find('.line-delete').on('click', function(e) {
+                e.preventDefault();
+
+                // remove entire <tr>
+                $(this).closest('tr').remove();
+
+                insertIDToIndex('.table-po-detail tr.po-detail-row');
             });
 
             
