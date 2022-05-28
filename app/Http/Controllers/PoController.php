@@ -52,13 +52,29 @@ class PoController extends Controller
     {
         // Storing Purchase Order
         $post = $request->input();
-        $id = $post->id;
+        $id = $post['id'];
+
+        $post['remark'] = 'Testing';
+        $pod = $post['pod'];
+        unset($post['pod']);
+
         if ($id) {
             // Update PO
             return "Update PO";
         } else {
             // New PO
-            return "New PO";
+            $po = Po::create($post);
+            foreach ($pod as $key => $item) {
+                $pod[$key]['po_id'] = $po->id;
+            }
+
+            $po_detail = $po->po_detail()->createMany($pod);
+
+            if ($po_detail) {
+                return redirect('/po')->with('success','Data PO berhasil diinput');
+            } else {
+                return redirect('/po')->with('error','Data PO gagal diinput');
+            }
         }
 
     }

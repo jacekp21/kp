@@ -35,16 +35,17 @@
                 <h1><i class="fas fa-file-invoice-dollar m-2"></i>New Po</h1><hr>
                 <div class="container mt-5">
                     <div class="row">
-                        <form action="/po/data" method="post">
+                        <form action="/po/store" method="post">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-3 mb-3">
                                     <label for="date" class="form-label">Po Date</label>
-                                    <input type="text" class="form-control" id="id" placeholder="" hidden>
-                                    <input type="date" class="form-control" id="po_date" placeholder="">
+                                    <input type="text" name="id" class="form-control" id="id" placeholder="" hidden>
+                                    <input type="date" name="po_date" class="form-control" id="po_date" placeholder="">
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="exampleDataList" class="form-label">Po Number</label>
-                                    <input type="text" class="form-control" list="ponumOptions" id="po_no" placeholder="">
+                                    <input type="text" class="form-control" name="po_no" list="ponumOptions" id="po_no" placeholder="">
                                 </div>
                             </div>
                             
@@ -58,7 +59,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <!-- kurang coding alamat - bersifat auto -->
                                 <div class="col-md-3 mb-3">
                                     <label for="warehouses" class="form-label">Warehouse</label>
                                     <select class="form-control" id='warehouse' name='warehouse' placeholder="Select Warehouse">
@@ -97,39 +97,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- <tr class="po-detail-row">
-                                            <td>
-                                                <a class="line-delete" href="#"><span class="badge bg-primary rounded-pill">-</span></a>
-                                            </td>
-                                            <td>
-                                                <div class="form-group mb0">
-                                                    <label for="" id="po-detail-no">1</label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group mb0">
-                                                    <input type="text" name="pod[new][description][]" class="form-control" placeholder="Description" required="1">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group mb0">
-                                                    <div class="input-group">
-                                                        <input type="text" name="item[new][qty][]" class="form-control text-right item-qty" placeholder="0" required="1">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="item[new][unit][]" class="form-control" placeholder="Unit">
-                                            </td>
-                                            <td>
-                                                <div class="input-group">
-                                                    <input type="text" name="item[new][unit_price][]" class="form-control text-right item-price" placeholder="0.00" onkeypress="return isDecimalNumber(event);" onpaste="return false;">
-                                                </div>
-                                            </td>
-                                            <td class="text-right" align="right">
-                                                <label for="">Rp. 0,-</label>
-                                            </td>
-                                        </tr> --}}
+                                        <tr>
+                                            <td colspan="7" class="text-center">No Data</td>
+                                        </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -173,34 +143,30 @@
                             <a class="line-delete" href="#"><span class="badge bg-primary rounded-pill">-</span></a>
                         </td>
                         <td>
-                            <input type="hidden" name="pod[id][{index}]">
+                            <input type="hidden" name="pod[{index}][id]">
                             <span class="index-number"></span>
                         </td>
                         <td>
                             <div class="form-group mb0">
-                                <input type="text" name="pod[description][{index}]" class="form-control" placeholder="Description *" required="1">
+                                <input type="text" name="pod[{index}][description]" class="form-control" placeholder="Description *" required="1">
                             </div>
                         </td>
                         <td>
                             <div class="form-group mb0">
                                 <div class="input-group">
-                                    <input type="text" name="pod[qty][{index}]" class="form-control text-right item-qty" placeholder="0" required="1">
+                                    <input type="text" name="pod[{index}][qty]" class="form-control text-right item-qty" placeholder="0" required="1">
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <input type="text" name="pod[unit][{index}]" class="form-control" placeholder="Unit">
+                            <input type="text" name="pod[{index}][unit]" class="form-control" placeholder="Unit">
                         </td>
                         <td>
                             <div class="input-group">
-                                <input type="text" name="pod[unit_price][{index}]" class="form-control text-right item-price" placeholder="* 0.00" onkeypress="" onpaste="return false;">
+                                <input type="text" name="pod[{index}][unit_price]" class="form-control text-right item-price" placeholder="* 0.00">
                             </div>
                         </td>
                         <td class="text-right" align="right">
-                            {{-- <div class="input-group"> --}}
-                                {{-- <input type="text" name="item[new][unit_price][{{ID}}]" class="form-control text-right item-price" placeholder="* 0.00" value = "0" onkeypress="return isDecimalNumber(event);" onpaste="return false;"> --}}
-                                {{-- Rp. 100.000 --}}
-                            {{-- </div> --}}
                             <label for="" id="" class="row-amount">0</label>
                         </td>
                     </tr>
@@ -218,7 +184,7 @@
 
         const insertIDToIndex = (target) => {
             let index = 0;
-            // let total = 0;
+            
             $.each($(target), function(i, v) {
                 $.each($(this).find('input,textarea,select'), function() {
                     let tempName = $(this).attr('name');
@@ -230,17 +196,6 @@
 
                 index ++;
             });
-
-            // console.log($(this).find('.index-number'));
-            // $(this).find('.index-number').text(index);
-
-            // console.log($('#sub_total').html());
-            // console.log(total);
-
-            // $('#sub_total').html(total);
-            // $('#total').html(`S${convertToCurrency(total.toString())}`);
-            // console.log(formatter.format(total.toString()));
-            // $('#total').html();
         }
 
         function calculateAmt(target) {
@@ -255,44 +210,13 @@
                 sub_total += amount;
             });
 
-            // console.log(sub_total);
-
             $('#sub_total').html(formatter.format(sub_total));
-            $('#sub_total').html(formatter.format(sub_total));
+            // $('#total').html(formatter.format(sub_total));
         }
 
         function itemRow() {
             let itemIndex = 0;
             let $template = $($("#row-template").html()).clone();
-
-            // $('.expense-delete', $template).on('click', function(e) {
-            //     e.preventDefault();
-
-            //     // remove entire <tr>
-            //     // $(this).closest('tr').remove();
-
-            //     $newEntry.find('.row-amount').on('input change', function(e) {
-            //         calculateAmt('.table-po-detail tr.po-detail-row');
-            //     });
-
-            //     // recalculate the index
-            //     insertIDToIndex('.table-expense tr.row-expense');
-
-            //     // const expenseDeletedID = $(this).closest('tr').find('#expense_id').val();
-            //     // if (expenseDeletedID) {
-            //     //     // update the selected_ids with removed expenseID
-            //     //     selected_ids = selected_ids.filter(item => item !== expenseDeletedID)
-            //     // }
-            // });
-
-            // $('.row-amount',$template).on('input', function() {
-            //     let total = 0;
-
-            //     $('.row-amount.form-control').each( function() {
-            //         total += Number($(this).val(), 2);
-            //     });
-            //     $('#total').html('S' + convertToCurrency(total));
-            // });
 
             $template.find('.item-qty, .item-price').on('input focusout', function(e) {
                 // calculateGST('#modal_issue_pv tr.bypass-expense-line');
@@ -308,34 +232,20 @@
                 insertIDToIndex('.table-po-detail tr.po-detail-row');
             });
 
-            
-
-            // $('.js-select2-expense',$template).select2({
-            //     dropdownParent: $('.modal-content'),
-            // });
-
             return $template;
         };
 
         // clicked new item
         $("#btn-add-detail").click(function(e) {
-            // result = $(".table-po-detail").append(itemRow);
-            // refreshServiceOptions();
-            // console.log("testing");
+            // Remove No Data row
+            if ($(".table-po-detail tbody").find("tr td").text() == "No Data") {
+                $(".table-po-detail tbody").find("tr").remove();
+            }
+
             result = $(".table-po-detail tbody").append(itemRow);
             // refreshServiceOptions();
             insertIDToIndex('.table-po-detail tr.po-detail-row');
         });
 
-        // $(document).on("focusout", ".item-price", function(e) {
-        //     price = parseFloat($(this).val());
-
-        //     // if(price != 0){
-        //     //     $(this).val(price);
-        //     // }else{
-        //     //     $(this).val(0);
-        //     // }
-        //     console.log(price)
-        // });
     });
 </script>

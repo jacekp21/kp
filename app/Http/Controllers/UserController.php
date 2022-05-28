@@ -70,10 +70,9 @@ class UserController extends Controller
 
         if ($id) {
             // Edit
+            $user = User::find($id)->update($post);
 
-            $post = User::find($id)->update($post);
-
-            if ($post) {
+            if ($user) {
                 return redirect('/user')->with('success','Data User berhasil diperbaharui');
             } else {
                 return redirect('/user')->with('error','Data User gagal diperbaharui');
