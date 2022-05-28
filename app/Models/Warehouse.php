@@ -18,4 +18,9 @@ class Warehouse extends Model
         'head_of_warehouse',
         'telpon'
     ];
+
+    public function po()
+    {
+        return $this->hasMany(po::class);
+    }
 }

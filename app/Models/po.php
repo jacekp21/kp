@@ -82,4 +82,20 @@ class Po extends Model
         //     // ... code here
         // });
     }
+
+    /**
+     * Get the po that owns the vendor.
+     */
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
+    }
+
+    /**
+     * Get the po that owns the warehouse.
+     */
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class);
+    }
 }

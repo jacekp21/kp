@@ -17,8 +17,8 @@ class CreatePoTable extends Migration
             $table->id();
             $table->date('po_date');
             $table->string('po_no');
-            $table->string('vendor');
-            $table->string('warehouse');
+            $table->string('vendor_id');
+            $table->string('warehouse_id');
             $table->char('currency', 3);
             $table->text('remark');
             $table->float('sub_total')->nullable();;

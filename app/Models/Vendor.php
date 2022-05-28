@@ -14,6 +14,19 @@ class Vendor extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at'; 
 
+    protected $fillable = [
+        'name',
+        'address',
+        'telpon',
+        'email',
+        'bank',
+        'cabang',
+        'nama_rekening',
+        'no_rek',
+        'created_by',
+        'updated_by'
+    ];
+
     /**
      * The "booted" method of the model.
      *
@@ -27,16 +40,8 @@ class Vendor extends Model
         });
     }
 
-    protected $fillable = [
-        'name',
-        'address',
-        'telpon',
-        'email',
-        'bank',
-        'cabang',
-        'nama_rekening',
-        'no_rek',
-        'created_by',
-        'updated_by'
-    ];
+    public function po()
+    {
+        return $this->hasMany(po::class);
+    }
 }

@@ -36,13 +36,24 @@
             @include('layouts.sidebar')
      
             <div class="col-md-10 p-5 mt-2" style="border: 1px;">
-                <h1>
-                    <i class="fas fa-file-alt mr-2"></i> Purchase Order 
-                </h1>
+                <h1><i class="fas fa-file-alt mr-2"></i> Purchase Order</h1>
                 <hr>
-                <a href="http://localhost:8000/po/new" class="btn btn-primary mt-2 mb-3" role="button">
-                    <i class="fas fa-plus-square"></i> Add New
-                </a>
+                @if (session('success'))
+                    <div class="alert-success">
+                        <p>{{ session('success') }}</p>
+                    </div>
+                @endif
+                
+                @if ($errors->any())
+                    <div class="alert-danger">
+                        <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <a href="http://localhost:8000/po/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
 
                 <table style="width:100%" class="table table-striped align-middle table-bordered">
                     <thead>
@@ -57,7 +68,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        {{-- <tr>
                             <td>1</td>
                             <td>22 January 2021</td>
                             <td>005/PO-BPA/I/2021</td>
@@ -68,7 +79,31 @@
                             <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
                             <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
                         </td>
+                        </tr> --}}
+
+                        @foreach ($pos as $key => $po)
+                        <tr>
+                            <td>{{ $key+1 }}</td>
+                            <td>{{ $po->po_date }}</td>
+                            <td>{{ ucfirst($po->po_no) }}</td>
+                            <td>{{ $po-> }}</td>
+                            <td>{{ ucfirst($po->role) }}</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox" disabled {{ $po->status ? 'checked' : '' }}>
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                            <td>
+                                <a href="/user/edit/{{ $po->id }}" class="btn btn-primary">
+                                    <i class="fas fa-edit"></i> Update
+                                </a>
+                                <a href="/user/disable/{{ $po->id }}" class="btn btn-danger">
+                                    <i class="fas fa-ban"></i> Void
+                                </a>
+                            </td> 
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>  
             </div>
