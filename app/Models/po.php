@@ -22,8 +22,8 @@ class Po extends Model
     protected $fillable = [
         'po_date',
         'po_no',
-        'vendor',
-        'warehouse',
+        'vendor_id',
+        'warehouse_id',
         'currency',
         'remark',
         'sub_total',

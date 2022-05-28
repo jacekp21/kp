@@ -19,11 +19,11 @@ class PoController extends Controller
     public function index()
     {
         // Get all PO
-        $pos = Po::all()->vendor();
+        $pos = Po::with('vendor')->with('warehouse')->get();
 
-        return $pos;
+        // return $pos;
 
-        // return view('po.index')->with('pos', $pos);
+        return view('po.index')->with('pos', $pos);
     }
 
     /**

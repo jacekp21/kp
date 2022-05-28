@@ -85,15 +85,10 @@
                         <tr>
                             <td>{{ $key+1 }}</td>
                             <td>{{ $po->po_date }}</td>
-                            <td>{{ ucfirst($po->po_no) }}</td>
-                            <td>{{ $po-> }}</td>
-                            <td>{{ ucfirst($po->role) }}</td>
-                            <td>
-                                <label class="switch">
-                                    <input type="checkbox" disabled {{ $po->status ? 'checked' : '' }}>
-                                    <span class="slider round"></span>
-                                </label>
-                            </td>
+                            <td>{{ $po->po_no }}</td>
+                            <td>{{ $po->vendor->name }}</td>
+                            <td>{{ $po->currency }}</td>
+                            <td>{{ $po->amount }}</td>
                             <td>
                                 <a href="/user/edit/{{ $po->id }}" class="btn btn-primary">
                                     <i class="fas fa-edit"></i> Update

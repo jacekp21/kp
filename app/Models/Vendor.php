@@ -39,9 +39,4 @@ class Vendor extends Model
             return response()->json($vendor);
         });
     }
-
-    public function po()
-    {
-        return $this->hasMany(po::class);
-    }
 }

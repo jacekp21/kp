@@ -52,7 +52,7 @@
                             <div class="row">
                                 <div class="col-md-3 mb-3">
                                     <label for="vendor" class="form-label">Vendor</label>
-                                    <select class="form-control" id='vendor' name='vendor' placeholder="Select Vendor">
+                                    <select class="form-control" id='vendor' name='vendor_id' placeholder="Select Vendor">
                                         <option value='0'>Select Vendor</option>
                                         @foreach($vendors as $vendor)
                                           <option value='{{ $vendor->id }}'>{{ $vendor->name }}</option>
@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="warehouses" class="form-label">Warehouse</label>
-                                    <select class="form-control" id='warehouse' name='warehouse' placeholder="Select Warehouse">
+                                    <select class="form-control" id='warehouse' name='warehouse_id' placeholder="Select Warehouse">
                                         <option value='0'>Select Warehouse</option>
                                         @foreach($whs as $wh)
                                           <option value='{{ $wh->id }}'>{{ $wh->name }}</option>
