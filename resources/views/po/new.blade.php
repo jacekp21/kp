@@ -104,23 +104,25 @@
                                     <tfoot>
                                         <tr>
                                             <td class="h6" colspan="6" align="right">Sub Total</td>
-                                            <td id="sub_total" class="text-right h6" align="right">Rp 0.00,-</td>
+                                            <td id="lbl-sub_total" class="text-right h6" align="right">Rp 0.00,-</td>
+                                            <input type="hidden" id="sub_total" name="sub_total">
                                         </tr>
                                         <tr>
                                             <td class="h6" colspan="6" align="right">Discount</td>
                                             <td align="right">
-                                                <input type="text" name="discount" style="width: 130px;">
+                                                <input type="text" name="discount" id="discount" style="width: 130px;" value="0">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="h6" colspan="6" align="right">Tax</td>
                                             <td align="right">
-                                                <input type="text" name="tax" style="width: 130px;">
+                                                <input type="text" name="tax" id="tax" style="width: 130px;" value="0">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-right h6" colspan="6" align="right">Total</td>
-                                            <td id="total" class="h6" align="right">Rp. 0</td>
+                                            <td id="lbl-total" class="h6" align="right">Rp. 0</td>
+                                            <input type="hidden" id="total" name="total">
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -200,7 +202,6 @@
 
         function calculateAmt(target) {
             let sub_total = 0;
-            let total = 0;
             $.each($(target), function() {
                 let qty = parseInt($(this).find("[name*=qty]").val() || 0);
                 let unit_price = parseFloat($(this).find("[name*=unit_price]").val() || 0);
@@ -210,9 +211,26 @@
                 sub_total += amount;
             });
 
-            $('#sub_total').html(formatter.format(sub_total));
-            // $('#total').html(formatter.format(sub_total));
+            $('#lbl-sub_total').html(formatter.format(sub_total));
+            $('#sub_total').val(sub_total);
+            $('#lbl-total').html(formatter.format(sub_total));
+            $('#total').val(sub_total);
         }
+
+        // function calculateTotal(target) {
+        //     let total = 0;
+        //     $.each($(target), function() {
+        //         let qty = parseInt($(this).find("[name*=qty]").val() || 0);
+        //         let unit_price = parseFloat($(this).find("[name*=unit_price]").val() || 0);
+        //         let amount = qty * unit_price;
+        //         $(this).find(".row-amount").text(amount);
+
+        //         sub_total += amount;
+        //     });
+
+        //     $('#sub_total').html(formatter.format(sub_total));
+        //     // $('#total').html(formatter.format(sub_total));
+        // }
 
         function itemRow() {
             let itemIndex = 0;
@@ -245,6 +263,20 @@
             result = $(".table-po-detail tbody").append(itemRow);
             // refreshServiceOptions();
             insertIDToIndex('.table-po-detail tr.po-detail-row');
+        });
+
+        $('#discount').on('input focusout', function(e) {
+            console.log( parseFloat($('#sub_total').val()) - parseFloat($(this).val()) + parseFloat($('#tax').val()) );
+            let total = parseFloat($('#sub_total').val()) - parseFloat($(this).val()) + parseFloat($('#tax').val());
+            $('#total').val(total);
+            $('#lbl-total').html(formatter.format(total));
+        });
+
+        $('#tax').on('input focusout', function(e) {
+            console.log(parseFloat($('#sub_total').val()) - parseFloat($('#discount').val()) + parseFloat($(this).val()));
+            let total = parseFloat($('#sub_total').val()) - parseFloat($('#discount').val()) + parseFloat($(this).val());
+            $('#total').val(total);
+            $('#lbl-total').html(formatter.format(total));
         });
 
     });

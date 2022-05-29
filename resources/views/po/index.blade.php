@@ -88,7 +88,7 @@
                             <td>{{ $po->po_no }}</td>
                             <td>{{ $po->vendor->name }}</td>
                             <td>{{ $po->currency }}</td>
-                            <td>{{ $po->amount }}</td>
+                            <td>{{ $po->total }}</td>
                             <td>
                                 <a href="/user/edit/{{ $po->id }}" class="btn btn-primary">
                                     <i class="fas fa-edit"></i> Update
