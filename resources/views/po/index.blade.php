@@ -9,7 +9,6 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <!-- Font Awesome Link -->
         <script src="https://kit.fontawesome.com/cc8db81d9c.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="fontawesome-free-6.0.0-beta3-web/css/all.min.css"/>
 
         <style>
             .nav-link:hover {
@@ -59,8 +58,8 @@
                     <thead>
                         <tr>
                             <th scope="col">No.</th>
-                            <th scope="col">Date Of Purchase Order</th>
-                            <th scope="col">Po Number</th>
+                            <th scope="col">PO Date</th>
+                            <th scope="col">PO Number</th>
                             <th scope="col">Vendor</th>
                             <th scope="col">Currency</th>
                             <th scope="col">Amount</th>
@@ -68,19 +67,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- <tr>
-                            <td>1</td>
-                            <td>22 January 2021</td>
-                            <td>005/PO-BPA/I/2021</td>
-                            <td>OZ-COMPANY</td>
-                            <td>IDR</td>
-                            <td>Rp 10.000.000,-</td>
-                            <td>
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
-                            <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
-                        </td>
-                        </tr> --}}
-
                         @foreach ($pos as $key => $po)
                         <tr>
                             <td>{{ $key+1 }}</td>
@@ -90,10 +76,10 @@
                             <td>{{ $po->currency }}</td>
                             <td>{{ $po->total }}</td>
                             <td>
-                                <a href="/user/edit/{{ $po->id }}" class="btn btn-primary">
+                                <a href="/po/edit/{{ $po->id }}" class="btn btn-primary">
                                     <i class="fas fa-edit"></i> Update
                                 </a>
-                                <a href="/user/disable/{{ $po->id }}" class="btn btn-danger">
+                                <a href="/po/disable/{{ $po->id }}" class="btn btn-danger">
                                     <i class="fas fa-ban"></i> Void
                                 </a>
                             </td> 

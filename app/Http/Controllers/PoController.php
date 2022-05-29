@@ -107,6 +107,7 @@ class PoController extends Controller
     public function edit($id)
     {
         // Redirect to PO Edit page
+        return "PO Edit Page";
     }
 
     /**

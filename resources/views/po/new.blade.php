@@ -110,13 +110,13 @@
                                         <tr>
                                             <td class="h6" colspan="6" align="right">Discount</td>
                                             <td align="right">
-                                                <input type="text" name="discount" id="discount" style="width: 130px;" value="0">
+                                                <input type="text" name="discount" id="discount" style="width: 130px;" value="0" data-value="0" onkeypress="return isDecimalNumber(event);" required>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="h6" colspan="6" align="right">Tax</td>
                                             <td align="right">
-                                                <input type="text" name="tax" id="tax" style="width: 130px;" value="0">
+                                                <input type="text" name="tax" id="tax" style="width: 130px;" value="0" data-value="0" onkeypress="return isDecimalNumber(event);" required>
                                             </td>
                                         </tr>
                                         <tr>
@@ -213,6 +213,7 @@
 
             $('#lbl-sub_total').html(formatter.format(sub_total));
             $('#sub_total').val(sub_total);
+
             $('#lbl-total').html(formatter.format(sub_total));
             $('#total').val(sub_total);
         }
