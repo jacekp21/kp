@@ -7,11 +7,7 @@
 
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <!-- Font Awesome Link -->
-        <script src="https://kit.fontawesome.com/cc8db81d9c.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="fontawesome-free-6.0.0-beta3-web/css/all.min.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <style>
             .nav-link:hover {
                 background-color: grey;
@@ -32,59 +28,56 @@
         <title>New AP Page</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand text-white"><i class="fas fa-user"></i> WELCOME ADMIN | PT BANGUN PRIMA ABADI</a>
-                <a href="http://localhost:8000/login/" class="btn btn-primary mt-3" role="button"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
-            </div>
-        </nav>
+    @include('layouts.header')
         <div class="row no-gutters mt-5">
             @include('layouts.sidebar')
             <div class="col-md-10 p-5 mt-2">
-                <h1><i class="fas fa-file-invoice-dollar mr-2 "></i> New Transaction</h1><hr>
-            
+                <h1><i class="fas fa-file-invoice-dollar m-2"></i>New Po</h1><hr>
                 <div class="container mt-5">
                     <div class="row">
-                        <form>
-                            <div class="col-md-5 mb-3">
-                                <label for="exampleDataList" class="form-label">Vendor</label>
-                                <input class="form-control" list="vendorOptions" id="vendor" placeholder="">
-                                <datalist id="vendorOptions">
-                                    <option value="Vendor A">
-                                    <option value="PT ABC">
-                                    <option value="KURNIAWAN">
-                                </datalist>
-                            </div>
-                            <div class="mb-3">
-                                <label for="alamat" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="alamat" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                                <label for="doi" class="form-label">Data Of Invoice</label>
-                                <input type="date" class="form-control" id="dop" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                                <label for="noinv" class="form-label">No. Invoice</label>
-                                <input type="text" class="form-control" id="noinv" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleDataList" class="form-label">Currency</label>
-                                <input class="form-control" list="currencyOptions" id="currency" placeholder="">
-                                <datalist id="currencyOptions">
-                                    <option value="IDR">
-                                    <option value="SGD">
-                                    <option value="USD">
-                                </datalist>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleDataList" class="form-label">Ware House</label>
-                                <input class="form-control" list="gudangOptions" id="terms" placeholder="">
-                                <datalist id="gudangOptions">
-                                    <option value="AMP TPI">
-                                    <option value="CENTER">
-                                    <option value="OFFICE">
-                                </datalist>
-                            </div>
+                        <form action="/ap/store" method="post">
+                            @csrf
+                            <div class="row">
+                            <div class="col-md-3 mb-3">
+                                    <label for="vendor" class="form-label">Vendor</label>
+                                    <select class="form-control" id='vendor' name='vendor_id' placeholder="Select Vendor">
+                                        <option value='0'>Select Vendor</option>
+                                        @foreach($vendors as $vendor)
+                                          <option value='{{ $vendor->id }}'>{{ $vendor->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="exampleDataList" class="form-label">Vendor Address</label>
+                                    <input type="text" class="form-control" name="vendor_alamat" list="ponumOptions" id="vendor_alamat" placeholder="">
+                                </div>
+                            <div class="col-md-3 mb-3">
+                                    <label for="date" class="form-label">Inv Date</label>
+                                    <input type="text" name="id" class="form-control" id="id" placeholder="" hidden>
+                                    <input type="date" name="inv_date" class="form-control" id="inv_date" placeholder="">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="exampleDataList" class="form-label">Inv No</label>
+                                    <input type="text" class="form-control" name="inv_no" list="ponumOptions" id="inv_no" placeholder="">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="currency" class="form-label">Currency</label>
+                                    <select class="form-control" id='currency' name='currency' placeholder="Select Currency">
+                                        <option value='-'>Select Currency</option>
+                                        <option value='IDR'>IDR</option>
+                                        <option value='SGD'>SGD</option>
+                                        <option value='USD'>USD</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="warehouses" class="form-label">Warehouse</label>
+                                    <select class="form-control" id='warehouse' name='warehouse_id' placeholder="Select Warehouse">
+                                        <option value='0'>Select Warehouse</option>
+                                        @foreach($whs as $wh)
+                                          <option value='{{ $wh->id }}'>{{ $wh->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div> <!-- Last Updated -->
                             <div class="mb-3">
                                 <label for="exampleDataList" class="form-label">Terms</label>
                                 <input class="form-control" list="termsOptions" id="terms" placeholder="">

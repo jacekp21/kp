@@ -33,47 +33,60 @@
         @include('layouts.header')
         <div class="row no-gutters mt-5">
             @include('layouts.sidebar')
-            <div class="col-md-10 p-5 mt-2">
-                <h1><i class="fas fa-file-alt mr-2"></i> Account Payable</h1><hr>
-                <a href="http://localhost:8000/ap/new" class="btn btn-primary mt-2 mb-3" role="button">
-                    <i class="fas fa-plus-square"></i> Add New
-                </a>
 
-                <table style="width:100%" class="table table-striped align-middle">
+            <div class="col-md-10 p-5 mt-2" style="border: 1px;">
+                <h1><i class="fas fa-file-alt mr-2"></i> Account Payable</h1>
+                <hr>
+                @if (session('success'))
+                    <div class="alert-success">
+                        <p>{{ session('success') }}</p>
+                    </div>
+                @endif
+                
+                @if ($errors->any())
+                    <div class="alert-danger">
+                        <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <a href="http://localhost:8000/ap/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
+
+                <table style="width:100%" class="table table-striped align-middle table-bordered">
                     <thead>
                         <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col">Vendor Name</th>
-                        <th scope="col">Date Of Invoice</th>
-                        <th scope="col">Invoice Number</th>
-                        <th scope="col">Po Number</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Action</th>
+                            <th scope="col">No.</th>
+                            <th scope="col">Vendor</th>
+                            <th scope="col">Invoice Date</th>
+                            <th scope="col">Invoice Number</th>
+                            <th scope="col">Po Number</th>
+                            <th scope="col">Currency</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($aps as $key => $ap)
                         <tr>
-                            <td>1</td>
-                            <td>Hartono - PT MOZ</td>
-                            <td>22 November 2021</td>
-                            <td>001/INV-MOZ/AR/XI/2021</td>
-                            <td>022/PO-BPA/XI/2021</td>
-                            <td>Rp 100.000.000,-</td>
+                            <td>{{ $key+1 }}</td>
+                            <td>{{ $ap->vendor->name }}</td>
+                            <td>{{ $ap->inv_date }}</td>
+                            <td>{{ $ap->inv_no}}</td>
+                            <td>{{ $ap->po_No}}</td>
+                            <td>{{ $ap->currency}}</td>
+                            <td>{{ $ap->total}}</td>
                             <td>
-                                <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
-                            </td>
+                                <a href="/ap/edit/{{ $ap->id }}" class="btn btn-primary">
+                                    <i class="fas fa-edit"></i> Update
+                                </a>
+                                <a href="/ap/disable/{{ $ap->id }}" class="btn btn-danger">
+                                    <i class="fas fa-ban"></i> Void
+                                </a>
+                            </td> 
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Hartono - PT MOZ</td>
-                            <td>22 November 2021</td>
-                            <td>002/INV-MOZ/AR/XI/2021</td>
-                            <td>022/PO-BPA/XI/2021</td>
-                            <td>Rp 50.000.000,-</td>
-                            <td>
-                                <button type="submit" class="btn btn-danger"><i class="fas fa-ban"></i> Void</button>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>   
             </div>
