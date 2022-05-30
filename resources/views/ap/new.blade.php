@@ -28,132 +28,257 @@
         <title>New AP Page</title>
     </head>
     <body>
-    @include('layouts.header')
-        <div class="row no-gutters mt-5">
-            @include('layouts.sidebar')
-            <div class="col-md-10 p-5 mt-2">
-                <h1><i class="fas fa-file-invoice-dollar m-2"></i>New Po</h1><hr>
-                <div class="container mt-5">
-                    <div class="row">
-                        <form action="/ap/store" method="post">
-                            @csrf
-                            <div class="row">
-                            <div class="col-md-3 mb-3">
-                                    <label for="date" class="form-label">PO Date</label>
-                                    <input type="text" name="id" class="form-control" id="id" placeholder="" hidden>
-                                    <input type="date" name="po_date" class="form-control" id="po_date" placeholder="">
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                    <label for="exampleDataList" class="form-label">Po Number</label>
-                                    <input type="text" class="form-control" name="po_no" list="ponumOptions" id="po_no" placeholder="">
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="vendor" class="form-label">Vendor</label>
-                                    <select class="form-control" id='vendor' name='vendor_id' placeholder="Select Vendor">
-                                        <option value='0'>Select Vendor</option>
-                                        @foreach($vendors as $vendor)
-                                          <option value='{{ $vendor->id }}'>{{ $vendor->name }}</option>
-                                        @endforeach
-                                    </select>
-                            </div>
-                            <!-- keterangan-->
-                            <div class="col-md-3 mb-3">
-                                    <label for="currency" class="form-label">Currency</label>
-                                    <select class="form-control" id='currency' name='currency' placeholder="Select Currency">
-                                        <option value='-'>Select Currency</option>
-                                        <option value='IDR'>IDR</option>
-                                        <option value='SGD'>SGD</option>
-                                        <option value='USD'>USD</option>
-                                    </select>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                    <label for="term" class="form-label">Term</label>
-                                    <select class="form-control" id='term' name='term' placeholder="Select Term">
-                                        <option value='-'>Select Term</option>
-                                        <option value='IDR'>N/30</option>
-                                        <option value='SGD'>N/60</option>
-                                        <option value='USD'>N/90</option>
-                                    </select>
-                            </div>
+        @include('layouts.header')
+            <div class="row no-gutters mt-5">
+                @include('layouts.sidebar')
+                <div class="col-md-10 p-5 mt-2">
+                    <h1><i class="fas fa-file-invoice-dollar m-2"></i>New Po</h1><hr>
+                    <div class="container mt-5">
+                        <div class="row">
+                            <form action="/ap/store" method="post">
+                                @csrf
+                                <div class="row">
                                 <div class="col-md-3 mb-3">
-                                    <label for="warehouses" class="form-label">Warehouse</label>
-                                    <select class="form-control" id='warehouse' name='warehouse_id' placeholder="Select Warehouse">
-                                        <option value='0'>Select Warehouse</option>
-                                        @foreach($whs as $wh)
-                                          <option value='{{ $wh->id }}'>{{ $wh->name }}</option>
-                                        @endforeach
-                                    </select>
-                            </div> 
+                                        <label for="date" class="form-label">PO Date</label>
+                                        <input type="text" name="id" class="form-control" id="id" placeholder="" hidden>
+                                        <input type="date" name="po_date" class="form-control" id="po_date" placeholder="">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                        <label for="exampleDataList" class="form-label">Po Number</label>
+                                        <input type="text" class="form-control" name="po_no" list="ponumOptions" id="po_no" placeholder="">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="vendor" class="form-label">Vendor</label>
+                                        <select class="form-control" id='vendor' name='vendor_id' placeholder="Select Vendor">
+                                            <option value='0'>Select Vendor</option>
+                                            @foreach($vendors as $vendor)
+                                            <option value='{{ $vendor->id }}'>{{ $vendor->name }}</option>
+                                            @endforeach
+                                        </select>
+                                </div>
+                                <!-- keterangan-->
+                                <div class="col-md-3 mb-3">
+                                        <label for="currency" class="form-label">Currency</label>
+                                        <select class="form-control" id='currency' name='currency' placeholder="Select Currency">
+                                            <option value='-'>Select Currency</option>
+                                            <option value='IDR'>IDR</option>
+                                            <option value='SGD'>SGD</option>
+                                            <option value='USD'>USD</option>
+                                        </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                        <label for="term" class="form-label">Term</label>
+                                        <select class="form-control" id='term' name='term' placeholder="Select Term">
+                                            <option value='-'>Select Term</option>
+                                            <option value='IDR'>N/30</option>
+                                            <option value='SGD'>N/60</option>
+                                            <option value='USD'>N/90</option>
+                                        </select>
+                                </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="warehouses" class="form-label">Warehouse</label>
+                                        <select class="form-control" id='warehouse' name='warehouse_id' placeholder="Select Warehouse">
+                                            <option value='0'>Select Warehouse</option>
+                                            @foreach($whs as $wh)
+                                            <option value='{{ $wh->id }}'>{{ $wh->name }}</option>
+                                            @endforeach
+                                        </select>
+                                </div> 
 
-                            <div>
-                                <button type="button" id="btn-add-detail" class="btn btn-primary">Add</button>
-                            </div>
-                            <div>
-                                <table class="table table-striped table-ap-detail">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No. Po</th>
-                                            <th scope="col">Item</th>
-                                            <th scope="col">Qty</th>
-                                            <th scope="col">Unit</th>
-                                            <th scope="col">Unit Price</th>
-                                            <th scope="col">Disc %</th>
-                                            <th scope="col">Tax %</th>
-                                            <th scope="col">Amount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>001/PO-BPA/X/2021</td>
-                                            <td>SEPATU SAFETY</td>
-                                            <td>20</td>
-                                            <td>PSG</td>
-                                            <td>Rp 250.000,-</td>
-                                            <td>5 %</td>
-                                            <td>10 %</td>
-                                            <td>Rp 5.225.000,-"</td>
-                                        </tr>
-                                        <tr>
-                                            <td>002/PO-BPA/X/2021</td>
-                                            <td>CANGKUL</td>
-                                            <td>20</td>
-                                            <td>BUAH</td>
-                                            <td>Rp 20.000,-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>Rp 400.000,-"</td>
-                                        </tr>
-                                    </tbody>
-                                </table>   
-                            </div>
-                            <div class="mb-3">
-                                <label for="sub" class="form-label">Sub Total</label>
-                                <input type="text" class="form-control" id="sub" placeholder=""> 
-                            </div>
-                            <div class="mb-3">
-                                <label for="ongkir" class="form-label">Ongkir</label>
-                                <input type="text" class="form-control" id="ongkir" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                                <label for="dp" class="form-label">Dp</label>
-                                <input type="text" class="form-control" id="dp" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                                <label for="total" class="form-label">Total</label>
-                                <input type="text" class="form-control" id="total" placeholder=""> 
-                            </div>
-                            <div class="mb-3">
-                                <label for="note" class="form-label">Note :</label>
-                                <input type="text" class="form-control" id="note" placeholder="">
-                            </div>
-                            <div>
-                                <button type="submit" class="btn btn-primary">Save</button>
-                                <button type="submit" class="btn btn-primary">Print</button>
-                            </div>
-                        </form>
+                                <div>
+                                    <button type="button" id="btn-add-detail" class="btn btn-primary">Add</button>
+                                </div>
+                                <div>
+                                    <table class="table table-striped table-ap-detail">
+                                        <thead>
+                                            <tr>
+                                            <th class="h6" width="3%"></th>
+                                                <th class="h6" width="5%">No.</th>
+                                                <th class="h6" width="47%">Description Of Goods</th>
+                                                <th class="h6" width="10%">Qty</th>
+                                                <th class="h6" width="10%">Unit</th>
+                                                <th class="h6" width="15%">Unit Price</th>
+                                                <th class="h6" width="10%">Amount</th>  
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="7" class="text-center">No Data</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="h6" colspan="6" align="right">Sub Total</td>
+                                                <td id="lbl-sub_total" class="text-right h6" align="right">Rp 0.00,-</td>
+                                                <input type="hidden" id="sub_total" name="sub_total">
+                                            </tr>
+                                            <tr>
+                                                <td class="h6" colspan="6" align="right">Discount</td>
+                                                <td align="right">
+                                                    <input type="text" name="discount" id="discount" style="width: 130px;" value="0" data-value="0" onkeypress="return isDecimalNumber(event);" required>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="h6" colspan="6" align="right">Tax</td>
+                                                <td align="right">
+                                                    <input type="text" name="tax" id="tax" style="width: 130px;" value="0" data-value="0" onkeypress="return isDecimalNumber(event);" required>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-right h6" colspan="6" align="right">Total</td>
+                                                <td id="lbl-total" class="h6" align="right">Rp. 0</td>
+                                                <input type="hidden" id="total" name="total">
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                </div>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="reset" class="btn btn-primary">Reset</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            
+            <div class="hidden">
+                <template id="row-template">
+                    <tr class="ap-detail-row">
+                        <td>
+                            <a class="line delete" href="#"><Span class=badge bg-primary rounded-pill">-</span></a>
+                        </td> 
+                        <td>
+                            <input type="hidden" name="apd[{index}][id]">
+                            <span class="index-number"></span>
+                        </td>
+                        <td>
+                            <div class="form-group mb0">
+                            <input type="text" name="apd[{index}][description]" class="form-control" placeholder="Description *" required="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group mb0">
+                                <div class="input-group">
+                                    <input type="text" name="apd[{index}][qty]" class="form-control text-right item-qty" placeholder="0" required="1">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                                    <input type="text" name="apd[{index}][unit]" class="form-control" placeholder="Unit">
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                    <input type="text" name="apd[{index}][unit_price]" class="form-control text-right item-price" placeholder="* 0.00">
+                                </div>
+                        </td>
+                        <td class="text-right" align="right">
+                                <label for="" id="" class="row-amount">0</label>
+                        </td>
+                    </tr>
+                </template>
+            </div>
     </body>
 </html>
+
+<script>
+    $(document).ready(function() {
+
+        const insertIDToIndex = (target) => {
+            let index = 0;
+            
+            $.each($(target), function(i, v) {
+                $.each($(this).find('input,textarea,select'), function() {
+                    let tempName = $(this).attr('name');
+                    let replaced = tempName.replace(/{index}/g, index);
+                    $(this).attr('name', replaced);
+                });
+
+                $(this).find('.index-number').text(index+1);
+
+                index ++;
+            });
+        }
+
+        function calculateAmt(target) {
+            let sub_total = 0;
+            $.each($(target), function() {
+                let qty = parseInt($(this).find("[name*=qty]").val() || 0);
+                let unit_price = parseFloat($(this).find("[name*=unit_price]").val() || 0);
+                let amount = qty * unit_price;
+                $(this).find(".row-amount").text(amount);
+
+                sub_total += amount;
+            });
+
+            $('#lbl-sub_total').html(formatter.format(sub_total));
+            $('#sub_total').val(sub_total);
+
+            $('#lbl-total').html(formatter.format(sub_total));
+            $('#total').val(sub_total);
+        }
+
+        // function calculateTotal(target) {
+        //     let total = 0;
+        //     $.each($(target), function() {
+        //         let qty = parseInt($(this).find("[name*=qty]").val() || 0);
+        //         let unit_price = parseFloat($(this).find("[name*=unit_price]").val() || 0);
+        //         let amount = qty * unit_price;
+        //         $(this).find(".row-amount").text(amount);
+
+        //         sub_total += amount;
+        //     });
+
+        //     $('#sub_total').html(formatter.format(sub_total));
+        //     // $('#total').html(formatter.format(sub_total));
+        // }
+
+        function itemRow() {
+            let itemIndex = 0;
+            let $template = $($("#row-template").html()).clone();
+
+            $template.find('.item-qty, .item-price').on('input focusout', function(e) {
+                // calculateGST('#modal_issue_pv tr.bypass-expense-line');
+                calculateAmt('.table-ap-detail tr.ap-detail-row');
+            });
+
+            $template.find('.line-delete').on('click', function(e) {
+                e.preventDefault();
+
+                // remove entire <tr>
+                $(this).closest('tr').remove();
+
+                insertIDToIndex('.table-ap-detail tr.ap-detail-row');
+            });
+
+            return $template;
+        };
+
+        // clicked new item
+        $("#btn-add-detail").click(function(e) {
+            // Remove No Data row
+            if ($(".table-ap-detail tbody").find("tr td").text() == "No Data") {
+                $(".table-ap-detail tbody").find("tr").remove();
+            }
+
+            result = $(".table-ap-detail tbody").append(itemRow);
+            // refreshServiceOptions();
+            insertIDToIndex('.table-ap-detail tr.ap-detail-row');
+        });
+
+        $('#discount').on('input focusout', function(e) {
+            console.log( parseFloat($('#sub_total').val()) - parseFloat($(this).val()) + parseFloat($('#tax').val()) );
+            let total = parseFloat($('#sub_total').val()) - parseFloat($(this).val()) + parseFloat($('#tax').val());
+            $('#total').val(total);
+            $('#lbl-total').html(formatter.format(total));
+        });
+
+        $('#tax').on('input focusout', function(e) {
+            console.log(parseFloat($('#sub_total').val()) - parseFloat($('#discount').val()) + parseFloat($(this).val()));
+            let total = parseFloat($('#sub_total').val()) - parseFloat($('#discount').val()) + parseFloat($(this).val());
+            $('#total').val(total);
+            $('#lbl-total').html(formatter.format(total));
+        });
+
+    });
+</script>
