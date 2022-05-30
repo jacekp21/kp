@@ -18,7 +18,7 @@ class PoController extends Controller
      */
     public function index()
     {
-        // Get all PO
+        // Get all aps
         $aps = ap::with('vendor')->with('warehouse')->get();
 
         // return $pos;
