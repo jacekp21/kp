@@ -39,28 +39,25 @@
                             @csrf
                             <div class="row">
                             <div class="col-md-3 mb-3">
-                                    <label for="vendor" class="form-label">Vendor</label>
+                                    <label for="date" class="form-label">PO Date</label>
+                                    <input type="text" name="id" class="form-control" id="id" placeholder="" hidden>
+                                    <input type="date" name="po_date" class="form-control" id="po_date" placeholder="">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                    <label for="exampleDataList" class="form-label">Po Number</label>
+                                    <input type="text" class="form-control" name="po_no" list="ponumOptions" id="po_no" placeholder="">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="vendor" class="form-label">Vendor</label>
                                     <select class="form-control" id='vendor' name='vendor_id' placeholder="Select Vendor">
                                         <option value='0'>Select Vendor</option>
                                         @foreach($vendors as $vendor)
                                           <option value='{{ $vendor->id }}'>{{ $vendor->name }}</option>
                                         @endforeach
                                     </select>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="exampleDataList" class="form-label">Vendor Address</label>
-                                    <input type="text" class="form-control" name="vendor_alamat" list="ponumOptions" id="vendor_alamat" placeholder="">
-                                </div>
+                            </div>
+                            <!-- keterangan-->
                             <div class="col-md-3 mb-3">
-                                    <label for="date" class="form-label">Inv Date</label>
-                                    <input type="text" name="id" class="form-control" id="id" placeholder="" hidden>
-                                    <input type="date" name="inv_date" class="form-control" id="inv_date" placeholder="">
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="exampleDataList" class="form-label">Inv No</label>
-                                    <input type="text" class="form-control" name="inv_no" list="ponumOptions" id="inv_no" placeholder="">
-                                </div>
-                                <div class="col-md-3 mb-3">
                                     <label for="currency" class="form-label">Currency</label>
                                     <select class="form-control" id='currency' name='currency' placeholder="Select Currency">
                                         <option value='-'>Select Currency</option>
@@ -68,7 +65,16 @@
                                         <option value='SGD'>SGD</option>
                                         <option value='USD'>USD</option>
                                     </select>
-                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                    <label for="term" class="form-label">Term</label>
+                                    <select class="form-control" id='term' name='term' placeholder="Select Term">
+                                        <option value='-'>Select Term</option>
+                                        <option value='IDR'>N/30</option>
+                                        <option value='SGD'>N/60</option>
+                                        <option value='USD'>N/90</option>
+                                    </select>
+                            </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="warehouses" class="form-label">Warehouse</label>
                                     <select class="form-control" id='warehouse' name='warehouse_id' placeholder="Select Warehouse">
@@ -77,54 +83,13 @@
                                           <option value='{{ $wh->id }}'>{{ $wh->name }}</option>
                                         @endforeach
                                     </select>
-                                </div> <!-- Last Updated -->
-                            <div class="mb-3">
-                                <label for="exampleDataList" class="form-label">Terms</label>
-                                <input class="form-control" list="termsOptions" id="terms" placeholder="">
-                                <datalist id="termsOptions">
-                                    <option value="2/10,n30">
-                                    <option value="2/10">
-                                    <option value="n30">
-                                </datalist>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleDataList" class="form-label">No. Po</label>
-                                <input class="form-control" list="nopoOptions" id="nopo" placeholder="">
-                                <datalist id="nopoOptions">
-                                    <option value="001/PO-BPA/XI/2021">
-                                    <option value="002/PO-BPA/XI/2021">
-                                    <option value="003/PO-BPA/XI/2021">
-                                </datalist>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleDataList" class="form-label">Item</label>
-                                <input class="form-control" list="itemOptions" id="item" placeholder="">
-                                <datalist id="itemOptions">
-                                    <option value="PENGHAPUS">
-                                    <option value="PENA">
-                                    <option value="SEPATU SAFETY">
-                                </datalist>
-                            </div>
-                            <div class="mb-3">
-                                <label for="unit" class="form-label">Unit</label>
-                                <input type="text" class="form-control" id="unit" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                                <label for="unitprice" class="form-label">Unit Price</label>
-                                <input type="text" class="form-control" id="unitprice" placeholder=""> 
-                            </div>
-                            <div class="mb-3">
-                                <label for="disc" class="form-label">Discount</label>
-                                <input type="text" class="form-control" id="disc" placeholder="">   
-                            <div class="mb-3">
-                                <label for="tax" class="form-label">Tax</label>
-                                <input type="text" class="form-control" id="tax" placeholder=""> 
-                            </div>  
+                            </div> 
+
                             <div>
-                                <button type="submit" class="btn btn-primary">Add</button> 
+                                <button type="button" id="btn-add-detail" class="btn btn-primary">Add</button>
                             </div>
                             <div>
-                                <table class="table table-striped align-middle">
+                                <table class="table table-striped table-ap-detail">
                                     <thead>
                                         <tr>
                                             <th scope="col">No. Po</th>
