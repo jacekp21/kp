@@ -9,7 +9,7 @@ use App\Models\ap;
 use App\Models\ap_detail;
 use App\Models\User;
 
-class PoController extends Controller
+class ApController extends Controller
 {
     /**
      * Display a listing of the resource.
