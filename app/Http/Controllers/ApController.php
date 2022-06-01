@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Vendor;
 use App\Models\Warehouse;
-use App\Models\ap;
-use App\Models\ap_detail;
+use App\Models\Ap;
+use App\Models\Ap_detail;
 use App\Models\User;
 
 class ApController extends Controller
@@ -18,10 +18,10 @@ class ApController extends Controller
      */
     public function index()
     {
-        // Get all aps
-        $aps = ap::with('vendor')->with('warehouse')->get();
+        // Get all Ap
+        $aps = Ap::with('vendor')->with('warehouse')->get();
 
-        // return $pos;
+        // return $aps;
 
         return view('ap.index')->with('aps', $aps);
     }
@@ -39,7 +39,7 @@ class ApController extends Controller
         // Populate Warehouse
         $whs = Warehouse::all();
 
-        // Redirect to New PO Page
+        // Redirect to New Ap Page
         return view('ap.new', ['vendors' => $vendors], ['whs' => $whs]);
     }
 
@@ -51,7 +51,7 @@ class ApController extends Controller
      */
     public function store(Request $request)
     {
-        // Storing Purchase Order
+        // Storing Account Payable
         $post = $request->input();
         $id = $post['id'];
 
@@ -60,16 +60,16 @@ class ApController extends Controller
         unset($post['apd']);
 
         if ($id) {
-            // Update PO
-            return "Update PO";
+            // Update Ap
+            return "Update Ap";
         } else {
-            // New PO
-            $ap = ap::create($post);
-            foreach ($pod as $key => $item) {
-                $pod[$key]['ap_id'] = $ap->id;
+            // New AP
+            $ap = Ap::create($post);
+            foreach ($apd as $key => $item) {
+                $apd[$key]['ap_id'] = $ap->id;
             }
 
-            $ap_detail = $ap->ap_detail()->createMany($pod);
+            $ap_detail = $ap->ap_detail()->createMany($apd);
 
             if ($ap_detail) {
                 return redirect('/ap')->with('success','Data Account Payable berhasil diinput');
@@ -89,7 +89,7 @@ class ApController extends Controller
     public function show($id)
     {
         // salah satu cara passing id melalui URL
-        // return "AP Controller Show dengan id : " . $id;
+        // return "Ap Controller Show dengan id : " . $id;
 
         // return view('ap.show', [
         //     'ap' => ap::findOrFail($id)
@@ -106,7 +106,7 @@ class ApController extends Controller
      */
     public function edit($id)
     {
-        // Redirect to AP Edit page
+        // Redirect to Ap Edit page
         return "AP Edit Page";
     }
 
