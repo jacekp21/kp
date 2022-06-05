@@ -24,6 +24,9 @@
                 opacity: 0.4;
                 font-size: 90px;
             }
+            .table>:not(caption)>*>* {
+                border-bottom-width: 0px;
+            }
         </style>
         <title>New PO Page</title>
     </head>
@@ -84,7 +87,7 @@
                             </div>
                             <strong><i>Please Supply The Following Items </i></strong>
                             <div>
-                                <table class="table table-striped table-po-detail">
+                                <table class="table table-striped table-po-detail" style="border-bottom-style: none;">
                                     <thead >
                                         <tr>
                                             <th class="h6" width="3%"></th>
@@ -126,6 +129,13 @@
                                         </tr>
                                     </tfoot>
                                 </table>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="remark" class="form-label">Remark</label>
+                                    <textarea name="remark" id="remark" cols="30" rows="3"></textarea>
+                                </div>
                             </div>
 
                             </div>

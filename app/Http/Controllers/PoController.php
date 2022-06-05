@@ -53,18 +53,21 @@ class PoController extends Controller
         $post = $request->input();
         $id = $post['id'];
 
-        // return $post;
-
-        $post['remark'] = 'Testing';
-
         $pod = $post['pod'];
         unset($post['pod']);
 
-        // return $pod;
-
         if ($id) {
             // Update PO
-            return "Update PO";
+            // return "Update PO";
+            $po = Po::find($id)->update($post);
+
+            $po_detail = $po->po_detail()->upsert($pod);
+
+            if ($po_detail) {
+                return redirect('/po')->with('success','Data PO berhasil diperbaharui');
+            } else {
+                return redirect('/po')->with('error','Data PO gagal diperbaharui');
+            }
         } else {
             // New PO
             $po = Po::create($post);
@@ -110,7 +113,16 @@ class PoController extends Controller
     public function edit($id)
     {
         // Redirect to PO Edit page
-        return "PO Edit Page";
+        $pos = Po::with('po_detail')->find($id);
+
+        // Populate Vendor
+        $vendors = Vendor::all();
+        
+        // Populate Warehouse
+        $whs = Warehouse::all();
+
+        // Return to view for edit
+        return view('po.new')->with('pos', $pos)->with('whs', $whs)->with('vendors', $vendors);
     }
 
     /**
