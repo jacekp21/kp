@@ -32,7 +32,7 @@
         <div class="row no-gutters mt-5">
             @include('layouts.sidebar')
             <div class="col-md-10 p-5 mt-2">
-                <h1><i class="fas fa-file-invoice-dollar m-2"></i>New Po</h1><hr>
+                <h1><i class="fas fa-file-invoice-dollar m-2"></i>New Purchase Order</h1><hr>
                 <div class="container mt-5">
                     <div class="row">
                         <form action="/po/store" method="post">
@@ -140,38 +140,38 @@
 
         <div class="hidden">
             <template id="row-template">
-                    <tr class="po-detail-row">
-                        <td>
-                            <a class="line-delete" href="#"><span class="badge bg-primary rounded-pill">-</span></a>
-                        </td>
-                        <td>
-                            <input type="hidden" name="pod[{index}][id]">
-                            <span class="index-number"></span>
-                        </td>
-                        <td>
-                            <div class="form-group mb0">
-                                <input type="text" name="pod[{index}][description]" class="form-control" placeholder="Description *" required="1">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group mb0">
-                                <div class="input-group">
-                                    <input type="text" name="pod[{index}][qty]" class="form-control text-right item-qty" placeholder="0" required="1">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <input type="text" name="pod[{index}][unit]" class="form-control" placeholder="Unit">
-                        </td>
-                        <td>
+                <tr class="po-detail-row">
+                    <td>
+                        <a class="line-delete" href="#"><span class="badge bg-primary rounded-pill">-</span></a>
+                    </td>
+                    <td>
+                        <input type="hidden" name="pod[{index}][id]">
+                        <span class="index-number"></span>
+                    </td>
+                    <td>
+                        <div class="form-group mb0">
+                            <input type="text" name="pod[{index}][description]" class="form-control" placeholder="Description *" required="1">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group mb0">
                             <div class="input-group">
-                                <input type="text" name="pod[{index}][unit_price]" class="form-control text-right item-price" placeholder="* 0.00">
+                                <input type="text" name="pod[{index}][qty]" class="form-control text-right item-qty" placeholder="0" required="1">
                             </div>
-                        </td>
-                        <td class="text-right" align="right">
-                            <label for="" id="" class="row-amount">0</label>
-                        </td>
-                    </tr>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" name="pod[{index}][unit]" class="form-control" placeholder="Unit">
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" name="pod[{index}][unit_price]" class="form-control text-right item-price" placeholder="* 0.00">
+                        </div>
+                    </td>
+                    <td class="text-right" align="right">
+                        <label for="" id="" class="row-amount">0</label>
+                    </td>
+                </tr>
             </template>
         </div>
 
@@ -218,21 +218,6 @@
             $('#total').val(sub_total);
         }
 
-        // function calculateTotal(target) {
-        //     let total = 0;
-        //     $.each($(target), function() {
-        //         let qty = parseInt($(this).find("[name*=qty]").val() || 0);
-        //         let unit_price = parseFloat($(this).find("[name*=unit_price]").val() || 0);
-        //         let amount = qty * unit_price;
-        //         $(this).find(".row-amount").text(amount);
-
-        //         sub_total += amount;
-        //     });
-
-        //     $('#sub_total').html(formatter.format(sub_total));
-        //     // $('#total').html(formatter.format(sub_total));
-        // }
-
         function itemRow() {
             let itemIndex = 0;
             let $template = $($("#row-template").html()).clone();
@@ -254,14 +239,14 @@
             return $template;
         };
 
-        // clicked new item
+        // clicked button add
         $("#btn-add-detail").click(function(e) {
             // Remove No Data row
             if ($(".table-po-detail tbody").find("tr td").text() == "No Data") {
                 $(".table-po-detail tbody").find("tr").remove();
             }
 
-            result = $(".table-po-detail tbody").append(itemRow);
+            $(".table-po-detail tbody").append(itemRow);
             // refreshServiceOptions();
             insertIDToIndex('.table-po-detail tr.po-detail-row');
         });
