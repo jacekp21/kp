@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class Po extends Model
+class Ap extends Model
 {
     use HasFactory;
 
@@ -80,7 +80,7 @@ class Po extends Model
     }
 
     /**
-     * Get the po that owns the vendor.
+     * Get the ap that owns the vendor.
      */
     public function vendor()
     {
@@ -88,7 +88,7 @@ class Po extends Model
     }
 
     /**
-     * Get the po that owns the warehouse.
+     * Get the ap that owns the warehouse.
      */
     public function warehouse()
     {

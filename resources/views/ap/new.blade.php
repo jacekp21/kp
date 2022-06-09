@@ -94,7 +94,7 @@
                                             <tr>
                                             <th class="h6" width="3%"></th>
                                                 <th class="h6" width="5%">No.</th>
-                                                <th class="h6" width="47%">Description Of Goods</th>
+                                                <th class="h6" width="47%">Description</th>
                                                 <th class="h6" width="10%">Qty</th>
                                                 <th class="h6" width="10%">Unit</th>
                                                 <th class="h6" width="15%">Unit Price</th>
