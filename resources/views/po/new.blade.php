@@ -43,12 +43,12 @@
                             <div class="row">
                                 <div class="col-md-3 mb-3">
                                     <label for="date" class="form-label">Po Date</label>
-                                    <input type="text" name="id" class="form-control" id="id" placeholder="" hidden>
-                                    <input type="date" name="po_date" class="form-control" id="po_date" placeholder="">
+                                    <input type="text" name="id" value="{{ old('id', $pos->id ?? '') }}" class="form-control" id="id" placeholder="" hidden>
+                                    <input type="date" name="po_date" value="{{ old('po_date', $pos->po_date ?? '') }}" class="form-control" id="po_date" placeholder="">
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="exampleDataList" class="form-label">Po Number</label>
-                                    <input type="text" class="form-control" name="po_no" list="ponumOptions" id="po_no" placeholder="">
+                                    <input type="text" class="form-control" name="po_no" value="{{ old('po_no', $pos->po_no ?? '') }}" list="ponumOptions" id="po_no" placeholder="">
                                 </div>
                             </div>
                             
@@ -56,28 +56,28 @@
                                 <div class="col-md-3 mb-3">
                                     <label for="vendor" class="form-label">Vendor</label>
                                     <select class="form-control" id='vendor' name='vendor_id' placeholder="Select Vendor">
-                                        <option value='0'>Select Vendor</option>
+                                        <option value='0' {{ !isset($pos->vendor) ? 'Selected' : '' }}>Select Vendor</option>
                                         @foreach($vendors as $vendor)
-                                          <option value='{{ $vendor->id }}'>{{ $vendor->name }}</option>
+                                          <option value='{{ $vendor->id }}' {{ old('warehouse', ucfirst($pos->vendor ?? '')) == $pos->vendor ? 'Selected' : '' }}>{{ $vendor->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="warehouses" class="form-label">Warehouse</label>
                                     <select class="form-control" id='warehouse' name='warehouse_id' placeholder="Select Warehouse">
-                                        <option value='0'>Select Warehouse</option>
+                                        <option value='0' {{ !isset($pos->vendor) ? 'Selected' : '' }}>Select Warehouse</option>
                                         @foreach($whs as $wh)
-                                          <option value='{{ $wh->id }}'>{{ $wh->name }}</option>
+                                          <option value='{{ $wh->id }}' {{ old('warehouse', ucfirst($pos->warehouse ?? '')) == $pos->warehouse ? 'Selected' : '' }}>{{ $wh->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="currency" class="form-label">Currency</label>
-                                    <select class="form-control" id='currency' name='currency' placeholder="Select Currency">
-                                        <option value='-'>Select Currency</option>
-                                        <option value='IDR'>IDR</option>
-                                        <option value='SGD'>SGD</option>
-                                        <option value='USD'>USD</option>
+                                    <select class="form-control @error('position') is-invalid @enderror" id='currency' name='currency' placeholder="Select Currency">
+                                        <option {{ !isset($user->position) ? 'Selected' : '' }}>Select Currency</option>
+                                        <option value='IDR' {{ old('currency', ucfirst($pos->currency ?? '')) == 'IDR' ? 'Selected' : '' }}>IDR</option>
+                                        <option value='SGD' {{ old('currency', ucfirst($pos->currency ?? '')) == 'SGD' ? 'Selected' : '' }}>SGD</option>
+                                        <option value='USD' {{ old('currency', ucfirst($pos->currency ?? '')) == 'USD' ? 'Selected' : '' }}>USD</option>
                                     </select>
                                 </div>
                             </div>
@@ -100,26 +100,66 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @if ($pos->po_detail)
+                                        
+                                        @foreach ($pos->po_detail as $key => $detail)
+                                        <tr>
+                                            <td>
+                                                <a class="line-delete" href="#"><span class="badge bg-primary rounded-pill">-</span></a>
+                                            </td>
+                                            <td>
+                                                <input type="hidden" name="{{ isset($detail->id) ? 'pod['.$detail->id.'][id]' : 'pod[{index}][id]' }}" value="{{ $detail->id }}">
+                                                <span class="index-number">{{ $no += 1 }}</span>
+                                            </td>
+                                            <td>
+                                                <div class="form-group mb0">
+                                                    <input type="text" name="pod[{index}][description]" value="{{ $detail->description }}" class="form-control" placeholder="Description *" required="1">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group mb0">
+                                                    <div class="input-group">
+                                                        <input type="text" name="pod[{index}][qty]" value="{{ $detail->qty }}" class="form-control text-right item-qty" placeholder="0" required="1">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="pod[{index}][unit]" value="{{ $detail->unit }}" class="form-control" placeholder="Unit">
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" name="pod[{index}][unit_price]" value="{{ $detail->unit_price }}" class="form-control text-right item-price" placeholder="* 0.00">
+                                                </div>
+                                            </td>
+                                            <td class="text-right" align="right">
+                                                <label for="" id="" class="row-amount">{{ $subTotal += $detail->qty * $detail->unit_price }}</label>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        
+                                    @else
                                         <tr>
                                             <td colspan="7" class="text-center">No Data</td>
                                         </tr>
+                                    @endif
+                                        
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td class="h6" colspan="6" align="right">Sub Total</td>
-                                            <td id="lbl-sub_total" class="text-right h6" align="right">Rp 0.00,-</td>
-                                            <input type="hidden" id="sub_total" name="sub_total">
+                                            <td id="lbl-sub_total" class="text-right h6" align="right">Rp {{ $subTotal ?? '0' }}</td>
+                                            <input type="hidden" id="sub_total" name="sub_total" value="{{ old('sub_total', $pos->sub_total ?? 50) }}">
                                         </tr>
                                         <tr>
                                             <td class="h6" colspan="6" align="right">Discount</td>
                                             <td align="right">
-                                                <input type="text" name="discount" id="discount" style="width: 130px;" value="0" data-value="0" onkeypress="return isDecimalNumber(event);" required>
+                                                <input type="text" name="discount" id="discount" style="width: 130px;" value="{{ old('discount', $pos->discount ?? 0) }}" data-value="0" onkeypress="return isDecimalNumber(event);" required>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="h6" colspan="6" align="right">Tax</td>
                                             <td align="right">
-                                                <input type="text" name="tax" id="tax" style="width: 130px;" value="0" data-value="0" onkeypress="return isDecimalNumber(event);" required>
+                                                <input type="text" name="tax" id="tax" style="width: 130px;" value="{{ old('tax', $pos->tax ?? 0) }}" data-value="0" onkeypress="return isDecimalNumber(event);" required>
                                             </td>
                                         </tr>
                                         <tr>
@@ -193,6 +233,11 @@
 
 <script>
     $(document).ready(function() {
+
+        // $.get("/po/edit/"+ <?php echo $pos['id']; ?>, function(data){
+        //     console.log("edit masuk!");
+        //     insertIDToIndex('.table-po-detail tr.po-detail-row');
+        // });
 
         const insertIDToIndex = (target) => {
             let index = 0;

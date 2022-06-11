@@ -53,12 +53,16 @@ class PoController extends Controller
         $post = $request->input();
         $id = $post['id'];
 
+        return $post;
+
         $pod = $post['pod'];
         unset($post['pod']);
 
         if ($id) {
+            echo "masuk ini";
+            return $post;
+            exit;
             // Update PO
-            // return "Update PO";
             $po = Po::find($id)->update($post);
 
             $po_detail = $po->po_detail()->upsert($pod);
@@ -121,8 +125,10 @@ class PoController extends Controller
         // Populate Warehouse
         $whs = Warehouse::all();
 
+        // return $pos;
+
         // Return to view for edit
-        return view('po.new')->with('pos', $pos)->with('whs', $whs)->with('vendors', $vendors);
+        return view('po.new')->with('pos', $pos)->with('whs', $whs)->with('vendors', $vendors)->with('subTotal', 0)->with('no', 0);
     }
 
     /**
