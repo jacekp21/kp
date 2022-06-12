@@ -21,8 +21,6 @@ class ApController extends Controller
         // Get all Ap
         $aps = Ap::with('vendor')->with('warehouse')->get();
 
-        // return $aps;
-
         return view('ap.index')->with('aps', $aps);
     }
 

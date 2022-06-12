@@ -65,26 +65,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/po/show/{id}', [PoController::class, 'show']);
 
     // Account Payable
-    Route::get('/ap', [PoController::class, 'index']);    
-    Route::get('/ap/new', [PoController::class, 'create']);
-    Route::post('/ap/store', [PoController::class, 'store']); // Store Account Payable Information
-    Route::get('/ap/edit/{id}', [PoController::class, 'edit']);
-    Route::get('/ap/void/{id}', [PoController::class, 'void']);
-    Route::get('/ap/show/{id}', [PoController::class, 'show']);
+    Route::get('/ap', [ApController::class, 'index']);    
+    Route::get('/ap/new', [ApController::class, 'create']);
+    Route::post('/ap/store', [ApController::class, 'store']); // Store Account Payable Information
+    Route::get('/ap/edit/{id}', [ApController::class, 'edit']);
+    Route::get('/ap/void/{id}', [ApController::class, 'void']);
+    Route::get('/ap/show/{id}', [ApController::class, 'show']);
 });
 
 // Route::resource('setting/vendor/new', [VendorController::class, 'create']);
 // Route::get('setting/vendor/new', function () {
 //     return view('setting/vendor/new');
 // });
-
-Route::get('/ap', function () {
-    return view('ap/index');
-});
-
-Route::get('/ap/new', function () {
-    return view('ap/new');
-});
 
 Route::get('/payment', function () {
     return view('payment/index');
