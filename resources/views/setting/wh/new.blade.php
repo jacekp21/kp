@@ -8,16 +8,7 @@
         <title>Data Warehouse</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand text-white">
-                    <i class="fas fa-user"></i> WELCOME ADMIN | PT BANGUN PRIMA ABADI
-                </a>
-                <a href="http://localhost:8000/login/" class="btn btn-primary mt-3" role="button">
-                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
-                </a>
-            </div>
-        </nav>
+        @include('layouts.header')
         <div class="row no-gutters mt-5">
             @include('layouts.sidebar')
             <div class="col-md-10 p-5 mt-2">
@@ -25,24 +16,40 @@
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-md-5">
-                            <div class="mb-3">
-                                <label for="wh" class="form-label">Warehouse</label>
-                                <input type="text" class="form-control" id="wh" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                                <label for="alamat" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="alamat" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                                <label for="head" class="form-label">Head Of Warehouse</label>
-                                <input type="text" class="form-control" id="head" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                                <label for="telp" class="form-label">No. Telp</label>
-                                <input type="text" class="form-control" id="telp" placeholder="">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                            <button type="reset" class="btn btn-primary">Reset</button>
+                            <form action="/setting/wh/store" method="POST" >
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="wh" class="form-label">Warehouse</label>
+                                    <input type="hidden" name="id" value="{{ $wh->id ?? '' }}">
+                                    <input type="text" name="name" id="name" value="{{ old('name', $wh->name ?? '') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Nama Gudang">
+                                    @error('name')
+                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Address</label>
+                                    <input type="text" name="address" id="address" value="{{ old('address', $wh->address ?? '') }}" class="form-control @error('address') is-invalid @enderror" placeholder="Alamat Gudang">
+                                    @error('address')
+                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="head_of_warehouse" class="form-label">Head Of Warehouse</label>
+                                    <input type="text" id="head_of_warehouse" name="head_of_warehouse" value="{{ old('head_of_warehouse', $wh->head_of_warehouse ?? '') }}" class="form-control @error('head_of_warehouse') is-invalid @enderror" placeholder="Kepala Gudang">
+                                    @error('head_of_warehouse')
+                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="telpon" class="form-label">No. Telp</label>
+                                    <input type="text" id="telpon" name="telpon" value="{{ old('telpon', $wh->telpon ?? '') }}" class="form-control @error('telpon') is-invalid @enderror" placeholder="Telpon Gudang">
+                                    @error('telpon')
+                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                <a href="{{url()->previous()}}" class="btn btn-primary">Cancel</a>
+                            </form>
                         </div>
                     </div>
                 </div>
