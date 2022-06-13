@@ -32,7 +32,7 @@
             <div class="row no-gutters mt-5">
                 @include('layouts.sidebar')
                 <div class="col-md-10 p-5 mt-2">
-                    <h1><i class="fas fa-file-invoice-dollar m-2"></i>New Po</h1><hr>
+                    <h1><i class="fas fa-file-invoice-dollar m-2"></i>New Account Payable</h1><hr>
                     <div class="container mt-5">
                         <div class="row">
                             <form action="/ap/store" method="post">
