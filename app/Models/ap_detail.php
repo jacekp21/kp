@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Po_detail extends Model
+class Ap_detail extends Model
 {
     use HasFactory;
 
