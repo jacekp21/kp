@@ -97,7 +97,7 @@ Route::middleware(['auth'])->group(function () {
 //});
 
 //Route::get('/payment', function () {
-    return view('payment/index');
+    //return view('payment/index');
 //});
 
 //Route::get('/payment/new', function () {
