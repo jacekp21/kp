@@ -100,9 +100,9 @@ Route::middleware(['auth'])->group(function () {
     return view('payment/index');
 //});
 
-Route::get('/payment/new', function () {
-    return view('payment/new');
-});
+//Route::get('/payment/new', function () {
+    //return view('payment/new');
+//});
 
 Route::get('/report', function () {
     return view('report/index');
