@@ -68,7 +68,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pys as $key => $py)
+                        {{-- @foreach ($pys as $key => $py)
                         <tr>
                             <td>{{ $key+1 }}</td>
                             <td>{{ $py->pay_date}}</td>
@@ -86,7 +86,7 @@
                                 </a>
                             </td> 
                         </tr>
-                        @endforeach
+                        @endforeach --}}
                     </tbody>
                 </table>   
             </div>
