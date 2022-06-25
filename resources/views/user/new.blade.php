@@ -101,19 +101,4 @@
         </div>
     </div>
 </body>
-
-<script>
-    function preview() {
-        frame.src = URL.createObjectURL(event.target.files[0]);
-    }
-    function clearImage() {
-        document.getElementById('formFile').value = null;
-        frame.src = "";
-    }
-
-    if (category_id) {
-        $(".js-select2-category").val(category_id).trigger('change');
-    }
-</script>
-
 </html>
