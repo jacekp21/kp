@@ -37,8 +37,10 @@ class PoController extends Controller
         // Populate Warehouse
         $whs = Warehouse::all();
 
+        // $head = 'New Purchase Order';
+
         // Redirect to New PO Page
-        return view('po.new', ['vendors' => $vendors], ['whs' => $whs]);
+        return view('po.new', ['vendors' => $vendors], ['whs' => $whs])->with('header', 'New Purchase Order');
     }
 
     /**
@@ -53,15 +55,29 @@ class PoController extends Controller
         $post = $request->input();
         $id = $post['id'];
 
-        return $post;
+        // return $post;
+
+        // User Input Validation
+        $validatedInput = $request->validate([
+            'po_date'       => 'required',
+            'po_no'         => 'required',
+            'vendor_id'     => 'required',
+            'warehouse_id'  => 'required',
+            'currency'      => 'required|in:IDR,SGD,USD'
+        ],
+        // User Input Validation Error Message
+        [
+            'po_date.required'      => 'Po Date is required',
+            'po_no.required'        => 'Po number is required',
+            'vendor_id.in'          => 'Vendor selection is invalid',
+            'warehouse_id.required' => 'Warehouse selection is invalid',
+            'currency.in'           => 'Currency selection is invalid',
+        ]);
 
         $pod = $post['pod'];
         unset($post['pod']);
 
         if ($id) {
-            echo "masuk ini";
-            return $post;
-            exit;
             // Update PO
             $po = Po::find($id)->update($post);
 
@@ -128,7 +144,7 @@ class PoController extends Controller
         // return $pos;
 
         // Return to view for edit
-        return view('po.new')->with('pos', $pos)->with('whs', $whs)->with('vendors', $vendors)->with('subTotal', 0)->with('no', 0);
+        return view('po.new')->with('pos', $pos)->with('whs', $whs)->with('vendors', $vendors)->with('subTotal', 0)->with('no', 0)->with('header', 'Edit Purchase Order');
     }
 
     /**
