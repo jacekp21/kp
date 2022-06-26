@@ -106,7 +106,7 @@
                                     @if (isset($pos))
                                         @if ($pos->po_detail)
                                             @foreach ($pos->po_detail as $key => $detail)
-                                            <tr>
+                                            <tr class="po-detail-row">
                                                 <td>
                                                     <a class="line-delete" href="#"><span class="badge bg-primary rounded-pill">-</span></a>
                                                 </td>
@@ -234,10 +234,19 @@
 
 <script>
     $(document).ready(function() {
-
         const insertIDToIndex = (target) => {
+            // let rowCount = $('.table-po-detail tbody>tr').length;
+
             let index = 0;
-            
+
+            // if (rowCount > 1) {
+            //     index = rowCount;
+            // } else {
+            //     index = 0;
+            // }
+
+            console.log(target);
+
             $.each($(target), function(i, v) {
                 $.each($(this).find('input,textarea,select'), function() {
                     let tempName = $(this).attr('name');
@@ -245,6 +254,8 @@
                     $(this).attr('name', replaced);
                 });
 
+                // console.log(index);
+                
                 $(this).find('.index-number').text(index+1);
 
                 index ++;
@@ -306,7 +317,7 @@
 
             $(".table-po-detail tbody").append(itemRow);
             // refreshServiceOptions();
-            insertIDToIndex('.table-po-detail tr.po-detail-row');
+            insertIDToIndex('.table-po-detail tr.po-detail-row'); 
         });
 
         $('#discount').on('input focusout', function(e) {

@@ -74,8 +74,12 @@ class PoController extends Controller
             'currency.in'           => 'Currency selection is invalid',
         ]);
 
+        return $post;
+
         $pod = $post['pod'];
         unset($post['pod']);
+
+        
 
         if ($id) {
             // Update PO
