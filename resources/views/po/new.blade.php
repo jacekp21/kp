@@ -234,31 +234,19 @@
 
 <script>
     $(document).ready(function() {
-        const insertIDToIndex = (target) => {
-            // let rowCount = $('.table-po-detail tbody>tr').length;
+        function insertIDToIndex(parent) {
+            $(parent).each(function (i, v) {
+                $.each($(this).find("input,textarea,select"), function () {
+                    let tempName = $(this).attr("name");
+                    let replaced = tempName.replace(
+                        /\[(.*)\]\[/g,
+                        "[" + i + "]["
+                    );
 
-            let index = 0;
-
-            // if (rowCount > 1) {
-            //     index = rowCount;
-            // } else {
-            //     index = 0;
-            // }
-
-            // console.log(target);
-
-            $.each($(target), function(i, v) {
-                $.each($(this).find('input,textarea,select'), function() {
-                    let tempName = $(this).attr('name');
-                    let replaced = tempName.replace(/{index}/g, index);
-                    $(this).attr('name', replaced);
+                    $(this).attr("name", replaced);
                 });
-
-                // console.log(index);
-                
-                $(this).find('.index-number').text(index+1);
-
-                index ++;
+                $(this).find('.index-number').text(i+1);
+                // index++;
             });
         }
 
@@ -310,6 +298,8 @@
 
         // clicked button add
         $("#btn-add-detail").click(function(e) {
+            e.preventDefault();
+
             // Remove No Data row
             if ($(".table-po-detail tbody").find("tr td").text() == "No Data") {
                 $(".table-po-detail tbody").find("tr").remove();
@@ -317,18 +307,16 @@
 
             $(".table-po-detail tbody").append(itemRow);
             // refreshServiceOptions();
-            insertIDToIndex('.table-po-detail tr.po-detail-row'); 
+            insertIDToIndex('tr.po-detail-row');
         });
 
         $('#discount').on('input focusout', function(e) {
-            console.log( parseFloat($('#sub_total').val()) - parseFloat($(this).val()) + parseFloat($('#tax').val()) );
             let total = parseFloat($('#sub_total').val()) - parseFloat($(this).val()) + parseFloat($('#tax').val());
             $('#total').val(total);
             $('#lbl-total').html(formatter.format(total));
         });
 
         $('#tax').on('input focusout', function(e) {
-            console.log(parseFloat($('#sub_total').val()) - parseFloat($('#discount').val()) + parseFloat($(this).val()));
             let total = parseFloat($('#sub_total').val()) - parseFloat($('#discount').val()) + parseFloat($(this).val());
             $('#total').val(total = total || 0);
             $('#lbl-total').html(formatter.format(total));
@@ -341,7 +329,6 @@
                 $(this).closest('tr').remove();
 
                 let detailLineId = $(this).closest('tr').find('[name*=id]').val();
-                // console.log(detailLineId);
 
                 if (detailLineId) {
                     $('.deleted-detail-line').append("<input type='hidden' name='deleted_line_ids[]' value=" + detailLineId + " />");

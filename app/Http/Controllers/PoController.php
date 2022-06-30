@@ -74,18 +74,26 @@ class PoController extends Controller
             'currency.in'           => 'Currency selection is invalid',
         ]);
 
-        // return $post;
-
         $pod = $post['pod'];
         unset($post['pod']);
+
+        $deleted = $post['deleted_line_ids'];
+        unset($post['deleted_line_ids']);
 
         if ($id) {
             // Update PO
             $po = Po::find($id)->update($post);
 
-            $po_detail = $po->po_detail()->upsert($pod);
+            foreach ($pod as $key => $detail) {
+                if (empty($detail['po_id'])) {
+                    $pod[$key]['po_id'] = $id;
+                }
+            }
+
+            $po_detail = po_detail::upsert($pod, ['id', 'po_id', 'description', 'qty', 'unit', 'unit_price']);
 
             if ($po_detail) {
+                Po_detail::whereIn('id', $deleted)->delete();
                 return redirect('/po')->with('success','Data PO berhasil diperbaharui');
             } else {
                 return redirect('/po')->with('error','Data PO gagal diperbaharui');
@@ -142,8 +150,6 @@ class PoController extends Controller
         
         // Populate Warehouse
         $whs = Warehouse::all();
-
-        // return $pos;
 
         // Return to view for edit
         return view('po.new')->with('pos', $pos)->with('whs', $whs)->with('vendors', $vendors)->with('subTotal', 0)->with('no', 0)->with('header', 'Edit Purchase Order');
