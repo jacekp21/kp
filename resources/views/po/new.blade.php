@@ -135,7 +135,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-right" align="right">
-                                                    <label for="" id="" class="row-amount">{{ $subTotal += $detail->qty * $detail->unit_price }}</label>
+                                                    <label for="" id="" class="row-amount">{{ $detail->qty * $detail->unit_price }}</label>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -150,7 +150,7 @@
                                     <tfoot>
                                         <tr>
                                             <td class="h6" colspan="6" align="right">Sub Total</td>
-                                            <td id="lbl-sub_total" class="text-right h6" align="right">Rp {{ $subTotal ?? '0' }}</td>
+                                            <td id="lbl-sub_total" class="text-right h6" align="right">Rp {{ old('sub_total', $pos->sub_total ?? '0') }}</td>
                                             <input type="hidden" id="sub_total" name="sub_total" value="{{ old('sub_total', $pos->sub_total ?? 0) }}">
                                         </tr>
                                         <tr>
@@ -167,8 +167,8 @@
                                         </tr>
                                         <tr>
                                             <td class="text-right h6" colspan="6" align="right">Total</td>
-                                            <td id="lbl-total" class="h6" align="right">Rp. {{ isset($pos->total) ? $pos->total : 0 }}</td>
-                                            <input type="hidden" id="total" name="total">
+                                            <td id="lbl-total" class="h6" align="right">Rp. {{ isset($pos->sub_total) ? $pos->sub_total - $pos->discount + $pos->tax : 0 }}</td>
+                                            <input type="hidden" id="total" name="total" value="{{ isset($pos->sub_total) ? $pos->sub_total - $pos->discount + $pos->tax : 0 }}">
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -177,7 +177,7 @@
                             <div class="row">
                                 <div class="col-md-3 mb-3">
                                     <label for="remark" class="form-label">Remark</label>
-                                    <textarea name="remark" id="remark" cols="30" rows="3"></textarea>
+                                    <textarea name="remark" id="remark" cols="30" rows="3">{{ old('remark', $pos->remark ?? "") }}</textarea>
                                 </div>
                             </div>
 
@@ -261,11 +261,14 @@
                 sub_total += amount;
             });
 
+            let discount = $('#discount').val();
+            let tax = $('#tax').val();
+
             $('#lbl-sub_total').html(formatter.format(sub_total));
             $('#sub_total').val(sub_total);
 
             $('#lbl-total').html(formatter.format(sub_total));
-            $('#total').val(sub_total);
+            $('#total').val(sub_total - discount + tax);
         }
 
         function itemRow() {
@@ -273,7 +276,6 @@
             let $template = $($("#row-template").html()).clone();
 
             $template.find('.item-qty, .item-price').on('input focusout', function(e) {
-                // calculateGST('#modal_issue_pv tr.bypass-expense-line');
                 calculateAmt('.table-po-detail tr.po-detail-row');
             });
 
@@ -282,13 +284,6 @@
 
                 // remove entire <tr>
                 $(this).closest('tr').remove();
-
-                // const detailLineId = $(this).closest('tr').find('[name*=id]').val();
-
-                // console.log(detailLineID);
-                // if (detailLineId) {
-                //     $('.deleted-detail-line').append("<input name='deleted_line_ids[]' value=" + detailLineId + " />");
-                // }
 
                 insertIDToIndex('.table-po-detail tr.po-detail-row');
             });
@@ -306,7 +301,7 @@
             }
 
             $(".table-po-detail tbody").append(itemRow);
-            // refreshServiceOptions();
+            
             insertIDToIndex('tr.po-detail-row');
         });
 

@@ -37,8 +37,6 @@ class PoController extends Controller
         // Populate Warehouse
         $whs = Warehouse::all();
 
-        // $head = 'New Purchase Order';
-
         // Redirect to New PO Page
         return view('po.new', ['vendors' => $vendors], ['whs' => $whs])->with('header', 'New Purchase Order');
     }
@@ -54,8 +52,6 @@ class PoController extends Controller
         // Storing Purchase Order
         $post = $request->input();
         $id = $post['id'];
-
-        // return $post;
 
         // User Input Validation
         $validatedInput = $request->validate([
@@ -77,8 +73,10 @@ class PoController extends Controller
         $pod = $post['pod'];
         unset($post['pod']);
 
-        $deleted = $post['deleted_line_ids'];
-        unset($post['deleted_line_ids']);
+        if (isset($post['deleted_line_ids'])) {
+            $deleted = $post['deleted_line_ids'];
+            unset($post['deleted_line_ids']);
+        }
 
         if ($id) {
             // Update PO
@@ -93,7 +91,10 @@ class PoController extends Controller
             $po_detail = po_detail::upsert($pod, ['id', 'po_id', 'description', 'qty', 'unit', 'unit_price']);
 
             if ($po_detail) {
-                Po_detail::whereIn('id', $deleted)->delete();
+                if (!empty($deleted)) {
+                    Po_detail::whereIn('id', $deleted)->delete();
+                }
+
                 return redirect('/po')->with('success','Data PO berhasil diperbaharui');
             } else {
                 return redirect('/po')->with('error','Data PO gagal diperbaharui');
