@@ -39,9 +39,9 @@
                                 @csrf
                                 <div class="row">
                                 <div class="col-md-3 mb-3">
-                                        <label for="date" class="form-label">PO Date</label>
+                                        <label for="date" class="form-label">Inv Date</label>
                                         <input type="text" name="id" class="form-control" id="id" placeholder="" hidden>
-                                        <input type="date" name="po_date" class="form-control" id="po_date" placeholder="">
+                                        <input type="date" name="ap_date" class="form-control" id="ap_date" placeholder="">
                                 </div>
                                 <div class="col-md-3 mb-3">
                                         <label for="exampleDataList" class="form-label">Po Number</label>
