@@ -107,11 +107,11 @@
                                             </tr>
                                         </tbody>
                                         <tfoot>
-                                            <tr>
-                                                <td class="h6" colspan="6" align="right">Sub Total</td>
-                                                <td id="lbl-sub_total" class="text-right h6" align="right">Rp 0.00,-</td>
-                                                <input type="hidden" id="sub_total" name="sub_total">
-                                            </tr>
+                                        <tr>
+                                            <td class="h6" colspan="6" align="right">Sub Total</td>
+                                            <td id="lbl-sub_total" class="text-right h6" align="right">Rp {{ old('sub_total', $aps->sub_total ?? '0') }}</td>
+                                            <input type="hidden" id="sub_total" name="sub_total" value="{{ old('sub_total', $aps->sub_total ?? 0) }}">
+                                        </tr>
                                             <tr>
                                                 <td class="h6" colspan="6" align="right">Discount</td>
                                                 <td align="right">
@@ -254,30 +254,45 @@
             return $template;
         };
 
-        // clicked new item
-        $("#btn-add-detail").click(function(e) {
+      // clicked button add
+      $("#btn-add-detail").click(function(e) {
+            e.preventDefault();
+
             // Remove No Data row
             if ($(".table-ap-detail tbody").find("tr td").text() == "No Data") {
                 $(".table-ap-detail tbody").find("tr").remove();
             }
 
-            result = $(".table-ap-detail tbody").append(itemRow);
-            // refreshServiceOptions();
-            insertIDToIndex('.table-ap-detail tr.ap-detail-row');
+            $(".table-ap-detail tbody").append(itemRow);
+            
+            insertIDToIndex('tr.ap-detail-row');
         });
 
         $('#discount').on('input focusout', function(e) {
-            console.log( parseFloat($('#sub_total').val()) - parseFloat($(this).val()) + parseFloat($('#tax').val()) );
             let total = parseFloat($('#sub_total').val()) - parseFloat($(this).val()) + parseFloat($('#tax').val());
             $('#total').val(total);
             $('#lbl-total').html(formatter.format(total));
         });
 
         $('#tax').on('input focusout', function(e) {
-            console.log(parseFloat($('#sub_total').val()) - parseFloat($('#discount').val()) + parseFloat($(this).val()));
             let total = parseFloat($('#sub_total').val()) - parseFloat($('#discount').val()) + parseFloat($(this).val());
-            $('#total').val(total);
+            $('#total').val(total = total || 0);
             $('#lbl-total').html(formatter.format(total));
+        });
+
+        $(".line-delete").click(function(e) {
+            e.preventDefault();
+
+                // remove entire <tr>
+                $(this).closest('tr').remove();
+
+                let detailLineId = $(this).closest('tr').find('[name*=id]').val();
+
+                if (detailLineId) {
+                    $('.deleted-detail-line').append("<input type='hidden' name='deleted_line_ids[]' value=" + detailLineId + " />");
+                }
+
+                insertIDToIndex('.table-ap-detail tr.ap-detail-row');
         });
 
     });
