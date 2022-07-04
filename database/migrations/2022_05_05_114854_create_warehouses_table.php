@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePoDetailTable extends Migration
+class CreateWarehousesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreatePoDetailTable extends Migration
      */
     public function up()
     {
-        Schema::create('po_detail', function (Blueprint $table) {
+        Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
-            $table->string('po_id');
-            $table->string('description');
-            $table->string('qty');
-            $table->string('unit');
-            $table->float('unit_price');
+            $table->string('name');
+            $table->text('address');
+            $table->string('head_of_warehouse');
+            $table->char('telpon', 15);
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreatePoDetailTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('po_detail');
+        Schema::dropIfExists('warehouses');
     }
 }

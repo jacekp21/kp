@@ -9,12 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand text-white"><i class="fas fa-user"></i> WELCOME ADMIN | PT BANGUN PRIMA ABADI</a>
-            <a href="http://localhost:8000/login/" class="btn btn-primary mt-3" role="button"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
-        </div>
-    </nav>
+    @include('layouts.header')
     <div class="row no-gutters mt-5">
       @include('layouts.sidebar')
                 
@@ -95,7 +90,7 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
-                <button type="reset" class="btn btn-primary">Reset</button>
+                <a href="{{url()->previous()}}" class="btn btn-primary">Cancel</a>
             </form>
           </div>
       </div>

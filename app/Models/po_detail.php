@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Po_detail extends Model
 {
     use HasFactory;
+
+    protected $table = 'po_detail';
+
+    protected $fillable = [
+        'description',
+        'qty',
+        'unit',
+        'unit_price',
+        'amount'
+    ];
 }

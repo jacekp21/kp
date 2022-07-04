@@ -17,18 +17,14 @@ class CreatePoTable extends Migration
             $table->id();
             $table->date('po_date');
             $table->string('po_no');
-            $table->string('vendor');
-            $table->string('warehouse');
-            $table->float('currency');
-            $table->string('description');
-            $table->string('qty');
-            $table->string('unit');
-            $table->float('unit_price');
+            $table->string('vendor_id');
+            $table->string('warehouse_id');
+            $table->char('currency', 3);
             $table->text('remark');
-            $table->float('sub_total');
-            $table->float('discount');
-            $table->float('tax');
-            $table->float('total');
+            $table->float('sub_total')->nullable();;
+            $table->float('discount')->nullable();;
+            $table->float('tax')->nullable();;
+            $table->float('total')->nullable();;
             $table->timestamps();
         });
     }

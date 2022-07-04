@@ -14,19 +14,6 @@ class Vendor extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at'; 
 
-    /**
-     * The "booted" method of the model.
-     *
-     * @return void
-     */
-    protected static function booted()
-    {
-        static::created(function ($vendor) {
-            // 
-            return response()->json($vendor);
-        });
-    }
-
     protected $fillable = [
         'name',
         'address',
@@ -39,4 +26,17 @@ class Vendor extends Model
         'created_by',
         'updated_by'
     ];
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::created(function ($vendor) {
+            // 
+            return response()->json($vendor);
+        });
+    }
 }
