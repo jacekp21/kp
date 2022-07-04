@@ -102,6 +102,7 @@ class PoController extends Controller
         } else {
             // New PO
             $po = Po::create($post);
+            
             foreach ($pod as $key => $item) {
                 $pod[$key]['po_id'] = $po->id;
             }
