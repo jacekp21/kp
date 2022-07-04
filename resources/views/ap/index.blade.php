@@ -124,7 +124,7 @@
                             <th scope="col">No.</th>
                             <th scope="col">Vendor</th>
                             <th scope="col">Invoice Date</th>
-                            <th scope="col">Invoice Number</th>
+                            <th scope="col">Description</th>
                             <th scope="col">Po Number</th>
                             <th scope="col">Currency</th>
                             <th scope="col">Amount</th>
@@ -138,7 +138,7 @@
                             <td>{{ $key+1 }}</td>
                             <td>{{ $ap->vendor->name }}</td>
                             <td>{{ $ap->inv_date }}</td>
-                            <td>{{ $ap->inv_no}}</td>
+                            <td>{{ $ap->description}}</td>
                             <td>{{ $ap->po_No}}</td>
                             <td>{{ $ap->currency}}</td>
                             <td>{{ $ap->total}}</td>
