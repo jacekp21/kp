@@ -132,7 +132,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- {{ $aps }} --}}
                         {{-- @foreach ($aps as $key => $ap)
                         <tr>
                             <td>{{ $key+1 }}</td>
