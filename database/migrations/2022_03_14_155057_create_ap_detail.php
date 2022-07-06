@@ -15,6 +15,7 @@ class CreateApDetail extends Migration
     {
         Schema::create('ap_detail', function (Blueprint $table) {
             $table->id();
+            $table->string('ap_id');
             $table->string('description');
             $table->string('qty');
             $table->string('unit');
