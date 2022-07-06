@@ -39,9 +39,9 @@
                                 @csrf
                                 <div class="row">
                                 <div class="col-md-3 mb-3">
-                                        <label for="date" class="form-label">Inv Date</label>
-                                        <input type="text" name="id" class="form-control" id="id" placeholder="" hidden>
-                                        <input type="date" name="inv_date" class="form-control" id="inv_date" placeholder="">
+                                    <label for="date" class="form-label">Inv Date</label>
+                                    <input type="text" name="id" value="{{ old('id', $aps->id ?? '') }}" class="form-control" id="id" placeholder="" hidden>
+                                    <input type="date" name="inv_date" value="{{ old('inv_date', $aps->inv_date ?? '') }}" class="form-control" id="inv_date" placeholder="">
                                 </div>
                                 <div class="col-md-3 mb-3">
                                         <label for="exampleDataList" class="form-label">Po Number</label>
@@ -73,7 +73,6 @@
                                             <option value='IDR'>N/30</option>
                                             <option value='SGD'>N/60</option>
                                             <option value='USD'>N/90</option>
-                                            <option value='USD'>None</option>
                                         </select>
                                 </div>
                                     <div class="col-md-3 mb-3">
