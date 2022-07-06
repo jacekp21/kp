@@ -20,7 +20,7 @@ class Ap extends Model
      * @var string[]
      */
     protected $fillable = [
-        'po_date',
+        'inv_date',
         'po_no',
         'vendor_id',
         'warehouse_id',
