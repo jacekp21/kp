@@ -70,9 +70,9 @@
                                         <label for="term" class="form-label">Term</label>
                                         <select class="form-control" id='term' name='term' placeholder="Select Term">
                                             <option value='-'>Select Term</option>
-                                            <option value='IDR'>N/30</option>
-                                            <option value='SGD'>N/60</option>
-                                            <option value='USD'>N/90</option>
+                                            <option value='N/30'>N/30</option>
+                                            <option value='N/60'>N/60</option>
+                                            <option value='N/90'>N/90</option>
                                         </select>
                                 </div>
                                     <div class="col-md-3 mb-3">

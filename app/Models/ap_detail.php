@@ -14,6 +14,7 @@ class Ap_detail extends Model
     protected $fillable = [
         'description',
         'qty',
+        'ap_id',
         'unit',
         'unit_price',
         'amount'

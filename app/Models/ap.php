@@ -24,6 +24,7 @@ class Ap extends Model
         'po_no',
         'vendor_id',
         'warehouse_id',
+        'term',
         'currency',
         'total'
     ];
