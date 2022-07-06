@@ -102,9 +102,48 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        @if (isset($aps))
+                                        @if ($aps->ap_detail)
+                                            @foreach ($aps->ap_detail as $key => $detail)
+                                            <tr class="ap-detail-row">
+                                                <td>
+                                                    <a class="line-delete" href="#"><span class="badge bg-primary rounded-pill">-</span></a>
+                                                </td>
+                                                <td>
+                                                    <input type="hidden" name="{{ isset($detail->id) ? 'apd['.$detail->id.'][id]' : 'apd[{index}][id]' }}" value="{{ $detail->id }}">
+                                                    <span class="index-number">{{ $no += 1 }}</span>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group mb0">
+                                                        <input type="text" name="{{ isset($detail->id) ? 'apd['.$detail->id.'][description]' : 'apd[{index}][description]' }}" value="{{ $detail->description }}" class="form-control" placeholder="Description *" required="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group mb0">
+                                                        <div class="input-group">
+                                                            <input type="text" name="{{ isset($detail->id) ? 'apd['.$detail->id.'][qty]' : 'apd[{index}][qty]' }}" value="{{ $detail->qty }}" class="form-control text-right item-qty" placeholder="0" required="1">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="{{ isset($detail->id) ? 'apd['.$detail->id.'][unit]' : 'apd[{index}][unit]' }}" value="{{ $detail->unit }}" class="form-control" placeholder="Unit">
+                                                </td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="text" name="{{ isset($detail->id) ? 'apd['.$detail->id.'][unit_price]' : 'apd[{index}][unit_price]' }}" value="{{ $detail->unit_price }}" class="form-control text-right item-price" placeholder="* 0.00">
+                                                    </div>
+                                                </td>
+                                                <td class="text-right" align="right">
+                                                    <label for="" id="" class="row-amount">{{ $detail->qty * $detail->unit_price }}</label>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        @endif
+                                    @else
                                             <tr>
                                                 <td colspan="7" class="text-center">No Data</td>
                                             </tr>
+                                            @endif
                                         </tbody>
                                         <tfoot>
                                         <tr>
