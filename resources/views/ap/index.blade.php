@@ -132,7 +132,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($aps as $key => $ap)
+                        @foreach ($aps as $key => $ap)
                         <tr>
                             <td>{{ $key+1 }}</td>
                             <td>{{ $ap->vendor->name }}</td>
@@ -150,7 +150,7 @@
                                 </a>
                             </td> 
                         </tr>
-                        @endforeach --}}
+                        @endforeach 
                     </tbody>
                 </table>   
             </div>
