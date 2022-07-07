@@ -18,7 +18,7 @@ class ApController extends Controller
      */
     public function index()
     {
-        // Get all Ap
+        // Get all AP
         $aps = Ap::with('vendor')->with('warehouse')->get();
 
         return view('ap.index')->with('aps', $aps);
@@ -37,8 +37,8 @@ class ApController extends Controller
         // Populate Warehouse
         $whs = Warehouse::all();
 
-        // Redirect to New Ap Page
-        return view('ap.new', ['vendors' => $vendors], ['whs' => $whs]);
+        // Redirect to New AP Page
+        return view('ap.new', ['vendors' => $vendors], ['whs' => $whs])->with('header', 'New Account Payable');
     }
 
     /**
@@ -53,16 +53,56 @@ class ApController extends Controller
         $post = $request->input();
         $id = $post['id'];
 
-        $post['remark'] = 'Testing';
-        $apd = $post['apd'];
-        unset($post['apd']);
+        // User Input Validation
+        //$validatedInput = $request->validate([
+           // 'Ap_date'       => 'required',
+            //'po_no'         => 'required',
+           // 'vendor_id'     => 'required',
+            //'warehouse_id'  => 'required',
+            //'currency'      => 'required|in:IDR,SGD,USD'
+       //],
+        // User Input Validation Error Message
+        //[
+            //'po_date.required'      => 'Po Date is required',
+            //'po_no.required'        => 'Po number is required',
+            //'vendor_id.in'          => 'Vendor selection is invalid',
+            //'warehouse_id.required' => 'Warehouse selection is invalid',
+           // 'currency.in'           => 'Currency selection is invalid',
+        //]);
+
+        $pod = $post['pod'];
+        unset($post['pod']);
+
+        if (isset($post['deleted_line_ids'])) {
+            $deleted = $post['deleted_line_ids'];
+            unset($post['deleted_line_ids']);
+        }
 
         if ($id) {
-            // Update Ap
-            return "Update Ap";
+            // Update AP
+            $ap = Ap::find($id)->update($post);
+
+            foreach ($apd as $key => $detail) {
+                if (empty($detail['ap_id'])) {
+                    $pod[$key]['ap_id'] = $id;
+                }
+            }
+
+            $ap_detail = ap_detail::upsert($apd, ['id', 'ap_id', 'description', 'qty', 'unit', 'unit_price']);
+
+            if ($ap_detail) {
+                if (!empty($deleted)) {
+                    Ap_detail::whereIn('id', $deleted)->delete();
+                }
+
+                return redirect('/ap')->with('success','Data AP berhasil diperbaharui');
+            } else {
+                return redirect('/ap')->with('error','Data AP gagal diperbaharui');
+            }
         } else {
             // New AP
             $ap = Ap::create($post);
+            
             foreach ($apd as $key => $item) {
                 $apd[$key]['ap_id'] = $ap->id;
             }
@@ -70,9 +110,9 @@ class ApController extends Controller
             $ap_detail = $ap->ap_detail()->createMany($apd);
 
             if ($ap_detail) {
-                return redirect('/ap')->with('success','Data Account Payable berhasil diinput');
+                return redirect('/ap')->with('success','Data AP berhasil diinput');
             } else {
-                return redirect('/ap')->with('error','Data Account Payable gagal diinput');
+                return redirect('/ap')->with('error','Data AP gagal diinput');
             }
         }
 
@@ -87,7 +127,7 @@ class ApController extends Controller
     public function show($id)
     {
         // salah satu cara passing id melalui URL
-        // return "Ap Controller Show dengan id : " . $id;
+        // return "AP Controller Show dengan id : " . $id;
 
         // return view('ap.show', [
         //     'ap' => ap::findOrFail($id)
@@ -104,8 +144,17 @@ class ApController extends Controller
      */
     public function edit($id)
     {
-        // Redirect to Ap Edit page
-        return "AP Edit Page";
+        // Redirect to AP Edit page
+        $aps = Ap::with('ap_detail')->find($id);
+
+        // Populate Vendor
+        $vendors = Vendor::all();
+        
+        // Populate Warehouse
+        $whs = Warehouse::all();
+
+        // Return to view for edit
+        return view('ap.new')->with('aps', $aps)->with('whs', $whs)->with('vendors', $vendors)->with('subTotal', 0)->with('no', 0)->with('header', 'Edit Account Payable');
     }
 
     /**
