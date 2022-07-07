@@ -187,10 +187,10 @@
             
             <div class="hidden">
                 <template id="row-template">
-                    <tr class="ap-detail-row">
-                        <td>
-                            <a class="line delete" href="#"><Span class=badge bg-primary rounded-pill">-</span></a>
-                        </td> 
+                <tr class="ap-detail-row">
+                    <td>
+                        <a class="line-delete" href="#"><span class="badge bg-primary rounded-pill">-</span></a>
+                    </td>
                         <td>
                             <input type="hidden" name="apd[{index}][id]">
                             <span class="index-number"></span>

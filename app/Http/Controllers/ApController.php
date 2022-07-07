@@ -70,8 +70,8 @@ class ApController extends Controller
            // 'currency.in'           => 'Currency selection is invalid',
         //]);
 
-        $pod = $post['pod'];
-        unset($post['pod']);
+        $apd = $post['apd'];
+        unset($post['apd']);
 
         if (isset($post['deleted_line_ids'])) {
             $deleted = $post['deleted_line_ids'];
@@ -84,7 +84,7 @@ class ApController extends Controller
 
             foreach ($apd as $key => $detail) {
                 if (empty($detail['ap_id'])) {
-                    $pod[$key]['ap_id'] = $id;
+                    $apd[$key]['ap_id'] = $id;
                 }
             }
 
