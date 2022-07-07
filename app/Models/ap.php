@@ -21,6 +21,7 @@ class Ap extends Model
      */
     protected $fillable = [
         'inv_date',
+        'ap_no',
         'po_no',
         'vendor_id',
         'warehouse_id',

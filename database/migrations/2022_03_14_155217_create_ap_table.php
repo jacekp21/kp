@@ -20,6 +20,7 @@ class CreateApTable extends Migration
             $table->char('currency',3);
             $table->string('warehouse_id');
             $table->string('term');
+            $table->string('ap_no');
             $table->float('discount')->nullable();
             $table->float('tax')->nullable();
             $table->float('sub_total')->nullable();
