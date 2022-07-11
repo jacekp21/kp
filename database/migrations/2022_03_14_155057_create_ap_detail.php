@@ -19,7 +19,7 @@ class CreateApDetail extends Migration
             $table->string('description');
             $table->string('qty');
             $table->string('unit');
-            $table->float('unit_price');
+            $table->double('unit_price', 12,2);
             $table->timestamps();
         });
     }

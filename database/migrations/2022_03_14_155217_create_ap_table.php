@@ -15,16 +15,16 @@ class CreateApTable extends Migration
     {
         Schema::create('ap', function (Blueprint $table) {
             $table->id();
+            $table->string('ap_no');
             $table->string('vendor_id');
             $table->date('inv_date');
             $table->char('currency',3);
             $table->string('warehouse_id');
             $table->string('term');
-            $table->string('ap_no');
-            $table->float('discount')->nullable();
-            $table->float('tax')->nullable();
-            $table->float('sub_total')->nullable();
-            $table->float('total')->nullable();
+            $table->double('discount', 12,2);
+            $table->double('tax', 12,2);
+            $table->double('sub_total', 12,2);
+            $table->double('total', 12,2);
             $table->string('po_no');
             $table->timestamps();
         });
