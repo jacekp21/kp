@@ -25,60 +25,17 @@ class Ap extends Model
         'po_no',
         'vendor_id',
         'warehouse_id',
-        'term',
         'currency',
+        'term',
+        'sub_total',
+        'discount',
+        'tax',
         'total'
     ];
 
     public function ap_detail()
     {
         return $this->hasMany(ap_detail::class);
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-
-        // self::creating(function($model){
-        //     // ... code here
-        // });
-
-        // self::created(function($ap){
-        //     // ... code here
-
-        //     return $ap;
-        //     exit;
-        // });
-
-        // self::saving(function($ap){
-        //     // ... code here
-
-        //     return $ap;
-        //     exit;
-        // });
-
-        // self::saved(function($ap){
-        //     // ... code here
-
-        //     return $ap;
-        //     exit;
-        // });
-
-        // self::updating(function($model){
-        //     // ... code here
-        // });
-
-        // self::updated(function($model){
-        //     // ... code here
-        // });
-
-        // self::deleting(function($model){
-        //     // ... code here
-        // });
-
-        // self::deleted(function($model){
-        //     // ... code here
-        // });
     }
 
     /**

@@ -51,6 +51,8 @@ class ApController extends Controller
     {
         // Storing Account Payable
         $post = $request->input();
+
+        // return $post;
         $id = $post['id'];
 
         // User Input Validation
