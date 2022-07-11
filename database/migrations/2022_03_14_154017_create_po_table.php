@@ -21,10 +21,10 @@ class CreatePoTable extends Migration
             $table->string('warehouse_id');
             $table->char('currency', 3);
             $table->text('remark');
-            $table->float('sub_total')->nullable();;
-            $table->float('discount')->nullable();;
-            $table->float('tax')->nullable();;
-            $table->float('total')->nullable();;
+            $table->double('sub_total', 12,2);
+            $table->double('discount', 12, 2)->nullable();;
+            $table->double('tax', 12, 2)->nullable();
+            $table->double('total', 12, 2)->nullable();
             $table->timestamps();
         });
     }
