@@ -40,7 +40,7 @@
                                 <div class="row">
                                 <div class="col-md-3 mb-3">
                                         <label for="exampleDataList" class="form-label">Ap Number</label>
-                                        <input type="text" class="form-control" name="ap_no" list="ponumOptions" id="ap_no" placeholder="">
+                                        <input type="text" class="form-control" name="ap_no" value="{{ old('ap_no', $aps->ap_no ?? '') }}" list="ponumOptions" id="ap_no" placeholder="">
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="date" class="form-label">Inv Date</label>
@@ -49,46 +49,49 @@
                                 </div>
                                 <div class="col-md-3 mb-3">
                                         <label for="exampleDataList" class="form-label">Po Number</label>
-                                        <input type="text" class="form-control" name="po_no" list="ponumOptions" id="po_no" placeholder="">
+                                        <input type="text" class="form-control" name="po_no" value="{{ old('po_no', $aps->po_no ?? '') }}" list="ponumOptions" id="po_no" placeholder="">
                                 </div>
+                                <div class="deleted-detail-line hidden"></div>
+                            
+                            <div class="row">
                                 <div class="col-md-3 mb-3">
                                     <label for="vendor" class="form-label">Vendor</label>
-                                        <select class="form-control" id='vendor' name='vendor_id' placeholder="Select Vendor">
-                                            <option value='0'>Select Vendor</option>
-                                            @foreach($vendors as $vendor)
-                                            <option value='{{ $vendor->id }}'>{{ $vendor->name }}</option>
-                                            @endforeach
-                                        </select>
-                                </div>
-                                <!-- keterangan-->
-                                <div class="col-md-3 mb-3">
-                                        <label for="currency" class="form-label">Currency</label>
-                                        <select class="form-control" id='currency' name='currency' placeholder="Select Currency">
-                                            <option value='-'>Select Currency</option>
-                                            <option value='IDR'>IDR</option>
-                                            <option value='SGD'>SGD</option>
-                                            <option value='USD'>USD</option>
-                                        </select>
+                                    <select class="form-control @error('vendor_id') is-invalid @enderror" id='vendor' name='vendor_id' placeholder="Select Vendor">
+                                        @foreach($vendors as $vendor)
+                                            <option {{ !isset($aps->vendor_id) ? 'Selected' : '' }}>Select Vendor</option>
+                                            <option value='{{ $vendor->id }}'{{ old('vendor_id', ($aps->vendor_id ?? '')) == ($vendor->id ?? '') ? 'Selected' : '' }}>{{ $vendor->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col-md-3 mb-3">
-                                        <label for="term" class="form-label">Term</label>
-                                        <select class="form-control" id='term' name='term' placeholder="Select Term">
-                                            <option value='-'>Select Term</option>
-                                            <option value='N/30'>N/30</option>
-                                            <option value='N/60'>N/60</option>
-                                            <option value='N/90'>N/90</option>
-                                        </select>
+                                    <label for="warehouses" class="form-label">Warehouse</label>
+                                    <select class="form-control" id='warehouse' name='warehouse_id' placeholder="Select Warehouse">
+                                        <option {{ !isset($aps->warehouse_id) ? 'Selected' : '' }}>Select Warehouse</option>
+                                        @foreach($whs as $wh)
+                                          <option value='{{ $wh->id }}' {{ old('warehouse_id', ($aps->warehouse_id ?? '')) == ($wh->id ?? '') ? 'Selected' : '' }}>{{ $wh->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="warehouses" class="form-label">Warehouse</label>
-                                        <select class="form-control" id='warehouse' name='warehouse_id' placeholder="Select Warehouse">
-                                            <option value='0'>Select Warehouse</option>
-                                            @foreach($whs as $wh)
-                                            <option value='{{ $wh->id }}'>{{ $wh->name }}</option>
-                                            @endforeach
-                                        </select>
-                                </div> 
-
+                                <div class="col-md-3 mb-3">
+                                    <label for="currency" class="form-label">Currency</label>
+                                    <select class="form-control @error('position') is-invalid @enderror" id='currency' name='currency' placeholder="Select Currency">
+                                        <option {{ !isset($user->position) ? 'Selected' : '' }}>Select Currency</option>
+                                        <option value='IDR' {{ old('currency', ucfirst($aps->currency ?? '')) == 'IDR' ? 'Selected' : '' }}>IDR</option>
+                                        <option value='SGD' {{ old('currency', ucfirst($aps->currency ?? '')) == 'SGD' ? 'Selected' : '' }}>SGD</option>
+                                        <option value='USD' {{ old('currency', ucfirst($aps->currency ?? '')) == 'USD' ? 'Selected' : '' }}>USD</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="term" class="form-label">Term</label>
+                                    <select class="form-control @error('position') is-invalid @enderror" id='term' name='term' placeholder="Select Term">
+                                        <option {{ !isset($user->position) ? 'Selected' : '' }}>Select Term</option>
+                                        <option value='N/30' {{ old('term', ucfirst($aps->term ?? '')) == 'N/30' ? 'Selected' : '' }}>N/30</option>
+                                        <option value='N/60' {{ old('term', ucfirst($aps->term ?? '')) == 'N/60' ? 'Selected' : '' }}>N/60</option>
+                                        <option value='N/90' {{ old('term', ucfirst($aps->term ?? '')) == 'N/90' ? 'Selected' : '' }}>N/90</option>
+                                    </select>
+                                </div>
+                            </div>
+                            </div>
                                 <div>
                                     <button type="button" id="btn-add-detail" class="btn btn-primary">Add</button>
                                 </div>
@@ -168,10 +171,10 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="text-right h6" colspan="6" align="right">Total</td>
-                                                <td id="lbl-total" class="h6" align="right">Rp. 0</td>
-                                                <input type="hidden" id="total" name="total">
-                                            </tr>
+                                            <td class="text-right h6" colspan="6" align="right">Total</td>
+                                            <td id="lbl-total" class="h6" align="right">Rp. {{ isset($aps->sub_total) ? $aps->sub_total - $aps->discount + $aps->tax : 0 }}</td>
+                                            <input type="hidden" id="total" name="total" value="{{ isset($aps->sub_total) ? $aps->sub_total - $aps->discount + $aps->tax : 0 }}">
+                                             </tr>
                                         </tfoot>
                                     </table>
                                 </div>
