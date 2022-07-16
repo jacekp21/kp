@@ -80,4 +80,7 @@
         </main>
     </div>
 </body>
+<!-- Font Awesome Link -->
+<script src="https://kit.fontawesome.com/cc8db81d9c.js" crossorigin="anonymous"></script>
+@yield('javascript')
 </html>
