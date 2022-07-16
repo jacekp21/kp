@@ -25,6 +25,7 @@ class CreatePoTable extends Migration
             $table->double('discount', 12, 2)->nullable();;
             $table->double('tax', 12, 2)->nullable();
             $table->double('total', 12, 2)->nullable();
+            $table->enum('status', array('active', 'void'))->nullable();
             $table->timestamps();
         });
     }
