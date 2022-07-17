@@ -129,11 +129,12 @@ class PoController extends Controller
         // salah satu cara passing id melalui URL
         // return "PO Controller Show dengan id : " . $id;
 
+        $po = po::with('po_detail')->with('vendor')->with('warehouse')->findOrFail($id);
+        return $po;
+
         // return view('po.show', [
-        //     'po' => po::findOrFail($id)
-        // ]);
-        
-        // Jika kita ingin 
+        //     'po' => po::with('po_detail')->with('vendor')->with('warehouse')->findOrFail($id)
+        // ])->with('no', 0);
     }
 
     /**
