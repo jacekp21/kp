@@ -8,6 +8,7 @@ use App\Models\Warehouse;
 use App\Models\Po;
 use App\Models\Po_detail;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PoController extends Controller
 {
@@ -129,12 +130,12 @@ class PoController extends Controller
         // salah satu cara passing id melalui URL
         // return "PO Controller Show dengan id : " . $id;
 
-        $po = po::with('po_detail')->with('vendor')->with('warehouse')->findOrFail($id);
-        return $po;
+        // $po = po::with('po_detail')->with('vendor')->with('warehouse')->findOrFail($id);
+        // return $po;
 
-        // return view('po.show', [
-        //     'po' => po::with('po_detail')->with('vendor')->with('warehouse')->findOrFail($id)
-        // ])->with('no', 0);
+        return view('po.show', [
+            'po' => po::with('po_detail')->with('vendor')->with('warehouse')->findOrFail($id)
+        ])->with('no', 0);
     }
 
     /**
@@ -167,5 +168,18 @@ class PoController extends Controller
     public function void($id)
     {
         //
+    }
+
+    /**
+     * Print the specified PO from database.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function print($id)
+    {
+        $po = po::with('po_detail')->with('vendor')->with('warehouse')->findOrFail($id);
+        $pdf = Pdf::loadView('po.show', $po);
+        return $pdf->download('po.pdf');
     }
 }

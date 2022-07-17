@@ -35,199 +35,117 @@
     <div class="row no-gutters mt-5">
         @include('layouts.sidebar')
         <div class="col-md-10 p-5 mt-2">
-            <h1><i class="fas fa-file-invoice-dollar m-2"></i>{{ $header ?? '' }}</h1><hr>
+            <h1><i class="fas fa-file-invoice-dollar m-2"></i>{{ $po->po_no ?? '' }}</h1><hr>
             <div class="container mt-5">
                 <div class="row">
-                    <form action="/po/store" method="post">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-3 mb-3">
-                                <label for="date" class="form-label">Po Date</label>
-                                <input type="text" name="id" value="{{ old('id', $pos->id ?? '') }}" class="form-control" id="id" placeholder="" hidden>
-                                <input type="date" name="po_date" value="{{ old('po_date', $pos->po_date ?? '') }}" class="form-control" id="po_date" placeholder="">
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="exampleDataList" class="form-label">Po Number</label>
-                                <input type="text" class="form-control" name="po_no" value="{{ old('po_no', $pos->po_no ?? '') }}" list="ponumOptions" id="po_no" placeholder="">
-                            </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label for="date" class="form-label">Po Date : </label>
+                            <label>{{ $po->po_date }}</label>
                         </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="exampleDataList" class="form-label">Po Number : </label>
+                            <label>{{ $po->po_no }}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label for="vendor" class="form-label">Vendor : </label>
+                            <label>{{ $po->vendor->name }}</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="warehouses" class="form-label">Warehouse : </label>
+                            <label>{{ $po->warehouse->name }}</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="currency" class="form-label">Currency : </label>
+                            <label>{{ $po->currency }}</label>
+                        </div>
+                    </div>
+                    <strong><i>Please Supply The Following Items </i></strong>
+                    <div>
+                        <table class="table table-striped table-po-detail" style="border-bottom-style: none;">
+                            <thead >
+                                <tr>
+                                    <th class="h6" width="5%">No.</th>
+                                    <th class="h6" width="47%">Description Of Goods</th>
+                                    <th class="h6" width="10%">Qty</th>
+                                    <th class="h6" width="10%">Unit</th>
+                                    <th class="h6" width="15%">Unit Price</th>
+                                    <th class="h6" width="10%">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        <div class="deleted-detail-line hidden"></div>
-                        
-                        <div class="row">
-                            <div class="col-md-3 mb-3">
-                                <label for="vendor" class="form-label">Vendor</label>
-                                <select class="form-control @error('vendor_id') is-invalid @enderror" id='vendor' name='vendor_id' placeholder="Select Vendor">
-                                    @foreach($vendors as $vendor)
-                                        <option {{ !isset($pos->vendor_id) ? 'Selected' : '' }}>Select Vendor</option>
-                                        <option value='{{ $vendor->id }}'{{ old('vendor_id', ($pos->vendor_id ?? '')) == ($vendor->id ?? '') ? 'Selected' : '' }}>{{ $vendor->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="warehouses" class="form-label">Warehouse</label>
-                                <select class="form-control" id='warehouse' name='warehouse_id' placeholder="Select Warehouse">
-                                    <option {{ !isset($pos->warehouse_id) ? 'Selected' : '' }}>Select Warehouse</option>
-                                    @foreach($whs as $wh)
-                                        <option value='{{ $wh->id }}' {{ old('warehouse_id', ($pos->warehouse_id ?? '')) == ($wh->id ?? '') ? 'Selected' : '' }}>{{ $wh->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="currency" class="form-label">Currency</label>
-                                <select class="form-control @error('position') is-invalid @enderror" id='currency' name='currency' placeholder="Select Currency">
-                                    <option {{ !isset($user->position) ? 'Selected' : '' }}>Select Currency</option>
-                                    <option value='IDR' {{ old('currency', ucfirst($pos->currency ?? '')) == 'IDR' ? 'Selected' : '' }}>IDR</option>
-                                    <option value='SGD' {{ old('currency', ucfirst($pos->currency ?? '')) == 'SGD' ? 'Selected' : '' }}>SGD</option>
-                                    <option value='USD' {{ old('currency', ucfirst($pos->currency ?? '')) == 'USD' ? 'Selected' : '' }}>USD</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <button type="button" id="btn-add-detail" class="btn btn-primary">Add</button>
-                        </div>
-                        <strong><i>Please Supply The Following Items </i></strong>
-                        <div>
-                            <table class="table table-striped table-po-detail" style="border-bottom-style: none;">
-                                <thead >
-                                    <tr>
-                                        <th class="h6" width="3%"></th>
-                                        <th class="h6" width="5%">No.</th>
-                                        <th class="h6" width="47%">Description Of Goods</th>
-                                        <th class="h6" width="10%">Qty</th>
-                                        <th class="h6" width="10%">Unit</th>
-                                        <th class="h6" width="15%">Unit Price</th>
-                                        <th class="h6" width="10%">Amount</th>
+                            @if (isset($po))
+                                @if ($po->po_detail)
+                                    @foreach ($po->po_detail as $key => $detail)
+                                    <tr class="po-detail-row">
+                                        <td>
+                                            <span class="index-number">{{ $no += 1 }}</span>
+                                        </td>
+                                        <td>
+                                            {{ $detail->description }}
+                                        </td>
+                                        <td>
+                                            {{ $detail->qty }}
+                                        </td>
+                                        <td>
+                                            {{ $detail->unit }}
+                                        </td>
+                                        <td>
+                                            {{ $detail->unit_price }}
+                                        </td>
+                                        <td class="text-right" align="right">
+                                            <label for="" id="" class="row-amount">{{ $detail->qty * $detail->unit_price }}</label>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-
-                                @if (isset($pos))
-                                    @if ($pos->po_detail)
-                                        @foreach ($pos->po_detail as $key => $detail)
-                                        <tr class="po-detail-row">
-                                            <td>
-                                                <a class="line-delete" href="#"><span class="badge bg-primary rounded-pill">-</span></a>
-                                            </td>
-                                            <td>
-                                                <input type="hidden" name="{{ isset($detail->id) ? 'pod['.$detail->id.'][id]' : 'pod[{index}][id]' }}" value="{{ $detail->id }}">
-                                                <span class="index-number">{{ $no += 1 }}</span>
-                                            </td>
-                                            <td>
-                                                <div class="form-group mb0">
-                                                    <input type="text" name="{{ isset($detail->id) ? 'pod['.$detail->id.'][description]' : 'pod[{index}][description]' }}" value="{{ $detail->description }}" class="form-control" placeholder="Description *" required="1">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group mb0">
-                                                    <div class="input-group">
-                                                        <input type="text" name="{{ isset($detail->id) ? 'pod['.$detail->id.'][qty]' : 'pod[{index}][qty]' }}" value="{{ $detail->qty }}" class="form-control text-right item-qty" placeholder="0" required="1">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="{{ isset($detail->id) ? 'pod['.$detail->id.'][unit]' : 'pod[{index}][unit]' }}" value="{{ $detail->unit }}" class="form-control" placeholder="Unit">
-                                            </td>
-                                            <td>
-                                                <div class="input-group">
-                                                    <input type="text" name="{{ isset($detail->id) ? 'pod['.$detail->id.'][unit_price]' : 'pod[{index}][unit_price]' }}" value="{{ $detail->unit_price }}" class="form-control text-right item-price" placeholder="* 0.00">
-                                                </div>
-                                            </td>
-                                            <td class="text-right" align="right">
-                                                <label for="" id="" class="row-amount">{{ $detail->qty * $detail->unit_price }}</label>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    @endif
-                                @else
-                                    <tr>
-                                        <td colspan="7" class="text-center">No Data</td>
-                                    </tr>
+                                    @endforeach
                                 @endif
-                                    
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td class="h6" colspan="6" align="right">Sub Total</td>
-                                        <td id="lbl-sub_total" class="text-right h6" align="right">Rp {{ old('sub_total', $pos->sub_total ?? '0') }}</td>
-                                        <input type="hidden" id="sub_total" name="sub_total" value="{{ old('sub_total', $pos->sub_total ?? 0) }}">
-                                    </tr>
-                                    <tr>
-                                        <td class="h6" colspan="6" align="right">Discount</td>
-                                        <td align="right">
-                                            <input type="text" name="discount" id="discount" style="width: 130px;" value="{{ old('discount', $pos->discount ?? 0) }}" data-value="0" onkeypress="return isDecimalNumber(event);" required>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="h6" colspan="6" align="right">Tax</td>
-                                        <td align="right">
-                                            <input type="text" name="tax" id="tax" style="width: 130px;" value="{{ old('tax', $pos->tax ?? 0) }}" data-value="0" onkeypress="return isDecimalNumber(event);" required>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-right h6" colspan="6" align="right">Total</td>
-                                        <td id="lbl-total" class="h6" align="right">Rp. {{ isset($pos->sub_total) ? $pos->sub_total - $pos->discount + $pos->tax : 0 }}</td>
-                                        <input type="hidden" id="total" name="total" value="{{ isset($pos->sub_total) ? $pos->sub_total - $pos->discount + $pos->tax : 0 }}">
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-3 mb-3">
-                                <label for="remark" class="form-label">Remark</label>
-                                <textarea name="remark" id="remark" cols="30" rows="3">{{ old('remark', $pos->remark ?? "") }}</textarea>
-                            </div>
-                        </div>
-
-                        </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                            <button type="reset" class="btn btn-primary">Reset</button>
-                        </div>
-                    </form>
+                            @else
+                                <tr>
+                                    <td colspan="6" class="text-center">No Data</td>
+                                </tr>
+                            @endif
+                                
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td rowspan="4" colspan="2">
+                                        <label for="remark" class="form-label">Remark : </label>
+                                        <label>{{ $po->remark }}</label>
+                                    </td>
+                                    <td class="h6" colspan="3" align="right">Sub Total</td>
+                                    <td id="lbl-sub_total" class="text-right h6" align="right">Rp {{ old('sub_total', $po->sub_total ?? '0') }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="h6" colspan="3" align="right">Discount</td>
+                                    <td align="right">
+                                        {{ $po->discount }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="h6" colspan="3" align="right">Tax</td>
+                                    <td align="right">
+                                        {{ $po->tax }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right h6" colspan="3" align="right">Total</td>
+                                    <td id="lbl-total" class="h6" align="right">Rp. {{ isset($po->sub_total) ? $po->sub_total - $po->discount + $po->tax : 0 }}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    </div>
+                        <button type="submit" class="btn btn-primary">Back</button>
+                        <button type="reset" class="btn btn-primary">Print</button>
+                    </div>
+                
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="hidden">
-        <template id="row-template">
-            <tr class="po-detail-row">
-                <td>
-                    <a class="line-delete" href="#"><span class="badge bg-primary rounded-pill">-</span></a>
-                </td>
-                <td>
-                    <input type="hidden" name="pod[{index}][id]">
-                    <span class="index-number"></span>
-                </td>
-                <td>
-                    <div class="form-group mb0">
-                        <input type="text" name="pod[{index}][description]" class="form-control" placeholder="Description *" required="1">
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group mb0">
-                        <div class="input-group">
-                            <input type="text" name="pod[{index}][qty]" class="form-control text-right item-qty" placeholder="0" required="1">
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <input type="text" name="pod[{index}][unit]" class="form-control" placeholder="Unit">
-                </td>
-                <td>
-                    <div class="input-group">
-                        <input type="text" name="pod[{index}][unit_price]" class="form-control text-right item-price" placeholder="* 0.00">
-                    </div>
-                </td>
-                <td class="text-right" align="right">
-                    <label for="" id="" class="row-amount">0</label>
-                </td>
-            </tr>
-        </template>
-    </div>
-
 </body>
     
 </html>
