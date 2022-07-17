@@ -79,6 +79,9 @@
                                 <a href="/po/edit/{{ $po->id }}" class="btn btn-primary">
                                     <i class="fas fa-edit"></i> Update
                                 </a>
+                                <a href="/po/show/{{ $po->id }}" class="btn btn-success">
+                                    <i class="fas fa-eye"></i> View
+                                </a>
                                 <a href="/po/disable/{{ $po->id }}" class="btn btn-danger">
                                     <i class="fas fa-ban"></i> Void
                                 </a>
