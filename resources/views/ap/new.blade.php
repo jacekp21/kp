@@ -172,7 +172,7 @@
                                             </tr>
                                             <tr>
                                             <td class="text-right h6" colspan="6" align="right">Total</td>
-                                            <td id="lbl-total" class="h6" align="right">Rp. {{ isset($aps->sub_total) ? $aps->sub_total - $aps->discount + $aps->tax : 0 }}</td>
+                                            <td id="lbl-total" class="h6" align="right">Rp {{ isset($aps->sub_total) ? $aps->sub_total - $aps->discount + $aps->tax : 0 }}</td>
                                             <input type="hidden" id="total" name="total" value="{{ isset($aps->sub_total) ? $aps->sub_total - $aps->discount + $aps->tax : 0 }}">
                                              </tr>
                                         </tfoot>

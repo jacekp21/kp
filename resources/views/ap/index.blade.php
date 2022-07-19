@@ -127,6 +127,7 @@
                             <th scope="col">Ap Number</th>
                             <th scope="col">Po Number</th>
                             <th scope="col">Currency</th>
+                            <th scope="col">Term</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -140,6 +141,7 @@
                             <td>{{ $ap->ap_no}}</td>
                             <td>{{ $ap->po_no}}</td>
                             <td>{{ $ap->currency}}</td>
+                            <td>{{ $ap->term}}</td>
                             <td>{{ $ap->total}}</td>
                             <td>
                                 <a href="/ap/edit/{{ $ap->id }}" class="btn btn-primary">
