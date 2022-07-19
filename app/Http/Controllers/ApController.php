@@ -132,11 +132,12 @@ class ApController extends Controller
         // salah satu cara passing id melalui URL
         // return "AP Controller Show dengan id : " . $id;
 
-        // return view('ap.show', [
-        //     'ap' => ap::findOrFail($id)
-        // ]);
-        
-        // Jika kita ingin 
+        // $ap = ap::with('ap_detail')->with('vendor')->with('warehouse')->findOrFail($id);
+        // return $ap;
+
+        return view('ap.show', [
+            'ap' => ap::with('ap_detail')->with('vendor')->with('warehouse')->findOrFail($id)
+        ])->with('no', 0);
     }
 
     /**

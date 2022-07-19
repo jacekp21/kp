@@ -7,8 +7,6 @@
 
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <!-- Font Awesome Link -->
-        <script src="https://kit.fontawesome.com/cc8db81d9c.js" crossorigin="anonymous"></script>
 
         <!-- START : Custom Style -->
         <style>
@@ -160,5 +158,7 @@
                 </table>   
             </div>
         </div> 
-    </body>            
+    </body>
+    <!-- Font Awesome Link -->
+    <script src="https://kit.fontawesome.com/cc8db81d9c.js" crossorigin="anonymous"></script>          
 </html>
