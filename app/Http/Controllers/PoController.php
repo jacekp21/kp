@@ -178,8 +178,25 @@ class PoController extends Controller
      */
     public function print($id)
     {
-        $po = po::with('po_detail')->with('vendor')->with('warehouse')->findOrFail($id);
-        $pdf = Pdf::loadView('po.show', $po);
-        return $pdf->download('po.pdf');
+        $data['po'] = po::with('po_detail')->with('vendor')->with('warehouse')->findOrFail($id);
+        $data['no'] = 0;
+        // $po = [ 'po' => 
+        //     [
+        //         'po_no' => 'PO-001',
+        //         'po_date' => '2022',
+        //     ]
+        // ];
+        // $pdf = Pdf::loadView('po.show', $po);
+        // return $pdf->download('po.pdf');
+
+        // dd($po);
+
+        // return $data;
+          
+        $pdf = Pdf::loadView('po.pdf', $data);
+
+        // dd($pdf);
+    
+        return $pdf->stream('po-'.$data['po']['po_no'].'pdf');
     }
 }
