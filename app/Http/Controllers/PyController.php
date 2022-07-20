@@ -5,25 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Vendor;
 use App\Models\Warehouse;
-use App\Models\Py;
-use App\Models\Py_detail;
+use App\Models\payment;
+use App\Models\payment_detail;
 use App\Models\User;
 
-class ApController extends Controller
+class PyController extends Controller
 {
     /**
+     * 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // Get all Py
-        $pys = Py::with('vendor')->with('warehouse')->get();
+        // Get all Payment
+        $pys = Payment::with('vendor')->with('warehouse')->get();
 
-        // return $pys;
-
-        return view('py.index')->with('pys', $pys);
+        return view('payment.index')->with('pys', $pys);
     }
 
     /**
@@ -39,8 +38,8 @@ class ApController extends Controller
         // Populate Warehouse
         $whs = Warehouse::all();
 
-        // Redirect to New Py Page
-        return view('py.new', ['vendors' => $vendors], ['whs' => $whs]);
+        // Redirect to New Payment Page
+        return view('payment.new', ['vendors' => $vendors], ['whs' => $whs])->with('header', 'New Payment');
     }
 
     /**
@@ -51,30 +50,72 @@ class ApController extends Controller
      */
     public function store(Request $request)
     {
-        // Storing Account Payable
+        // Storing Payment
         $post = $request->input();
+
+        // return $post;
         $id = $post['id'];
 
-        $post['remark'] = 'Testing';
+        // User Input Validation
+        //$validatedInput = $request->validate([
+           // 'Ap_date'       => 'required',
+            //'po_no'         => 'required',
+           // 'vendor_id'     => 'required',
+            //'warehouse_id'  => 'required',
+            //'currency'      => 'required|in:IDR,SGD,USD'
+       //],
+        // User Input Validation Error Message
+        //[
+            //'po_date.required'      => 'Po Date is required',
+            //'po_no.required'        => 'Po number is required',
+            //'vendor_id.in'          => 'Vendor selection is invalid',
+            //'warehouse_id.required' => 'Warehouse selection is invalid',
+           // 'currency.in'           => 'Currency selection is invalid',
+        //]);
+
         $pyd = $post['pyd'];
         unset($post['pyd']);
 
+        if (isset($post['deleted_line_ids'])) {
+            $deleted = $post['deleted_line_ids'];
+            unset($post['deleted_line_ids']);
+        }
+
         if ($id) {
-            // Update Py
-            return "Update Py";
-        } else {
-            // New PY
-            $py = Py::create($post);
-            foreach ($pyd as $key => $item) {
-                $apd[$key]['py_id'] = $py->id;
+            // Update Payment
+            $py = Payment::find($id)->update($post);
+
+            foreach ($pyd as $key => $detail) {
+                if (empty($detail['py_id'])) {
+                    $apd[$key]['py_id'] = $id;
+                }
             }
 
-            $py_detail = $py->py_detail()->createMany($pyd);
+            $payment_detail = payment_detail::upsert($pyd, ['id', 'py_id', 'description', 'qty', 'unit', 'unit_price']);
 
-            if ($py_detail) {
-                return redirect('/py')->with('success','Data Account Payable berhasil diinput');
+            if ($payment_detail) {
+                if (!empty($deleted)) {
+                    Payment_detail::whereIn('id', $deleted)->delete();
+                }
+
+                return redirect('/payment')->with('success','Data Payment berhasil diperbaharui');
             } else {
-                return redirect('/py')->with('error','Data Account Payable gagal diinput');
+                return redirect('/payment')->with('error','Data Payment gagal diperbaharui');
+            }
+        } else {
+            // New payment
+            $py = payment::create($post);
+            
+            foreach ($pyd as $key => $item) {
+                $pyd[$key]['py_id'] = $py->id;
+            }
+
+            $payment_detail = $py->payment_detail()->createMany($pyd);
+
+            if ($payment_detail) {
+                return redirect('/payment')->with('success','Data payment berhasil diinput');
+            } else {
+                return redirect('/payment')->with('error','Data Payment gagal diinput');
             }
         }
 
@@ -91,11 +132,12 @@ class ApController extends Controller
         // salah satu cara passing id melalui URL
         // return "Py Controller Show dengan id : " . $id;
 
-        // return view('py.show', [
-        //     'py' => py::findOrFail($id)
-        // ]);
-        
-        // Jika kita ingin 
+        // $py = py::with('payment_detail')->with('vendor')->with('warehouse')->findOrFail($id);
+        // return $ap;
+
+        return view('payment.show', [
+            'py' => py::with('payment_detail')->with('vendor')->with('warehouse')->findOrFail($id)
+        ])->with('no', 0);
     }
 
     /**
@@ -106,12 +148,21 @@ class ApController extends Controller
      */
     public function edit($id)
     {
-        // Redirect to Py Edit page
-        return "PY Edit Page";
+        // Redirect to Payment Edit page
+        $pys = payment::with('payment_detail')->find($id);
+
+        // Populate Vendor
+        $vendors = Vendor::all();
+        
+        // Populate Warehouse
+        $whs = Warehouse::all();
+
+        // Return to view for edit
+        return view('payment.new')->with('pys', $pys)->with('whs', $whs)->with('vendors', $vendors)->with('subTotal', 0)->with('no', 0)->with('header', 'Edit Payment');
     }
 
     /**
-     * Void the specified PY from database.
+     * Void the specified Payment from database.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

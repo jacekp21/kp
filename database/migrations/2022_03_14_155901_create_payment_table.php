@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaymentTable extends Migration
+class CreatePyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,18 @@ class CreatePaymentTable extends Migration
      */
     public function up()
     {
-        Schema::create('payment', function (Blueprint $table) {
+        Schema::create('py', function (Blueprint $table) {
             $table->id();
-            $table->string('vendor');
-            $table->string('via');
-            $table->string('bank');
-            $table->string('account_name');
-            $table->string('account_number');
-            $table->date('date_of_payment');
-            $table->float('amount');
-            $table->string('terbilang');
+            $table->string('ap_no');
+            $table->string('vendor_id');
+            $table->date('pay_date');
+            $table->char('currency',3);
+            $table->string('warehouse_id');
+            $table->double('discount', 12,2);
+            $table->double('tax', 12,2);
+            $table->double('sub_total', 12,2);
+            $table->double('total', 12,2);
+            $table->string('po_no');
             $table->timestamps();
         });
     }
@@ -34,6 +36,6 @@ class CreatePaymentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment');
+        Schema::dropIfExists('py');
     }
 }

@@ -73,13 +73,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ap/show/{id}', [ApController::class, 'show']);
 
 
-    // Account Payment
-    // Route::get('/payment', [PyController::class, 'index']);    
-    // Route::get('/payment/new', [PyController::class, 'create']);
-    // Route::post('/payment/store', [PyController::class, 'store']); // Store Payment Information
-    // Route::get('/payment/edit/{id}', [PyController::class, 'edit']);
-    // Route::get('/payment/void/{id}', [PyController::class, 'void']);
-    // Route::get('/payment/show/{id}', [PyController::class, 'show']);
+    //Payment
+    //Route::get('/payment', [PyController::class, 'index']);    
+    //Route::get('/payment/new', [PyController::class, 'create']);
+    //Route::post('/payment/store', [PyController::class, 'store']); // Store Payment Information
+    //Route::get('/payment/edit/{id}', [PyController::class, 'edit']);
+    //Route::get('/payment/void/{id}', [PyController::class, 'void']);
+    //Route::get('/payment/show/{id}', [PyController::class, 'show']);
 });
 
 
@@ -100,9 +100,9 @@ Route::get('/payment', function () {
     return view('payment/index');
 });
 
-//Route::get('/payment/new', function () {
-    //return view('payment/new');
-//});
+Route::get('/payment/new', function () {
+    return view('payment/new');
+});
 
 Route::get('/report', function () {
     return view('report/index');

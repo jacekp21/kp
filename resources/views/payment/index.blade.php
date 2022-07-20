@@ -121,10 +121,10 @@
                     <thead>
                         <tr>
                             <th scope="col">No.</th>
+                            <th scope="col">Vendor</th>
                             <th scope="col">Payment Date</th>
                             <th scope="col">Ap Number</th>
-                            <th scope="col">Vendor</th>
-                            <th scope="col">Description</th>
+                            <th scope="col">Po Number</th>
                             <th scope="col">Currency</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Action</th>
@@ -134,10 +134,10 @@
                         {{-- @foreach ($pys as $key => $py)
                         <tr>
                             <td>{{ $key+1 }}</td>
-                            <td>{{ $py->pay_date}}</td>
-                            <td>{{ $py->Ap_No}}</td>
                             <td>{{ $py->vendor->name }}</td>
-                            <td>{{ $py->description }}</td>
+                            <td>{{ $py->pay_date}}</td>
+                            <td>{{ $py->ap_no}}</td>
+                            <td>{{ $py->po_no}}</td>
                             <td>{{ $py->currency}}</td>
                             <td>{{ $py->total}}</td>
                             <td>

@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class Py extends Model
+class Payment extends Model
 {
     use HasFactory;
 
-    protected $table = 'py';
+    protected $table = 'payment';
 
     // protected $before_create = ['_format_submission'];
 
@@ -20,63 +20,22 @@ class Py extends Model
      * @var string[]
      */
     protected $fillable = [
-        'po_date',
+        'pay_date',
+        'ap_no',
         'po_no',
         'vendor_id',
         'warehouse_id',
         'currency',
+        'term',
+        'sub_total',
+        'discount',
+        'tax',
         'total'
     ];
 
-    public function py_detail()
+    public function payment_detail()
     {
-        return $this->hasMany(py_detail::class);
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-
-        // self::creating(function($model){
-        //     // ... code here
-        // });
-
-        // self::created(function($ap){
-        //     // ... code here
-
-        //     return $py;
-        //     exit;
-        // });
-
-        // self::saving(function($ap){
-        //     // ... code here
-
-        //     return $py;
-        //     exit;
-        // });
-
-        // self::saved(function($ap){
-        //     // ... code here
-
-        //     return $py;
-        //     exit;
-        // });
-
-        // self::updating(function($model){
-        //     // ... code here
-        // });
-
-        // self::updated(function($model){
-        //     // ... code here
-        // });
-
-        // self::deleting(function($model){
-        //     // ... code here
-        // });
-
-        // self::deleted(function($model){
-        //     // ... code here
-        // });
+        return $this->hasMany(payment_detail::class);
     }
 
     /**
