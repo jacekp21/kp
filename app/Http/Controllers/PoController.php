@@ -8,6 +8,7 @@ use App\Models\Warehouse;
 use App\Models\Po;
 use App\Models\Po_detail;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PoController extends Controller
 {
@@ -129,11 +130,12 @@ class PoController extends Controller
         // salah satu cara passing id melalui URL
         // return "PO Controller Show dengan id : " . $id;
 
-        // return view('po.show', [
-        //     'po' => po::findOrFail($id)
-        // ]);
-        
-        // Jika kita ingin 
+        // $po = po::with('po_detail')->with('vendor')->with('warehouse')->findOrFail($id);
+        // return $po;
+
+        return view('po.show', [
+            'po' => po::with('po_detail')->with('vendor')->with('warehouse')->findOrFail($id)
+        ])->with('no', 0);
     }
 
     /**
@@ -166,5 +168,35 @@ class PoController extends Controller
     public function void($id)
     {
         //
+    }
+
+    /**
+     * Print the specified PO from database.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function print($id)
+    {
+        $data['po'] = po::with('po_detail')->with('vendor')->with('warehouse')->findOrFail($id);
+        $data['no'] = 0;
+        // $po = [ 'po' => 
+        //     [
+        //         'po_no' => 'PO-001',
+        //         'po_date' => '2022',
+        //     ]
+        // ];
+        // $pdf = Pdf::loadView('po.show', $po);
+        // return $pdf->download('po.pdf');
+
+        // dd($po);
+
+        // return $data;
+          
+        $pdf = Pdf::loadView('po.pdf', $data);
+
+        // dd($pdf);
+    
+        return $pdf->stream('po-'.$data['po']['po_no'].'pdf');
     }
 }
