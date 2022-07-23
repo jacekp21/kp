@@ -56,23 +56,6 @@ class PyController extends Controller
         // return $post;
         $id = $post['id'];
 
-        // User Input Validation
-        //$validatedInput = $request->validate([
-           // 'Ap_date'       => 'required',
-            //'po_no'         => 'required',
-           // 'vendor_id'     => 'required',
-            //'warehouse_id'  => 'required',
-            //'currency'      => 'required|in:IDR,SGD,USD'
-       //],
-        // User Input Validation Error Message
-        //[
-            //'po_date.required'      => 'Po Date is required',
-            //'po_no.required'        => 'Po number is required',
-            //'vendor_id.in'          => 'Vendor selection is invalid',
-            //'warehouse_id.required' => 'Warehouse selection is invalid',
-           // 'currency.in'           => 'Currency selection is invalid',
-        //]);
-
         $pyd = $post['pyd'];
         unset($post['pyd']);
 
