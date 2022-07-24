@@ -9,7 +9,7 @@ class Payment_detail extends Model
 {
     use HasFactory;
 
-    protected $table = 'payment_detail';
+    protected $table = 'py_detail';
 
     protected $fillable = [
         'description',
