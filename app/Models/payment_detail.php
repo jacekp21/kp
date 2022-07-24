@@ -15,6 +15,7 @@ class Payment_detail extends Model
         'description',
         'qty',
         'py_id',
+        'payment_id',
         'unit',
         'unit_price',
         'amount'

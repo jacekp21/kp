@@ -23,8 +23,6 @@ class CreateVendorsTable extends Migration
             $table->string('cabang');
             $table->string('nama_rekening');
             $table->string('no_rek');
-            $table->string('created_at')->nullable();
-            $table->string('updated_at')->nullable();
             $table->timestamps();
         });
     }
