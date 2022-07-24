@@ -53,6 +53,25 @@
                                 </div>
                                 <div class="deleted-detail-line hidden"></div>
                         
+                                <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="vendor" class="form-label">Vendor</label>
+                                    <select class="form-control @error('vendor_id') is-invalid @enderror" id='vendor' name='vendor_id' placeholder="Select Vendor">
+                                        @foreach($vendors as $vendor)
+                                            <option {{ !isset($pys->vendor_id) ? 'Selected' : '' }}>Select Vendor</option>
+                                            <option value='{{ $vendor->id }}'{{ old('vendor_id', ($pys->vendor_id ?? '')) == ($vendor->id ?? '') ? 'Selected' : '' }}>{{ $vendor->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="warehouses" class="form-label">Warehouse</label>
+                                    <select class="form-control" id='warehouse' name='warehouse_id' placeholder="Select Warehouse">
+                                        <option {{ !isset($pys->warehouse_id) ? 'Selected' : '' }}>Select Warehouse</option>
+                                        @foreach($whs as $wh)
+                                          <option value='{{ $wh->id }}' {{ old('warehouse_id', ($pys->warehouse_id ?? '')) == ($wh->id ?? '') ? 'Selected' : '' }}>{{ $wh->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="currency" class="form-label">Currency</label>
                                     <select class="form-control @error('position') is-invalid @enderror" id='currency' name='currency' placeholder="Select Currency">
