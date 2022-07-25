@@ -20,6 +20,7 @@ class CreatePyTable extends Migration
             $table->date('pay_date');
             $table->char('currency',3);
             $table->string('warehouse_id');
+            $table->string('term');
             $table->double('discount', 12,2);
             $table->double('tax', 12,2);
             $table->double('sub_total', 12,2);

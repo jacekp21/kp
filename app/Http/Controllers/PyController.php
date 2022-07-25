@@ -19,8 +19,8 @@ class PyController extends Controller
      */
     public function index()
     {
-        // Get all Payment
-        $pys = Payment::with('vendor')->with('warehouse')->get();
+        // Get all PY
+        $pys = payment::with('vendor')->with('warehouse')->get();
 
         return view('payment.index')->with('pys', $pys);
     }
@@ -38,7 +38,7 @@ class PyController extends Controller
         // Populate Warehouse
         $whs = Warehouse::all();
 
-        // Redirect to New Payment Page
+        // Redirect to New PY Page
         return view('payment.new', ['vendors' => $vendors], ['whs' => $whs])->with('header', 'New Payment');
     }
 
@@ -65,40 +65,40 @@ class PyController extends Controller
         }
 
         if ($id) {
-            // Update Payment
-            $py = Payment::find($id)->update($post);
+            // Update PY
+            $py = payment::find($id)->update($post);
 
             foreach ($pyd as $key => $detail) {
                 if (empty($detail['py_id'])) {
-                    $apd[$key]['py_id'] = $id;
+                    $pyd[$key]['py_id'] = $id;
                 }
             }
 
-            $payment_detail = payment_detail::upsert($pyd, ['id', 'py_id', 'description', 'qty', 'unit', 'unit_price']);
+            $payment_detail = payment_detail::upsert($pyd, ['id', 'ap_id', 'description', 'qty', 'unit', 'unit_price']);
 
             if ($payment_detail) {
                 if (!empty($deleted)) {
-                    Payment_detail::whereIn('id', $deleted)->delete();
+                    payment_detail::whereIn('id', $deleted)->delete();
                 }
 
-                return redirect('/payment')->with('success','Data Payment berhasil diperbaharui');
+                return redirect('/payment')->with('success','Data PY berhasil diperbaharui');
             } else {
-                return redirect('/payment')->with('error','Data Payment gagal diperbaharui');
+                return redirect('/payment')->with('error','Data PY gagal diperbaharui');
             }
         } else {
-            // New payment
+            // New PY
             $py = payment::create($post);
             
             foreach ($pyd as $key => $item) {
                 $pyd[$key]['py_id'] = $py->id;
             }
 
-            $payment_detail = $py->payment_detail()->createMany($pyd);
+            $py_detail = $py->py_detail()->createMany($pyd);
 
-            if ($payment_detail) {
-                return redirect('/payment')->with('success','Data payment berhasil diinput');
+            if ($py_detail) {
+                return redirect('/payment')->with('success','Data PY berhasil diinput');
             } else {
-                return redirect('/payment')->with('error','Data Payment gagal diinput');
+                return redirect('/payment')->with('error','Data PY gagal diinput');
             }
         }
 
@@ -112,14 +112,8 @@ class PyController extends Controller
      */
     public function show($id)
     {
-        // salah satu cara passing id melalui URL
-        // return "Py Controller Show dengan id : " . $id;
-
-        // $py = py::with('payment_detail')->with('vendor')->with('warehouse')->findOrFail($id);
-        // return $ap;
-
         return view('payment.show', [
-            'py' => py::with('payment_detail')->with('vendor')->with('warehouse')->findOrFail($id)
+            'py' => payment::with('py_detail')->with('vendor')->with('warehouse')->findOrFail($id)
         ])->with('no', 0);
     }
 
@@ -131,8 +125,8 @@ class PyController extends Controller
      */
     public function edit($id)
     {
-        // Redirect to Payment Edit page
-        $pys = payment::with('payment_detail')->find($id);
+        // Redirect to PY Edit page
+        $pys = payment::with('py_detail')->find($id);
 
         // Populate Vendor
         $vendors = Vendor::all();
@@ -145,7 +139,7 @@ class PyController extends Controller
     }
 
     /**
-     * Void the specified Payment from database.
+     * Void the specified AP from database.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -155,3 +149,4 @@ class PyController extends Controller
         //
     }
 }
+

@@ -144,6 +144,10 @@
                                 <a href="/py/edit/{{ $py->id }}" class="btn btn-primary">
                                     <i class="fas fa-edit"></i> Update
                                 </a>
+                                <a href="/ap/show/{{ $ap->id }}" class="btn btn-success">
+                                    <i class="fas fa-eye"></i> View
+                                </a>
+                               
                                 <a href="/py/disable/{{ $py->id }}" class="btn btn-danger">
                                     <i class="fas fa-ban"></i> Void
                                 </a>
