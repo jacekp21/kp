@@ -25,7 +25,7 @@
             font-size: 90px;
         }
     </style>
-    <title>VIEW AP</title>
+    <title>New AP Page</title>
 </head>
 <body>
     @include('layouts.header')

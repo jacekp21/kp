@@ -131,7 +131,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($pys as $key => $py)
+                        @foreach ($pys as $key => $py)
                         <tr>
                             <td>{{ $key+1 }}</td>
                             <td>{{ $py->vendor->name }}</td>
@@ -141,19 +141,19 @@
                             <td>{{ $py->currency}}</td>
                             <td>{{ $py->total}}</td>
                             <td>
-                                <a href="/py/edit/{{ $py->id }}" class="btn btn-primary">
+                                <a href="/payment/edit/{{ $py->id }}" class="btn btn-primary">
                                     <i class="fas fa-edit"></i> Update
                                 </a>
-                                <a href="/ap/show/{{ $ap->id }}" class="btn btn-success">
+                                <a href="/payment/show/{{ $py->id }}" class="btn btn-success">
                                     <i class="fas fa-eye"></i> View
                                 </a>
                                
-                                <a href="/py/disable/{{ $py->id }}" class="btn btn-danger">
+                                <a href="/payment/disable/{{ $py->id }}" class="btn btn-danger">
                                     <i class="fas fa-ban"></i> Void
                                 </a>
                             </td> 
                         </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>   
             </div>

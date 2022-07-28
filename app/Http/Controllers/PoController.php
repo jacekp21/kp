@@ -52,8 +52,9 @@ class PoController extends Controller
     {
         // Storing Purchase Order
         $post = $request->input();
+        
         $id = $post['id'];
-
+        return $post;
         // User Input Validation
         $validatedInput = $request->validate([
             'po_date'       => 'required',

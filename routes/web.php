@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PoController;
 use App\Http\Controllers\ApController;
 use App\Http\Controllers\PyController;
+use App\Http\Controllers\PayController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\LoginController;
@@ -75,12 +76,12 @@ Route::middleware(['auth'])->group(function () {
 
 
     //Payment
-    Route::get('/payment', [PyController::class, 'index']);    
-    Route::get('/payment/new', [PyController::class, 'create']);
-    Route::post('/payment/store', [PyController::class, 'store']); // Store Payment Information
-    Route::get('/payment/edit/{id}', [PyController::class, 'edit']);
-    Route::get('/payment/void/{id}', [PyController::class, 'void']);
-    Route::get('/payment/show/{id}', [PyController::class, 'show']);
+    Route::get('/payment', [PayController::class, 'index']);    
+    Route::get('/payment/new', [PayController::class, 'create']);
+    Route::post('/payment/store', [PayController::class, 'store']); // Store Payment Information
+    Route::get('/payment/edit/{id}', [PayController::class, 'edit']);
+    Route::get('/payment/void/{id}', [PayController::class, 'void']);
+    Route::get('/payment/show/{id}', [PayController::class, 'show']);
 });
 
 

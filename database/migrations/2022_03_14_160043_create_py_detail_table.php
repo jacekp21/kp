@@ -15,7 +15,6 @@ class CreatePyDetailTable extends Migration
     {
         Schema::create('py_detail', function (Blueprint $table) {
             $table->id();
-            $table->string('py_id');
             $table->string('payment_id');
             $table->string('description');
             $table->string('qty');

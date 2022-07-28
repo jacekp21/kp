@@ -28,7 +28,7 @@
             border-bottom-width: 0px;
         }
     </style>
-    <title>New PO Page</title>
+    <title>View Payment</title>
 </head>
 <body>
     @include('layouts.header')
