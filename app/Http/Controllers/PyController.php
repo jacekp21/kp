@@ -139,7 +139,7 @@ class PyController extends Controller
     }
 
     /**
-     * Void the specified AP from database.
+     * Void the specified PY from database.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
