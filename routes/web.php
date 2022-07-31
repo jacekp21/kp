@@ -8,6 +8,7 @@ use App\Http\Controllers\PoController;
 use App\Http\Controllers\ApController;
 use App\Http\Controllers\PyController;
 use App\Http\Controllers\PayController;
+use App\Http\Controllers\TesController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\LoginController;
@@ -83,7 +84,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/void/{id}', [PayController::class, 'void']);
     Route::get('/payment/show/{id}', [PayController::class, 'show']);
 });
+    //Test
+    //Route::get('/setting/vendor', [TesController::class, 'tampilvendor']);
 
+    //Tes
+    Route::get('/tests', [TesController::class, 'index']);
 
 // Route::resource('setting/vendor/new', [VendorController::class, 'create']);
 // Route::get('setting/vendor/new', function () {
@@ -113,6 +118,7 @@ Route::get('/report', function () {
 Route::get('/setting', function () {
     return view('setting/index');
 });
+
 
 // Route::get('setting/wh', function () {
 //     return view('setting/wh/index');
