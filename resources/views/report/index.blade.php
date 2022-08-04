@@ -53,6 +53,7 @@
                     <input class="form-control" list="reportOptions" id="report" placeholder="">
                     <datalist id="reportOptions">
                         <option value="Laporan Hutang">
+                        <option value="Laporan Payment">
                     </datalist>
             </div>
             <div class="form-check">
@@ -87,8 +88,8 @@
                         </datalist>       
             </div>
         <div>
-            <button type="print" class="btn btn-primary">Print</button>
-            <button type="view" class="btn btn-primary">View</button>
+        <a href="/report/apr" class="btn btn-success">
+            <i class="fas fa-eye"></i> View</a>
         </div>
 
 </body>

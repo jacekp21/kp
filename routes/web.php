@@ -9,6 +9,7 @@ use App\Http\Controllers\ApController;
 use App\Http\Controllers\PyController;
 use App\Http\Controllers\PayController;
 use App\Http\Controllers\TesController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\LoginController;
@@ -88,7 +89,11 @@ Route::middleware(['auth'])->group(function () {
     //Route::get('/setting/vendor', [TesController::class, 'tampilvendor']);
 
     //Tes
-    Route::get('/tests', [TesController::class, 'index']);
+    //Route::get('/tests', [TesController::class, 'index']);
+
+    //Report
+    Route::get('/report/apr',[ReportController::class, 'index']);
+    
 
 // Route::resource('setting/vendor/new', [VendorController::class, 'create']);
 // Route::get('setting/vendor/new', function () {
