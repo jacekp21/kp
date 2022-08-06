@@ -66,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/po/edit/{id}', [PoController::class, 'edit']);
     Route::get('/po/void/{id}', [PoController::class, 'void']);
     Route::get('/po/show/{id}', [PoController::class, 'show']);
+    Route::get('/po/print/{id}', [PoController::class, 'print']);
 
     // Account Payable
     Route::get('/ap', [ApController::class, 'index']);    
@@ -84,11 +85,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/void/{id}', [PayController::class, 'void']);
     Route::get('/payment/show/{id}', [PayController::class, 'show']);
 });
-    //Test
-    //Route::get('/setting/vendor', [TesController::class, 'tampilvendor']);
-
-    //Tes
-    Route::get('/tests', [TesController::class, 'index']);
 
 // Route::resource('setting/vendor/new', [VendorController::class, 'create']);
 // Route::get('setting/vendor/new', function () {
