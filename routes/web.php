@@ -64,6 +64,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/po/show/{id}', [PoController::class, 'show']);
     Route::get('/po/print/{id}', [PoController::class, 'print']);
 });
+    //Test
+    //Route::get('/setting/vendor', [TesController::class, 'tampilvendor']);
+
+    //Tes
+    //Route::get('/tests', [TesController::class, 'index']);
+
+    //Report
+    Route::get('/report/apr',[ReportController::class, 'index']);
+    Route::get('/report/apr_print',[ReportController::class, 'cetak_pdf']);
+    
 
 // Route::resource('setting/vendor/new', [VendorController::class, 'create']);
 // Route::get('setting/vendor/new', function () {
