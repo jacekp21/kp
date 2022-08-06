@@ -21,7 +21,7 @@ class PoController extends Controller
     {
         // Get all PO
         $pos = Po::with('vendor')->with('warehouse')->get();
-
+        //return $pos;
         return view('po.index')->with('pos', $pos);
     }
 
