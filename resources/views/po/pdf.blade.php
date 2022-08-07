@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>PO {{ $po->po_no }}</title>
+    <title>PO || {{ $po->po_no }}</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
-        /* .nav-link:hover {
-            background-color: grey;
+        .nav-link:hover {
+            background-color: white;
         }
         .display-6{
             font-weight: bold;
@@ -22,13 +22,13 @@
         }
         .table>:not(caption)>*>* {
             border-bottom-width: 0px;
-        } */
+        }
     </style>
 </head>
 <body>
     <div class="row no-gutters mt-5">    
         <div class="col-md-10 p-5 mt-2">
-            <h1><i class="fas fa-file-invoice-dollar m-2"></i>{{ $po->po_no ?? '' }}</h1><hr>
+            <h1>{{ $po->po_no ?? '' }}</h1><hr>
             <div class="container mt-5">
                 <div class="row">
                     <div class="row">
@@ -57,7 +57,7 @@
                     </div>
                     <strong><i>Please Supply The Following Items </i></strong>
                     <div>
-                        <table class="table table-striped table-po-detail" style="border-bottom-style: none;">
+                    <table class="table table-striped table-po-detail" style="border-bottom-style: none;">
                             <thead >
                                 <tr>
                                     <th class="h6" width="5%">No.</th>

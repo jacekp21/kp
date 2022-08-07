@@ -76,6 +76,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ap/edit/{id}', [ApController::class, 'edit']);
     Route::get('/ap/void/{id}', [ApController::class, 'void']);
     Route::get('/ap/show/{id}', [ApController::class, 'show']);
+    Route::get('ap/print/{id}', [ApController::class, 'print']);
 
 
     //Payment

@@ -8,6 +8,7 @@ use App\Models\Warehouse;
 use App\Models\Ap;
 use App\Models\Ap_detail;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ApController extends Controller
 {
@@ -170,5 +171,18 @@ class ApController extends Controller
     public function void($id)
     {
         //
+    }
+ /**
+     * Print the specified AP from database.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function print($id)
+    {
+        $data['ap'] = ap::with('ap_detail')->with('vendor')->with('warehouse')->findOrFail($id);
+        $data['no'] = 0;
+        $pdf = Pdf::loadView('ap.pdf', $data);
+        return $pdf->stream('ap-'.$data['ap']['ap_no'].'pdf');
     }
 }

@@ -28,7 +28,6 @@
             border-bottom-width: 0px;
         }
     </style>
-    <title>View Payment</title>
 </head>
 <body>
     @include('layouts.header')

@@ -1,13 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<title>Account Payable|| {{ $ap->ap_no }}</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
         .nav-link:hover {
             background-color: grey;
@@ -25,14 +21,10 @@
             font-size: 90px;
         }
     </style>
-    <title>New AP Page</title>
 </head>
 <body>
-    @include('layouts.header')
-    <div class="row no-gutters mt-5">
-        @include('layouts.sidebar')
         <div class="col-md-10 p-5 mt-2">
-            <h1><i class="fas fa-file-invoice-dollar m-2"></i>View Account Payable</h1><hr>
+        <h1>{{ $ap->ap_no ?? '' }}</h1><hr>
             <div class="container mt-5">
                 <div class="row">
                     @csrf
@@ -139,18 +131,9 @@
                         </table>
                     </div>
                 </div>
-                </div>
-                    <a href="/ap" class="btn btn-success">
-                        <i class="fas fa-arrow-left"></i> Back
-                    </a>
-                    <a href="/ap/print/{{ $ap->id }}" class="btn btn-primary">
-                        <i class="fas fa-print"></i> Print
-                    </a>
-                </div>
             </div>
         </div>
     </div>
 </body>
-<!-- Font Awesome Link -->
-<script src="https://kit.fontawesome.com/cc8db81d9c.js" crossorigin="anonymous"></script>
+
 </html>
