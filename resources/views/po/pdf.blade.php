@@ -3,26 +3,39 @@
 <head>
     <title>PO {{ $po->po_no }}</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
-        /* .nav-link:hover {
-            background-color: grey;
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            vertical-align: top;
+            border-color: #dee2e6;
         }
-        .display-6{
-            font-weight: bold;
-            margin-left: 5px;
+        .table > tbody {
+            vertical-align: inherit;
         }
-        .card-body-icon{
-            position: absolute;
-            z-index: 0;
-            top: 25px;
-            right: 4px;
-            opacity: 0.4;
-            font-size: 90px;
+        .table > thead {
+            vertical-align: bottom;
         }
-        .table>:not(caption)>*>* {
-            border-bottom-width: 0px;
-        } */
+        .table > :not(:first-child) {
+            border-top: 2px solid currentColor;
+        }
+        .table-striped > tbody > tr:nth-of-type(odd) > * {
+            --bs-table-accent-bg: var(--bs-table-striped-bg);
+            color: var(--bs-table-striped-color);
+            border: 1px solid;
+        }
+        .table-primary {
+            --bs-table-bg: #cfe2ff;
+            --bs-table-striped-bg: #c5d7f2;
+            --bs-table-striped-color: #000;
+            --bs-table-active-bg: #bacbe6;
+            --bs-table-active-color: #000;
+            --bs-table-hover-bg: #bfd1ec;
+            --bs-table-hover-color: #000;
+            color: #000;
+            border-color: #bacbe6;
+        }
     </style>
 </head>
 <body>
@@ -57,7 +70,7 @@
                     </div>
                     <strong><i>Please Supply The Following Items </i></strong>
                     <div>
-                        <table class="table table-striped table-po-detail" style="border-bottom-style: none;">
+                        <table class="table table-striped" style="border-bottom-style: none;">
                             <thead >
                                 <tr>
                                     <th class="h6" width="5%">No.</th>
