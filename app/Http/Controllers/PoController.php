@@ -54,7 +54,7 @@ class PoController extends Controller
         $post = $request->input();
         
         $id = $post['id'];
-        return $post;
+        // return $post;
         // User Input Validation
         $validatedInput = $request->validate([
             'po_date'       => 'required',

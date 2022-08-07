@@ -67,6 +67,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/po/edit/{id}', [PoController::class, 'edit']);
     Route::get('/po/void/{id}', [PoController::class, 'void']);
     Route::get('/po/show/{id}', [PoController::class, 'show']);
+    Route::get('/po/print/{id}', [PoController::class, 'print']);
 
     // Account Payable
     Route::get('/ap', [ApController::class, 'index']);    
