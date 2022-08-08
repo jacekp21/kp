@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Models\Vendor;
 use App\Models\Warehouse;
-use PDF;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 

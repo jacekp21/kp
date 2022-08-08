@@ -3,47 +3,23 @@
 <head>
     <title>PO || {{ $po->po_no }}</title>
     <style>
-        .table {
-            width: 100%;
-            margin-bottom: 1rem;
-            color: #212529;
-            vertical-align: top;
-            border-color: #dee2e6;
+        .table{
+        font-family: sans-serif;
+        color: #232323;
+        border-collapse: collapse;
         }
-        .table > tbody {
-            vertical-align: inherit;
-        }
-        .table > thead {
-            vertical-align: bottom;
-            border-top:1px solid black;
-            border-bottom: 1px solid black;
-        }
-        .table > :not(:first-child) {
-            border-top: 2px solid currentColor;
-        }
-        .table-striped > tbody > tr:nth-of-type(odd) > * {
-            --bs-table-accent-bg: var(--bs-table-striped-bg);
-            color: var(--bs-table-striped-color);
-        }
-        .table-primary {
-            --bs-table-bg: #cfe2ff;
-            --bs-table-striped-bg: #c5d7f2;
-            --bs-table-striped-color: #000;
-            --bs-table-active-bg: #bacbe6;
-            --bs-table-active-color: #000;
-            --bs-table-hover-bg: #bfd1ec;
-            --bs-table-hover-color: #000;
-            color: #000;
-            border-color: #bacbe6;
+        .table, th, td {
+        border: 1px solid #000;
+        padding: 8px 20px;
         }
     </style>
 </head>
 <body>
     <div class="row no-gutters mt-5">    
         <div class="col-md-10 p-5 mt-2">
-        <hr><h1 style="color:blue;">PURCHASE ORDER</h1>
-            <p style="color:red;">PT BANGUN PRIMA ABADI</p>
-            <hr>
+        <hr>
+        <h1 style="color:blue;">PURCHASE ORDER</h1>
+        <hr>
             <br>
             <div class="container mt-5">
                 <div class="row">
@@ -52,7 +28,7 @@
                             <label for="date" class="form-label">Po Date : </label>
                             <label>{{ $po->po_date }}</label>
                         </div>
-                        <br>
+                        <br> 
                         <div class="col-php amd-3 mb-3">
                             <label for="exampleDataList" class="form-label">Po Number : </label>
                             <label>{{ $po->po_no }}</label>
@@ -80,7 +56,7 @@
                     <strong><p><i>Please Supply The Following Items</i></p></strong>
 
                     <div>
-                        <table class="table table-striped" style="border-bottom-style: none;">
+                        <table border="1" align="center">
                             <thead >
                                 <tr>
                                     <th class="h6" width="5%">No.</th>
@@ -92,7 +68,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                             @if (isset($po))
                                 @if ($po->po_detail)
                                     @foreach ($po->po_detail as $key => $detail)
@@ -123,7 +98,6 @@
                                     <td colspan="6" class="text-center">No Data</td>
                                 </tr>
                             @endif
-                                
                             </tbody>
                             <br>
                             <tfoot>
@@ -147,17 +121,24 @@
                                         {{ $po->tax }}
                                     </td>
                                 </tr>
+                                
                                 <tr>
                                     <td class="text-right h6" colspan="3" align="right">Total</td>
                                     <td id="lbl-total" class="h6" align="right">Rp. {{ isset($po->sub_total) ? $po->sub_total - $po->discount + $po->tax : 0 }}</td>
                                 </tr>
                             </tfoot>
                         </table>
+                        <p align="right">Date-Time : <?php echo date('d/m/Y, H:i'); ?></p>
+                        <p align="right">Prepared By, </p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <p align="right">____________________</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-    
 </html>
