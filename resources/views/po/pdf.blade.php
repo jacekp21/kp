@@ -2,11 +2,6 @@
 <html lang="en">
 <head>
     <title>PO || {{ $po->po_no }}</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <style>
-        .nav-link:hover {
-            background-color: white;
     <style>
         .table {
             width: 100%;
@@ -41,15 +36,11 @@
             color: #000;
             border-color: #bacbe6;
         }
-        .table>:not(caption)>*>* {
-            border-bottom-width: 0px;
-        }
     </style>
 </head>
 <body>
     <div class="row no-gutters mt-5">    
         <div class="col-md-10 p-5 mt-2">
-            <h1>{{ $po->po_no ?? '' }}</h1><hr>
         <hr><h1 style="color:blue;">PURCHASE ORDER</h1>
             <p style="color:red;">PT BANGUN PRIMA ABADI</p>
             <hr>
@@ -89,7 +80,6 @@
                     <strong><p><i>Please Supply The Following Items</i></p></strong>
 
                     <div>
-                    <table class="table table-striped table-po-detail" style="border-bottom-style: none;">
                         <table class="table table-striped" style="border-bottom-style: none;">
                             <thead >
                                 <tr>
