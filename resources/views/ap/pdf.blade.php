@@ -2,29 +2,23 @@
 <html lang="en">
 <head>
 <title>Account Payable|| {{ $ap->ap_no }}</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
-        .nav-link:hover {
-            background-color: grey;
+        .table{
+        font-family: sans-serif;
+        color: #232323;
+        border-collapse: collapse;
         }
-        .display-6{
-            font-weight: bold;
-            margin-left: 5px;
-        }
-        .card-body-icon{
-            position: absolute;
-            z-index: 0;
-            top: 25px;
-            right: 4px;
-            opacity: 0.4;
-            font-size: 90px;
+        .table, th, td {
+        border: 1px solid #000;
+        padding: 8px 20px;
         }
     </style>
 </head>
 <body>
         <div class="col-md-10 p-5 mt-2">
-        <h1>{{ $ap->ap_no ?? '' }}</h1><hr>
+        <h1>ACCOUNT PAYABLE</h1>
+        <p style="color:red;">{{ $ap->vendor->name ?? '' }}</p>
+        <hr>
             <div class="container mt-5">
                 <div class="row">
                     @csrf
@@ -33,33 +27,40 @@
                             <label for="exampleDataList" class="form-label">Number : </label>
                             <label for="">{{ $ap->ap_no }}</label>
                     </div>
+                    <br>
                     <div class="col-md-3 mb-3">
                         <label for="date" class="form-label">Date : </label>
                         <label for="">{{ $ap->inv_date }}</label>
                     </div>
+                    <br>
                     <div class="col-md-3 mb-3">
                             <label for="exampleDataList" class="form-label">PO Number : </label>
                             <label for="">{{ $ap->po_no }}</label>
                     </div>
+                    <br>
                     <div class="col-md-3 mb-3">
                         <label for="vendor" class="form-label">Vendor : </label>
                         <label>{{ $ap->vendor->name }}</label>
                     </div>
+                    <br>
                     <!-- keterangan-->
                     <div class="col-md-3 mb-3">
                         <label for="currency" class="form-label">Currency : </label>
                         <label>{{ $ap->currency }}</label>    
                     </div>
+                    <br>
                     <div class="col-md-3 mb-3">
                         <label for="term" class="form-label">Term : </label>
                         <label>{{ $ap->term }}</label>    
                     </div>
+                    <br>
                     <div class="col-md-3 mb-3">
                         <label for="warehouses" class="form-label">Warehouse : </label>
                         <label for="">{{ $ap->warehouse->name }}</label> 
                     </div>
+                    <br>
                     <div>
-                        <table class="table table-striped table-ap-detail">
+                        <table border="1" align="center" width="100%";>
                             <thead>
                                 <tr>
                                     <th class="h6" width="5%">No.</th>
@@ -67,7 +68,7 @@
                                     <th class="h6" width="10%">Qty</th>
                                     <th class="h6" width="10%">Unit</th>
                                     <th class="h6" width="15%">Unit Price</th>
-                                    <th class="h6" width="13%">Amount</th>  
+                                    <th class="h6" width="35%">Amount</th>  
                                 </tr>
                             </thead>
                             <tbody>
@@ -129,6 +130,14 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        <br>
+                        <p align="right">Date-Time : <?php echo date('d/m/Y, H:i'); ?></p>
+                        <p align="right">Prepared By, </p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <p align="right">____________________</p>
                     </div>
                 </div>
             </div>
