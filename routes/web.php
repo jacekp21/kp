@@ -95,6 +95,7 @@ Route::middleware(['auth'])->group(function () {
 
     //Report
     Route::get('/report/apr',[ReportController::class, 'index']);
+    Route::get('/report/apr_print',[ReportController::class, 'cetak_pdf']);
     
 
 // Route::resource('setting/vendor/new', [VendorController::class, 'create']);

@@ -150,7 +150,7 @@
                                     <tfoot>
                                         <tr>
                                             <td class="h6" colspan="6" align="right">Sub Total</td>
-                                            <td id="lbl-sub_total" class="text-right h6" align="right">Rp {{ old('sub_total', $pos->sub_total ?? '0') }}</td>
+                                            <td id="lbl-sub_total" class="text-right h6" align="right">Rp. {{ old('sub_total', $pos->sub_total ?? '0') }}</td>
                                             <input type="hidden" id="sub_total" name="sub_total" value="{{ old('sub_total', $pos->sub_total ?? 0) }}">
                                         </tr>
                                         <tr>

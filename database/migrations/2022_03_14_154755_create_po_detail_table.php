@@ -18,7 +18,7 @@ class CreatePoDetailTable extends Migration
             $table->string('po_id');
             $table->string('description');
             $table->string('qty');
-            $table->string('unit');
+            $table->string('unit');                              
             $table->float('unit_price');
             $table->timestamps();
         });

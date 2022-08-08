@@ -21,7 +21,7 @@ class PoController extends Controller
     {
         // Get all PO
         $pos = Po::with('vendor')->with('warehouse')->get();
-
+        //return $pos;
         return view('po.index')->with('pos', $pos);
     }
 
@@ -54,6 +54,7 @@ class PoController extends Controller
         $post = $request->input();
         
         $id = $post['id'];
+        //return $post;
         // return $post;
         // User Input Validation
         $validatedInput = $request->validate([

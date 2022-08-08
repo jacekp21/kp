@@ -7,18 +7,39 @@
     <style>
         .nav-link:hover {
             background-color: white;
+    <style>
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            vertical-align: top;
+            border-color: #dee2e6;
         }
-        .display-6{
-            font-weight: bold;
-            margin-left: 5px;
+        .table > tbody {
+            vertical-align: inherit;
         }
-        .card-body-icon{
-            position: absolute;
-            z-index: 0;
-            top: 25px;
-            right: 4px;
-            opacity: 0.4;
-            font-size: 90px;
+        .table > thead {
+            vertical-align: bottom;
+            border-top:1px solid black;
+            border-bottom: 1px solid black;
+        }
+        .table > :not(:first-child) {
+            border-top: 2px solid currentColor;
+        }
+        .table-striped > tbody > tr:nth-of-type(odd) > * {
+            --bs-table-accent-bg: var(--bs-table-striped-bg);
+            color: var(--bs-table-striped-color);
+        }
+        .table-primary {
+            --bs-table-bg: #cfe2ff;
+            --bs-table-striped-bg: #c5d7f2;
+            --bs-table-striped-color: #000;
+            --bs-table-active-bg: #bacbe6;
+            --bs-table-active-color: #000;
+            --bs-table-hover-bg: #bfd1ec;
+            --bs-table-hover-color: #000;
+            color: #000;
+            border-color: #bacbe6;
         }
         .table>:not(caption)>*>* {
             border-bottom-width: 0px;
@@ -29,6 +50,10 @@
     <div class="row no-gutters mt-5">    
         <div class="col-md-10 p-5 mt-2">
             <h1>{{ $po->po_no ?? '' }}</h1><hr>
+        <hr><h1 style="color:blue;">PURCHASE ORDER</h1>
+            <p style="color:red;">PT BANGUN PRIMA ABADI</p>
+            <hr>
+            <br>
             <div class="container mt-5">
                 <div class="row">
                     <div class="row">
@@ -36,28 +61,36 @@
                             <label for="date" class="form-label">Po Date : </label>
                             <label>{{ $po->po_date }}</label>
                         </div>
+                        <br>
                         <div class="col-php amd-3 mb-3">
                             <label for="exampleDataList" class="form-label">Po Number : </label>
                             <label>{{ $po->po_no }}</label>
                         </div>
+                        <br>
                     </div>
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label for="vendor" class="form-label">Vendor : </label>
                             <label>{{ $po->vendor->name }}</label>
                         </div>
+                        <br>
                         <div class="col-md-3 mb-3">
                             <label for="warehouses" class="form-label">Warehouse : </label>
                             <label>{{ $po->warehouse->name }}</label>
                         </div>
+                        <br>
                         <div class="col-md-3 mb-3">
                             <label for="currency" class="form-label">Currency : </label>
                             <label>{{ $po->currency }}</label>
                         </div>
+                        <br>
                     </div>
-                    <strong><i>Please Supply The Following Items </i></strong>
+
+                    <strong><p><i>Please Supply The Following Items</i></p></strong>
+
                     <div>
                     <table class="table table-striped table-po-detail" style="border-bottom-style: none;">
+                        <table class="table table-striped" style="border-bottom-style: none;">
                             <thead >
                                 <tr>
                                     <th class="h6" width="5%">No.</th>
@@ -102,11 +135,12 @@
                             @endif
                                 
                             </tbody>
+                            <br>
                             <tfoot>
                                 <tr>
                                     <td rowspan="4" colspan="2">
-                                        <label for="remark" class="form-label">Remark : </label>
-                                        <label>{{ $po->remark }}</label>
+                                    <strong><label for="remark" class="form-label">Remark : </label>
+                                        <label>{{ $po->remark }}</label></strong>
                                     </td>
                                     <td class="h6" colspan="3" align="right">Sub Total</td>
                                     <td id="lbl-sub_total" class="text-right h6" align="right">Rp {{ old('sub_total', $po->sub_total ?? '0') }}</td>
