@@ -86,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/edit/{id}', [PayController::class, 'edit']);
     Route::get('/payment/void/{id}', [PayController::class, 'void']);
     Route::get('/payment/show/{id}', [PayController::class, 'show']);
+    Route::get('/payment/print/{id}', [PayController::class, 'print']);
 });
     //Test
     //Route::get('/setting/vendor', [TesController::class, 'tampilvendor']);

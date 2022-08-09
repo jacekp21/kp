@@ -7,6 +7,7 @@ use App\Models\Vendor;
 use App\Models\Warehouse;
 use App\Models\payment;
 use App\Models\payment_detail;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PayController extends Controller
 {
@@ -144,6 +145,16 @@ class PayController extends Controller
     public function void($id)
     {
         //
+    }
+    public function print($id)
+    {
+        $data['py'] = payment::with('payment_detail')->with('vendor')->with('warehouse')->findOrFail($id);
+        $data['no'] = 0;
+        $pdf = Pdf::loadView('payment.pdf', $data);
+
+        // dd($pdf);
+    
+        return $pdf->stream('py-'.$data['py']['pay_no'].'pdf');
     }
 }
 
