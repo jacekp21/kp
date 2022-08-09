@@ -17,11 +17,19 @@ class ReportController extends Controller
     return view('/report/apr',['aprs'=>$aprs]);
   }
 
+  public function indexpy()
+  {
+    $pyrs = Report::all();
+    return view('/report/pyr',['pyrs'=>$pyrs]);
+  }
+
+
   public function cetak_pdf()
   {
-    $aprs = Report::all();
-
-    $pdf = PDF::loadview('apreport_pdf',['aprs'=>$aprs]);
-    return $pdf->download('laporan-ap-pdf');
+      $data['Report'] = Report::with('Report')->with('vendor')->with('warehouse')->findOrFail($id);
+      $data['no'] = 0;
+      $pdf = Pdf::loadView('report.pdf', $data);
+  
+      return $pdf->stream('report-'.$data['report'].'pdf');
   }
 }

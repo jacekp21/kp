@@ -15,8 +15,13 @@
         <li class="nav-item">
             <a class="nav-link text-white" href={{ url("payment") }}><i class="fas fa-cash-register mr-2"></i> Payment</a><hr class="bg-secondary">
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href={{ url("report") }}><i class="fas fa-file-invoice mr-2"></i> Report</a><hr class="bg-secondary">
+        <li class="nav-item has-submenu">
+            <a class="nav-link text-white" href={{ url("report") }}><i class="fas fa-file-invoice mr-2"></i> Report</a>
+            <ul class="submenu collapse">
+                <li><a class="nav-link text-white" href={{ url('report/apr') }}>AP Report</a></li>
+                <li><a class="nav-link text-white" href="http://localhost:8000/report/pyr">Payment Report</a></li>
+            </ul>
+            <hr class="bg-secondary">
         </li>
         <li class="nav-item has-submenu">
             <a class="nav-link text-white" href={{ url("setting") }}> 
