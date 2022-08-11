@@ -96,10 +96,8 @@ Route::middleware(['auth'])->group(function () {
 
     //Report
     Route::get('/report/apr',[ReportController::class, 'index']);
-    Route::get('/report/pyr',[ReportController::class, 'indexpy']);
-    //Route::get('/report/apr_print',[ReportController::class, 'cetak_pdf']);
+    Route::get('/report/apr_pdf',[ReportController::class, 'print']);
     
-
 // Route::resource('setting/vendor/new', [VendorController::class, 'create']);
 // Route::get('setting/vendor/new', function () {
 //     return view('setting/vendor/new');
@@ -121,9 +119,9 @@ Route::middleware(['auth'])->group(function () {
     //return view('payment/new');
 //});
 
-Route::get('/report', function () {
-    return view('report/index');
-});
+//Route::get('/report/apr_print', function () {
+    //return view('report/apr_pdf');
+//});
 
 Route::get('/setting', function () {
     return view('setting/index');

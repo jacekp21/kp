@@ -32,7 +32,7 @@
                             <input type="date" class="form-control" name="start_date">
                             <label for="date" class="form-label col-md-1" style="text-align:center">End Date</label>
                             <input type="date" class="form-control" name="end_date">
-                             <a href="/report/apr_print" class="btn btn-primary col-md-1" type="submit">Get</a>
+                             <a href="/report/apr_pdf" class="btn btn-primary col-md-1" type="submit">Get</a>
                     </div>
                 </form>
             </div>

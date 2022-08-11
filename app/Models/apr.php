@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Report extends Model
+class Apr extends Model
 {
-    protected $table = 'report';
+    protected $table = 'apr';
 
     protected $fillable = [
         'vendor_id',
@@ -18,3 +18,4 @@ class Report extends Model
         'saldo_akhir'
     ];
 }
+

@@ -2,26 +2,23 @@
 <html lang="en">
 <head>
     <title>Account Payable Report</title>
-    <link rel="stylesheet" type="text/css" herf="style.css">
     <style>
         .table{
         font-family: sans-serif;
         color: #232323;
-        /*border-collapse: collapse;*/
+        border-collapse: collapse;
         }
         .table, th, td {
-        /*border: 1px solid #000;*/
-        padding: 8px 20px;
+        font-size: 14px;
+        padding: 0px 30px;
         }
     </style>
 </head>
 <body>
     <div class="row no-gutters mt-5">    
         <div class="col-md-10 p-5 mt-2">
-        <hr>
         <h1 align="center">PT BANGUN PRIMA ABADI</h1>
         <h2 align="center" style="color:blue;">Account Payable Report</h2>
-        <!--Periode-->
         <hr>
             <br>
             <table align="center" color="grey">
@@ -37,9 +34,9 @@
                 </thead>
                 <tbody>
                     @if (isset($rp))
-                        @if ($rp->Report)
-                            @foreach ($rp->Report as $key => $detail)
-                                <tr class="py-detail-row">
+                        @if ($rp->Apr)
+                            @foreach ($rp->Apr as $key => $detail)
+                                <tr class="apr-detail-row">
                                 <td>
                                     {{ $detail->vendor_id }}
                                 </td>
@@ -67,7 +64,7 @@
                                 </tr>
                         @endif
                 </tbody>
-                        </table>
+            </table>
                         <p align="right">Date-Time : <?php echo date('d/m/Y, H:i'); ?></p>
                         <p align="right">Prepared By, </p>
                         <br>

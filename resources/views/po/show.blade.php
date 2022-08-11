@@ -75,7 +75,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                             @if (isset($po))
                                 @if ($po->po_detail)
                                     @foreach ($po->po_detail as $key => $detail)
