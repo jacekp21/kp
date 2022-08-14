@@ -63,6 +63,7 @@
                             <th scope="col">Vendor</th>
                             <th scope="col">Currency</th>
                             <th scope="col">Amount</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -75,16 +76,23 @@
                             <td>{{ $po->vendor->name }}</td>
                             <td>{{ $po->currency }}</td>
                             <td>{{ $po->total }}</td>
+                            <td>{{ ucfirst($po->status) }}</td>
                             <td>
-                                <a href="/po/edit/{{ $po->id }}" class="btn btn-primary">
-                                    <i class="fas fa-edit"></i> Update
-                                </a>
-                                <a href="/po/show/{{ $po->id }}" class="btn btn-success">
-                                    <i class="fas fa-eye"></i> View
-                                </a>
-                                <a href="/po/disable/{{ $po->id }}" class="btn btn-danger">
-                                    <i class="fas fa-ban"></i> Void
-                                </a>
+                                @if ($po->status == 'active')
+                                    <a href="/po/edit/{{ $po->id }}" class="btn btn-primary">
+                                        <i class="fas fa-edit"></i> Update
+                                    </a>
+                                    <a href="/po/show/{{ $po->id }}" class="btn btn-success">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
+                                    <a href="/po/void/{{ $po->id }}" class="btn btn-danger" onclick ="if (!confirm('Anda Yakin? Aksi ini tidak dapat dikembalikan lagi!')) return false;">
+                                        <i class="fas fa-ban"></i> Void
+                                    </a>
+                                @else
+                                    <a href="/po/show/{{ $po->id }}" class="btn btn-success">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
+                                @endif
                             </td> 
                         </tr>
                         @endforeach

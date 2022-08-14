@@ -35,7 +35,7 @@
     <div class="row no-gutters mt-5">
         @include('layouts.sidebar')
         <div class="col-md-10 p-5 mt-2">
-            <h1><i class="fas fa-file-invoice-dollar m-2"></i>{{ $po->po_no ?? '' }}</h1><hr>
+            <h1 {{ ($po->status == 'void') ? "class=text-danger" : "" }}><i class="fas fa-file-invoice-dollar m-2"></i>{{ $po->po_no ?? '' }} {{ ($po->status == 'void') ? "(Cancelled)" : '' }}</h1><hr>
             <div class="container mt-5">
                 <div class="row">
                     <div class="row">
