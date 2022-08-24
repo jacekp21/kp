@@ -36,7 +36,7 @@
                     @if (isset($rp))
                         @if ($rp->Apr)
                             @foreach ($rp->Apr as $key => $detail)
-                                <tr class="apr-detail-row">
+                                <tr class="apr-row">
                                 <td>
                                     {{ $detail->vendor_id }}
                                 </td>
