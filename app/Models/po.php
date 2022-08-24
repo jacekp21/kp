@@ -29,7 +29,8 @@ class Po extends Model
         'sub_total',
         'discount',
         'tax',
-        'total'
+        'total',
+        'status'
     ];
 
     public function po_detail()
@@ -40,47 +41,6 @@ class Po extends Model
     public static function boot()
     {
         parent::boot();
-
-        // self::creating(function($model){
-        //     // ... code here
-        // });
-
-        // self::created(function($po){
-        //     // ... code here
-
-        //     return $po;
-        //     exit;
-        // });
-
-        // self::saving(function($po){
-        //     // ... code here
-
-        //     return $po;
-        //     exit;
-        // });
-
-        // self::saved(function($po){
-        //     // ... code here
-
-        //     return $po;
-        //     exit;
-        // });
-
-        // self::updating(function($model){
-        //     // ... code here
-        // });
-
-        // self::updated(function($model){
-        //     // ... code here
-        // });
-
-        // self::deleting(function($model){
-        //     // ... code here
-        // });
-
-        // self::deleted(function($model){
-        //     // ... code here
-        // });
     }
 
     /**

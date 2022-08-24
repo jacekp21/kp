@@ -104,6 +104,7 @@ class PoController extends Controller
             }
         } else {
             // New PO
+            $post['status'] = "active";
             $po = Po::create($post);
             
             foreach ($pod as $key => $item) {
@@ -169,7 +170,12 @@ class PoController extends Controller
      */
     public function void($id)
     {
-        //
+        // Void Purchase Order
+        $po = po::find($id);
+        $po->status = 'void';
+        $po->save();
+
+        return redirect('/po')->with('success','PO telah di VOID');
     }
 
     /**
@@ -182,22 +188,8 @@ class PoController extends Controller
     {
         $data['po'] = po::with('po_detail')->with('vendor')->with('warehouse')->findOrFail($id);
         $data['no'] = 0;
-        // $po = [ 'po' => 
-        //     [
-        //         'po_no' => 'PO-001',
-        //         'po_date' => '2022',
-        //     ]
-        // ];
-        // $pdf = Pdf::loadView('po.show', $po);
-        // return $pdf->download('po.pdf');
-
-        // dd($po);
-
-        // return $data;
-          
+        
         $pdf = Pdf::loadView('po.pdf', $data);
-
-        // dd($pdf);
     
         return $pdf->stream('po-'.$data['po']['po_no'].'pdf');
     }
