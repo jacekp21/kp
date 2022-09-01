@@ -141,9 +141,11 @@
                         <a href="/po" class="btn btn-success">
                             <i class="fas fa-arrow-left"></i> Back
                         </a>
-                        <a href="/po/print/{{ $po->id }}" class="btn btn-primary">
-                            <i class="fas fa-print"></i> Print
-                        </a>
+                        @if ($po->status == 'active')
+                            <a href="/po/print/{{ $po->id }}" class="btn btn-primary">
+                                <i class="fas fa-print"></i> Print
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>

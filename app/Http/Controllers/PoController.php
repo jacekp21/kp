@@ -53,7 +53,7 @@ class PoController extends Controller
         // Storing Purchase Order
         $post = $request->input();
         $id = $post['id'];
-        //return $post;
+
         // User Input Validation
         $validatedInput = $request->validate([
             'po_date'       => 'required',
@@ -73,7 +73,7 @@ class PoController extends Controller
 
         $pod = $post['pod'];
         unset($post['pod']);
-
+        
         if (isset($post['deleted_line_ids'])) {
             $deleted = $post['deleted_line_ids'];
             unset($post['deleted_line_ids']);

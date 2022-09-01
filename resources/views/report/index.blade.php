@@ -52,7 +52,8 @@
                     <label for="exampleDataList" class="form-label">Pilih Laporan</label>
                     <input class="form-control" list="reportOptions" id="report" placeholder="">
                     <datalist id="reportOptions">
-                        <option value="Laporan Hutang">
+                        <option value="Payment Report">
+                        <option value="Account Payable Report">
                     </datalist>
             </div>
             <div class="form-check">
@@ -88,7 +89,7 @@
             </div>
         <div>
             <button type="print" class="btn btn-primary">Print</button>
-            <button type="view" class="btn btn-primary">View</button>
+            {{-- <button type="view" class="btn btn-primary">View</button> --}}
         </div>
 
 </body>
