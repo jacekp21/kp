@@ -32,39 +32,39 @@
     <div class="row no-gutters mt-5">
         @include('layouts.sidebar')
         <div class="col-md-10 p-5 mt-2">
-            <h1><i class="fas fa-file-invoice-dollar m-2"></i>View Account Payable</h1><hr>
+            <h1><i class="fas fa-file-invoice-dollar m-2"></i>View Payment</h1><hr>
             <div class="container mt-5">
                 <div class="row">
                     @csrf
                     <div class="row">
                     <div class="col-md-3 mb-3">
                             <label for="exampleDataList" class="form-label">Number : </label>
-                            <label for="">{{ $ap->ap_no }}</label>
+                            <label for="">{{ $py->ap_no }}</label>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="date" class="form-label">Date : </label>
-                        <label for="">{{ $ap->inv_date }}</label>
+                        <label for="">{{ $py->pay_date }}</label>
                     </div>
                     <div class="col-md-3 mb-3">
                             <label for="exampleDataList" class="form-label">PO Number : </label>
-                            <label for="">{{ $ap->po_no }}</label>
+                            <label for="">{{ $py->po_no }}</label>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="vendor" class="form-label">Vendor : </label>
-                        <label>{{ $ap->vendor->name }}</label>
+                        <label>{{ $py->vendor->name }}</label>
                     </div>
                     <!-- keterangan-->
                     <div class="col-md-3 mb-3">
                         <label for="currency" class="form-label">Currency : </label>
-                        <label>{{ $ap->currency }}</label>    
+                        <label>{{ $py->currency }}</label>    
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="term" class="form-label">Term : </label>
-                        <label>{{ $ap->term }}</label>    
+                        <label>{{ $py->term }}</label>    
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="warehouses" class="form-label">Warehouse : </label>
-                        <label for="">{{ $ap->warehouse->name }}</label> 
+                        <label for="">{{ $py->warehouse->name }}</label> 
                     </div>
                     <div>
                         <table class="table table-striped table-ap-detail">
@@ -79,10 +79,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @if (isset($ap))
-                            @if ($ap->ap_detail)
-                                @foreach ($ap->ap_detail as $key => $detail)
-                                <tr class="ap-detail-row">
+                            @if (isset($py))
+                            @if ($py->py_detail)
+                                @foreach ($py->py_detail as $key => $detail)
+                                <tr class="py-detail-row">
                                     <td>
                                         <span class="index-number">{{ $no += 1 }}</span>
                                     </td>
@@ -117,33 +117,33 @@
                             <tfoot class="borderless">
                                 <tr>
                                     <td class="h6 border-0" colspan="5" align="right">Sub Total</td>
-                                    <td id="lbl-sub_total" class="text-right h6 border-0" align="right">Rp {{ old('sub_total', $ap->sub_total ?? '0') }}</td>
+                                    <td id="lbl-sub_total" class="text-right h6 border-0" align="right">Rp {{ old('sub_total', $py->sub_total ?? '0') }}</td>
                                 </tr>
                                 <tr>
                                     <td class="h6 border-0" colspan="5" align="right">Discount</td>
                                     <td align="right" class="border-0">
-                                        Rp. {{ old('sub_total', $ap->discount ?? '0') }}
+                                        Rp. {{ old('sub_total', $py->discount ?? '0') }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="h6 border-0" colspan="5" align="right">Tax</td>
                                     <td align="right" class="border-0">
-                                        Rp. {{ old('sub_total', $ap->tax ?? '0') }}
+                                        Rp. {{ old('sub_total', $py->tax ?? '0') }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="text-right h6 border-0" colspan="5" align="right">Total</td>
-                                    <td id="lbl-total" class="h6 border-0" align="right">Rp. {{ old('sub_total', $ap->total ?? '0') }}</td>
+                                    <td id="lbl-total" class="h6 border-0" align="right">Rp. {{ old('sub_total', $py->total ?? '0') }}</td>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
                 </div>
                 </div>
-                    <a href="/ap" class="btn btn-success">
+                    <a href="/py" class="btn btn-success">
                         <i class="fas fa-arrow-left"></i> Back
                     </a>
-                    <a href="/ap/print/{{ $ap->id }}" class="btn btn-primary">
+                    <a href="/py/print/{{ $py->id }}" class="btn btn-primary">
                         <i class="fas fa-print"></i> Print
                     </a>
                 </div>

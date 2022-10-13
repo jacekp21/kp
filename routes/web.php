@@ -13,6 +13,7 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,21 +85,23 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/edit/{id}', [PayController::class, 'edit']);
     Route::get('/payment/void/{id}', [PayController::class, 'void']);
     Route::get('/payment/show/{id}', [PayController::class, 'show']);
-});
 
     //Report
-    Route::get('/report/apr',[ReportController::class, 'index']);
+    Route::get('/report',[ReportController::class, 'index']);
+    Route::get('/report/apr',[ReportController::class, 'apr']);
     Route::get('/report/apr_print',[ReportController::class, 'cetak_pdf']);
+    Route::post('/report/print',[ReportController::class, 'print']);
+});
     
 
 
-Route::get('/report', function () {
-    return view('report/index');
-});
+// Route::get('/report', function () {
+//     return view('report/index');
+// });
 
-Route::get('/setting', function () {
-    return view('setting/index');
-});
+// Route::get('/setting', function () {
+//     return view('setting/index');
+// });
 
 
 // Route::get('setting/wh', function () {
