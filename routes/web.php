@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PoController;
 use App\Http\Controllers\ApController;
+use App\Http\Controllers\PyController;
+use App\Http\Controllers\PayController;
+use App\Http\Controllers\TesController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\LoginController;
@@ -63,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/po/edit/{id}', [PoController::class, 'edit']);
     Route::get('/po/void/{id}', [PoController::class, 'void']);
     Route::get('/po/show/{id}', [PoController::class, 'show']);
+    Route::get('/po/print/{id}', [PoController::class, 'print']);
 
     // Account Payable
     Route::get('/ap', [ApController::class, 'index']);    
@@ -73,46 +77,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ap/show/{id}', [ApController::class, 'show']);
 
 
-    // Account Payment
-    // Route::get('/payment', [PyController::class, 'index']);    
-    // Route::get('/payment/new', [PyController::class, 'create']);
-    // Route::post('/payment/store', [PyController::class, 'store']); // Store Payment Information
-    // Route::get('/payment/edit/{id}', [PyController::class, 'edit']);
-    // Route::get('/payment/void/{id}', [PyController::class, 'void']);
-    // Route::get('/payment/show/{id}', [PyController::class, 'show']);
+    //Payment
+    Route::get('/payment', [PayController::class, 'index']);    
+    Route::get('/payment/new', [PayController::class, 'create']);
+    Route::post('/payment/store', [PayController::class, 'store']); // Store Payment Information
+    Route::get('/payment/edit/{id}', [PayController::class, 'edit']);
+    Route::get('/payment/void/{id}', [PayController::class, 'void']);
+    Route::get('/payment/show/{id}', [PayController::class, 'show']);
 });
-    //Test
-    //Route::get('/setting/vendor', [TesController::class, 'tampilvendor']);
-
-    //Tes
-    //Route::get('/tests', [TesController::class, 'index']);
 
     //Report
     Route::get('/report/apr',[ReportController::class, 'index']);
     Route::get('/report/apr_print',[ReportController::class, 'cetak_pdf']);
     
 
-
-// Route::resource('setting/vendor/new', [VendorController::class, 'create']);
-// Route::get('setting/vendor/new', function () {
-//     return view('setting/vendor/new');
-// });
-
-//Route::get('/ap', function () {
-    //  return view('ap/index');
-//});
-
-//Route::get('/ap/new', function () {
-    //return view('ap/new');
-//});
-
-Route::get('/payment', function () {
-    return view('payment/index');
-});
-
-//Route::get('/payment/new', function () {
-    //return view('payment/new');
-//});
 
 Route::get('/report', function () {
     return view('report/index');
@@ -121,6 +99,7 @@ Route::get('/report', function () {
 Route::get('/setting', function () {
     return view('setting/index');
 });
+
 
 // Route::get('setting/wh', function () {
 //     return view('setting/wh/index');

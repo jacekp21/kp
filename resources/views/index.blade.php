@@ -22,7 +22,7 @@
                 <a href="http://localhost:8000/admin/admin" rel="noopener noreferrer">Admin</a><br>
                 <a href="http://localhost:8000/po" rel="noopener noreferrer">Purchase Order</a><br>
                 <a href="http://localhost:8000/ap/ap" rel="noopener noreferrer">Account Payable</a><br>
-                <a href="http://localhost:8000/payment" rel="noopener noreferrer">Payment</a><br>
+                <a href="http://localhost:8000/py" rel="noopener noreferrer">Payment</a><br>
                 <a href="http://localhost:8000/report/report" rel="noopener noreferrer">Report</a><br>
                 <a href="http://localhost:8000/setting/setting" rel="noopener noreferrer">Setting</a><br>
                 <a href="http://localhost:8000/sidebar/bar" rel="noopener noreferrer">Sidebar</a><br>
