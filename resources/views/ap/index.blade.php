@@ -7,8 +7,6 @@
 
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <!-- Font Awesome Link -->
-        <script src="https://kit.fontawesome.com/cc8db81d9c.js" crossorigin="anonymous"></script>
 
         <!-- START : Custom Style -->
         <style>
@@ -94,16 +92,13 @@
         <title>Account Payable Page</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand text-white"><i class="fas fa-user"></i> WELCOME ADMIN | PT BANGUN PRIMA ABADI</a>
-                <a href="http://localhost:8000/login/" class="btn btn-primary mt-3" role="button"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
-            </div>
-        </nav>
+        @include('layouts.header')
         <div class="row no-gutters mt-5">
             @include('layouts.sidebar')
-            <div class="col-md-10 p-5 mt-2">
-                <h1><i class="fas fa-user-cog mr-2"></i> User</h1><hr>
+
+            <div class="col-md-10 p-5 mt-2" style="border: 1px;">
+                <h1><i class="fas fa-file-alt mr-2"></i> Account Payable</h1>
+                <hr>
                 @if (session('success'))
                     <div class="alert-success">
                         <p>{{ session('success') }}</p>
@@ -119,42 +114,51 @@
                         </ul>
                     </div>
                 @endif
-                <a href="/ap/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
-                <div>
-                    <table class="table table-striped align-middle table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">Vendor Name</th>
-                                <th scope="col">Date Of Invoice</th>
-                                <th scope="col">No. Invoice</th>
-                                <th scope="col">No. Po</th>
-                                <th scope="col">Total</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Hartono - PT MOZ</td>
-                                    <td>22 November 2021</td>
-                                    <td>001/INV-MOZ/AR/XI/2021</td>
-                                    <td>022/PO-BPA/XI/2021</td>
-                                    <td>Rp 100.000.000,-</td>
-                                    <!--
-                                    <td>
-                                         <a href=" class="btn btn-primary">
-                                            <i class="fas fa-edit"></i> Update
-                                        </a>
-                                        <a href="" class="btn btn-danger">
-                                            <i class="fas fa-ban"></i> Void
-                                        </a>
-                                    </td>-->
-                                </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <a href="http://localhost:8000/ap/new" class="btn btn-primary mt-2 mb-3" role="button"><i class="fas fa-plus-square"></i> Add New</a>
+
+                <table style="width:100%" class="table table-striped align-middle table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Vendor</th>
+                            <th scope="col">Invoice Date</th>
+                            <th scope="col">Ap Number</th>
+                            <th scope="col">Po Number</th>
+                            <th scope="col">Currency</th>
+                            <th scope="col">Term</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($aps as $key => $ap)
+                        <tr>
+                            <td>{{ $key+1 }}</td>
+                            <td>{{ $ap->vendor->name }}</td>
+                            <td>{{ $ap->inv_date }}</td>
+                            <td>{{ $ap->ap_no}}</td>
+                            <td>{{ $ap->po_no}}</td>
+                            <td>{{ $ap->currency}}</td>
+                            <td>{{ $ap->term}}</td>
+                            <td>{{ $ap->total}}</td>
+                            <td>
+                                <a href="/ap/edit/{{ $ap->id }}" class="btn btn-primary">
+                                    <i class="fas fa-edit"></i> Update
+                                </a>
+                                <a href="/ap/show/{{ $ap->id }}" class="btn btn-success">
+                                    <i class="fas fa-eye"></i> View
+                                </a>
+                                <a href="/ap/disable/{{ $ap->id }}" class="btn btn-danger">
+                                    <i class="fas fa-ban"></i> Void
+                                </a>
+                            </td> 
+                        </tr>
+                        @endforeach 
+                    </tbody>
+                </table>   
             </div>
         </div> 
-    </body>            
+    </body>
+    <!-- Font Awesome Link -->
+    <script src="https://kit.fontawesome.com/cc8db81d9c.js" crossorigin="anonymous"></script>          
 </html>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PoController;
+use App\Http\Controllers\ApController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\LoginController;
@@ -62,7 +63,23 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/po/edit/{id}', [PoController::class, 'edit']);
     Route::get('/po/void/{id}', [PoController::class, 'void']);
     Route::get('/po/show/{id}', [PoController::class, 'show']);
-    Route::get('/po/print/{id}', [PoController::class, 'print']);
+
+    // Account Payable
+    Route::get('/ap', [ApController::class, 'index']);    
+    Route::get('/ap/new', [ApController::class, 'create']);
+    Route::post('/ap/store', [ApController::class, 'store']); // Store Account Payable Information
+    Route::get('/ap/edit/{id}', [ApController::class, 'edit']);
+    Route::get('/ap/void/{id}', [ApController::class, 'void']);
+    Route::get('/ap/show/{id}', [ApController::class, 'show']);
+
+
+    // Account Payment
+    // Route::get('/payment', [PyController::class, 'index']);    
+    // Route::get('/payment/new', [PyController::class, 'create']);
+    // Route::post('/payment/store', [PyController::class, 'store']); // Store Payment Information
+    // Route::get('/payment/edit/{id}', [PyController::class, 'edit']);
+    // Route::get('/payment/void/{id}', [PyController::class, 'void']);
+    // Route::get('/payment/show/{id}', [PyController::class, 'show']);
 });
     //Test
     //Route::get('/setting/vendor', [TesController::class, 'tampilvendor']);
@@ -75,26 +92,27 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/report/apr_print',[ReportController::class, 'cetak_pdf']);
     
 
+
 // Route::resource('setting/vendor/new', [VendorController::class, 'create']);
 // Route::get('setting/vendor/new', function () {
 //     return view('setting/vendor/new');
 // });
 
-Route::get('/ap', function () {
-    return view('ap/index');
-});
+//Route::get('/ap', function () {
+    //  return view('ap/index');
+//});
 
-Route::get('/ap/new', function () {
-    return view('ap/new');
-});
+//Route::get('/ap/new', function () {
+    //return view('ap/new');
+//});
 
 Route::get('/payment', function () {
     return view('payment/index');
 });
 
-Route::get('/payment/new', function () {
-    return view('payment/new');
-});
+//Route::get('/payment/new', function () {
+    //return view('payment/new');
+//});
 
 Route::get('/report', function () {
     return view('report/index');

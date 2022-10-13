@@ -15,14 +15,11 @@ class CreateApDetail extends Migration
     {
         Schema::create('ap_detail', function (Blueprint $table) {
             $table->id();
-            $table->string('po_no');
-            $table->string('item');
+            $table->string('ap_id');
+            $table->string('description');
             $table->string('qty');
             $table->string('unit');
-            $table->float('unit_price');
-            $table->float('discount');
-            $table->float('tax');
-            $table->float('amount');
+            $table->double('unit_price', 12,2);
             $table->timestamps();
         });
     }
