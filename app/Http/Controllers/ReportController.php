@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Vendor;
 use App\Models\Warehouse;
-use App\Models\Po;
-use App\Models\Po_detail;
+use App\Models\payment;
+use App\Models\payment_detail;
+use App\Models\Ap;
+use App\Models\Ap_detail;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -44,7 +46,13 @@ class ReportController extends Controller
         // return $pdf->stream('po-'.$data['po']['po_no'].'pdf');
 
         $post = $request->input();
-        return $post;
+
+        // return $post;
+
+        $type = $post['type'];
+        $month = $post['month'];
+
+        // return $type;
         // return "ada";
         // $pdf_text = "It will be the text you want to load";
         // $data['text'] = "It will be the text you want to load";
@@ -52,5 +60,17 @@ class ReportController extends Controller
         // $pdf = Pdf::loadView('report.pdf', $data);
 
         // return $pdf->stream('report'.'pdf');
+
+        if (strtolower($type) == 'payment') {
+            // return "masuk payment";
+            $data['report'] = payment::whereMonth('pay_date', '=', $month)->get();
+
+            // return $data['report'];
+            $pdf = Pdf::loadView('report.pdf', $data);
+        } else {
+            return "masuk ar";
+        }
+        
+        return $pdf->stream('report'.'pdf');
     }
 }

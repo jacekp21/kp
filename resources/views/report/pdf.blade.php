@@ -47,7 +47,7 @@
             <br>
             <div class="container mt-5">
                 <div class="row">
-                    {{ $text }}
+                    {{ $report }}
                 </div>
             </div>
         </div>

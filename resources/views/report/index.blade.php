@@ -61,9 +61,7 @@
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Periode Transaksi Dari
-                                    </label>
+                                    <label class="form-check-label" for="flexRadioDefault1">Periode Transaksi Dari</label>
                                     <input type="date" class="form-control" id="date" placeholder="">
                                     Ke
                                     <input type="date" class="form-control" id="date" placeholder="">
@@ -94,18 +92,18 @@
                                     <div class="mb-3">
                                         <input class="form-control" type="text" list="month" name="month" id="monthopt" />
                                         <datalist id="month" name="month-list">
-                                            <option value="Jan">Jan</option>
-                                            <option value="Feb">Feb</option>
-                                            <option value="Mar">Mar</option>
-                                            <option value="Apr">Apr</option>
-                                            <option value="May">May</option>
-                                            <option value="Jun">Jun</option>
-                                            <option value="Jul">Jul</option>
-                                            <option value="Aug">Aug</option>
-                                            <option value="Sep">Sep</option>
-                                            <option value="Oct">Oct</option>
-                                            <option value="Nov">Nov</option>
-                                            <option value="Dec">Dec</option>
+                                            <option value="1">Jan</option>
+                                            <option value="2">Feb</option>
+                                            <option value="3">Mar</option>
+                                            <option value="4">Apr</option>
+                                            <option value="5">May</option>
+                                            <option value="6">Jun</option>
+                                            <option value="7">Jul</option>
+                                            <option value="8">Aug</option>
+                                            <option value="9">Sep</option>
+                                            <option value="10">Oct</option>
+                                            <option value="11">Nov</option>
+                                            <option value="12">Dec</option>
                                         </datalist>
                                     </div>
                                 </div>
