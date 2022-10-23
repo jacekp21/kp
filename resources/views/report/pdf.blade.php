@@ -39,15 +39,42 @@
     </style>
 </head>
 <body>
-    <div class="row no-gutters mt-5">    
-        <div class="col-md-10 p-5 mt-2">
-        <hr><h1 style="color:blue;">PURCHASE ORDER</h1>
-            <p style="color:red;">PT BANGUN PRIMA ABADI</p>
+    <div class="row no-gutters">    
+        <div class="col-md-3">
             <hr>
-            <br>
+            <!-- <div sytle="align-content: center;"> -->
+                <h2 style="color:black; padding-bottom:0px; margin-bottom:0px; text-align: center;">PT BANGUN PRIMA ABADI</h2>
+                <h3 style="color:blue; text-align: center;">{{ $title }}</h3>
+                <h6 style="color:red; text-align: center;">{{ $period }}</h6>
+            <!-- </div> -->
+            <hr><br>
             <div class="container mt-5">
                 <div class="row">
-                    {{ $report }}
+                    <!-- {{ $report }} -->
+                    <table style="width:100%" class="table table-striped align-middle table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">VENDOR</th>
+                            <th scope="col">CURRENCY</th>
+                            <th scope="col">SALDO AWAL</th>
+                            <th scope="col">DEBIT</th>
+                            <th scope="col">CREDIT</th>
+                            <th scope="col">SALDO AKHIR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($report as $key => $data)
+                        <tr>
+                            <td>{{ $data->name }}</td>
+                            <td>{{ $data->currency }}</td>
+                            <td>{{ 0 }}</td>
+                            <td>{{ $data->debit }}</td>
+                            <td>{{ $data->credit }}</td>
+                            <td>{{ 0 }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>  
                 </div>
             </div>
         </div>

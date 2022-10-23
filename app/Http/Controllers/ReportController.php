@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Vendor;
 use App\Models\Warehouse;
 use App\Models\payment;
@@ -16,18 +17,12 @@ class ReportController extends Controller
 {
     public function index()
     {
-        // $aprs = 'ada';
-        // return view('/report/apr', ['aprs' => $aprs]);
-
         return view('report.index');
     }
 
     public function cetak_pdf()
     {
-        // $aprs = Report::all();
-
-        // $pdf = PDF::loadview('apreport_pdf', ['aprs' => $aprs]);
-        // return $pdf->download('laporan-ap-pdf');
+        //
     }
 
     /**
@@ -38,37 +33,44 @@ class ReportController extends Controller
      */
     public function print(Request $request)
     {
-        // $data['po'] = Po::with('po_detail')->with('vendor')->with('warehouse')->findOrFail($id);
-        // $data['no'] = 0;
-
-        // $pdf = Pdf::loadView('po.pdf', $data);
-
-        // return $pdf->stream('po-'.$data['po']['po_no'].'pdf');
-
         $post = $request->input();
-
-        // return $post;
 
         $type = $post['type'];
         $month = $post['month'];
 
-        // return $type;
-        // return "ada";
-        // $pdf_text = "It will be the text you want to load";
-        // $data['text'] = "It will be the text you want to load";
+        $first_day_this_month = date('01 F Y', $post['month']); // hard-coded '01' for first day
+        $last_day_this_month  = date('t F Y', $post['month']);
 
-        // $pdf = Pdf::loadView('report.pdf', $data);
-
-        // return $pdf->stream('report'.'pdf');
+        $period = "PERIODE ". strtoupper($first_day_this_month) ." S.D ". strtoupper($last_day_this_month);
 
         if (strtolower($type) == 'payment') {
-            // return "masuk payment";
-            $data['report'] = payment::whereMonth('pay_date', '=', $month)->get();
+            $data['title'] = "PAYMENT";
+            $data['period'] = $period;
+            $data['report'] =   DB::table('vendors')
+                                ->select(DB::raw('vendors.name, py.currency, sum(ap.total) as debit, sum(py.total) as credit'))
+                                ->leftJoin('py', 'py.vendor_id', '=', 'vendors.id')
+                                ->leftJoin('ap', 'ap.vendor_id', '=', 'vendors.id')
+                                ->whereMonth('py.pay_date', '=', $month)
+                                ->groupBy('name')
+                                ->groupBy('currency')
+                                ->get();
 
-            // return $data['report'];
+            // return $data;
+
             $pdf = Pdf::loadView('report.pdf', $data);
         } else {
-            return "masuk ar";
+            $data['title'] = "ACCOUNT PAYABLE";
+            $data['period'] = $period;
+            $data['report'] =   DB::table('vendors')
+                                ->select(DB::raw('vendors.name, py.currency, sum(ap.total) as debit, sum(py.total) as credit'))
+                                ->leftJoin('py', 'py.vendor_id', '=', 'vendors.id')
+                                ->leftJoin('ap', 'ap.vendor_id', '=', 'vendors.id')
+                                ->whereMonth('py.pay_date', '=', $month)
+                                ->groupBy('name')
+                                ->groupBy('currency')
+                                ->get();
+
+            $pdf = Pdf::loadView('report.pdf', $data);
         }
         
         return $pdf->stream('report'.'pdf');
