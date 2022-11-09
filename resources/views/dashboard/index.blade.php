@@ -30,12 +30,14 @@
     <title>Dashboard</title>
   </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand text-white"><i class="fas fa-user"></i> WELCOME ADMIN | PT BANGUN PRIMA ABADI</a>
             <a href="http://localhost:8000/logout/" class="btn btn-primary mt-3" role="button"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
         </div>
-    </nav>
+    </nav> -->
+
+    @include('layouts.header')
     <div class="row no-gutters mt-5">
         @include('layouts.sidebar')
         

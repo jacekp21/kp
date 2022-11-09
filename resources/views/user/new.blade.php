@@ -59,7 +59,7 @@
                         <select name="position" id="position" class="form-control @error('position') is-invalid @enderror" placeholder="Type to search...">
                             <option {{ !isset($user->position) ? 'Selected' : '' }}>Choose position..</option>
                             <option value="Admin" {{ old('position', ucfirst($user->position ?? '')) == 'Admin' ? 'Selected' : '' }}>Admin</option>
-                            <option value="Manager" {{ old('position', ucfirst($user->position ?? '')) == 'Manager' ? 'Selected' : '' }}>Manager</option>
+                            <!-- <option value="Manager" {{ old('position', ucfirst($user->position ?? '')) == 'Manager' ? 'Selected' : '' }}>Manager</option> -->
                             <option value="Accounting" {{ old('position', ucfirst($user->position ?? '')) == 'Accounting' ? 'Selected' : '' }}>Accounting</option>
                             <option value="Purchasing" {{ old('position', ucfirst($user->position ?? '')) == 'Purchasing' ? 'Selected' : '' }}>Purchasing</option>
                         </select>
