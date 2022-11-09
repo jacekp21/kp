@@ -55,8 +55,6 @@ class ReportController extends Controller
                                 ->groupBy('currency')
                                 ->get();
 
-            // return $data;
-
             $pdf = Pdf::loadView('report.pdf', $data);
         } else {
             $data['title'] = "ACCOUNT PAYABLE";
